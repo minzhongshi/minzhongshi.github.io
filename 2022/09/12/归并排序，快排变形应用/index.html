@@ -1,0 +1,613 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="msvalidate.01" content="AFDB45CC21FD88E9C707C7C9162E5E5A"><meta name="baidu-site-verification" content="code-h3hQw6wxUc"><meta name="360-site-verification" content="1e4c79dee06e20b0af55fd4499a2d4a8"><meta name="sogou_site_verification" content="zG14f2yB7U"><meta name="description" content="归并排序，快排的思路以及code，还有相关的问题解决，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="归并排序，快排变形应用">
+<meta property="og:url" content="http://120.48.161.105:4000/2022/09/12/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%EF%BC%8C%E5%BF%AB%E6%8E%92%E5%8F%98%E5%BD%A2%E5%BA%94%E7%94%A8/index.html">
+<meta property="og:site_name" content="Min&#39;s Blog">
+<meta property="og:description" content="归并排序，快排的思路以及code，还有相关的问题解决，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4ce416eaf43949438852cdefc3d76419.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/59e2a6119b6b48c69281d8724ff9d01e.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a75e03cdeb3741b7a111f22f9db649dc.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1e965cf11de343cb8e584ed7a2bdc9c5.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e3651b96fdc34e3ba46580ab7af5f008.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/eeff751387c1457993dbdbba754f4e50.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/0f4ca14d34364059bafc3a33d8e0af19.png">
+<meta property="article:published_time" content="2022-09-12T07:42:08.191Z">
+<meta property="article:modified_time" content="2022-09-12T07:44:41.852Z">
+<meta property="article:author" content="史明忠">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="排序算法">
+<meta property="article:tag" content="归并排序">
+<meta property="article:tag" content="快排排序">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/4ce416eaf43949438852cdefc3d76419.png"><title>归并排序，快排变形应用 | Min's Blog</title><link ref="canonical" href="http://120.48.161.105:4000/2022/09/12/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%EF%BC%8C%E5%BF%AB%E6%8E%92%E5%8F%98%E5%BD%A2%E5%BA%94%E7%94%A8/"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?e5397e2608cbb991400432801c7a10f1';
+  hm.async = true;
+
+  if (true) {
+    hm.setAttribute('data-pjax', '');
+  }
+  var s = document.getElementsByTagName('script')[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: true,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: true,
+  pjax: {"avoidBanner":true},
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-tie"></i></span><span class="header-nav-menu-item__text">关于</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Min's Blog</div><div class="header-banner-info__subtitle">well begun is half done</div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">归并排序，快排变形应用</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2022-09-12</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2022-09-12</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">2.8k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">24分</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><hr>
+
+        <h1 id="前言"   >
+          <a href="#前言" class="heading-link"><i class="fas fa-link"></i></a><a href="#前言" class="headerlink" title="前言"></a>前言</h1>
+      <p>O(NlogN)的排序</p>
+<hr>
+
+        <h1 id="一、数组中点防溢出"   >
+          <a href="#一、数组中点防溢出" class="heading-link"><i class="fas fa-link"></i></a><a href="#一、数组中点防溢出" class="headerlink" title="一、数组中点防溢出"></a>一、数组中点防溢出</h1>
+      <p>在取一个数组的中点时，传统写法为：</p>
+<ul>
+<li><strong>mid&#x3D;(min+max)&#x2F;2</strong>;  这样会发生（mn+max）溢出。</li>
+<li><strong>min+(max-min)&#x2F;2</strong>; 可以改成这样。</li>
+<li><strong>mn+（(max-min)&gt;&gt;1）</strong>;也可以这样。</li>
+</ul>
+
+        <h1 id="二、master公式"   >
+          <a href="#二、master公式" class="heading-link"><i class="fas fa-link"></i></a><a href="#二、master公式" class="headerlink" title="二、master公式"></a>二、master公式</h1>
+      
+        <h2 id="1-master公式的使用"   >
+          <a href="#1-master公式的使用" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-master公式的使用" class="headerlink" title="1.master公式的使用"></a>1.master公式的使用</h2>
+      <p><strong>T（N）&#x3D;a*T（N&#x2F;b）+O(N^d)</strong><br>其中T（N）表示母问题规模，a表示子问题调用次数，T（N&#x2F;b）表示子问题规模，O（N^d）表示其它规模。<br><code>必须在子问题规模一样的情况下</code><br>时间复杂度</p>
+<ul>
+<li>logb^a&lt;d  —&gt;O(N ^ d)</li>
+<li>logb^a&gt;d   —&gt; O(N ^logb ^a)</li>
+<li>logb^a&#x3D;&#x3D;d  —&gt; O(N ^d *logN)</li>
+</ul>
+
+        <h1 id="归并排序"   >
+          <a href="#归并排序" class="heading-link"><i class="fas fa-link"></i></a><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1>
+      
+        <h2 id="1-流程"   >
+          <a href="#1-流程" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-流程" class="headerlink" title="1.流程"></a>1.流程</h2>
+      <p>将数组沿中点分成两部分,分别将左右两部分先排序，然后申请辅助空间，依次比较 左右两边的数，根据规则将较大或较小数copy到辅助空间，将这一侧往后移一位和另一侧不移动的数比较，以此类推，最终一边越界将另一边剩下的直接copy进辅助空间，就得到了有序数组。</p>
+<blockquote>
+<p>T（N）&#x3D;2T（N&#x2F;2）+O（N）<br>归并排序的时间复杂度为：O（NlogN）<br>额外空间复杂度为：O（N）<br>代码如下</p>
+</blockquote>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">mergeSort</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">process</span><span class="params">(<span class="type">int</span> []arr,<span class="type">int</span> L,<span class="type">int</span> R)</span>&#123; <span class="comment">// 递归</span></span><br><span class="line">        <span class="keyword">if</span> (L==R)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> mid=L+((R-L)&gt;&gt;<span class="number">1</span>);<span class="comment">// 取中点</span></span><br><span class="line">        <span class="comment">// 两次递归</span></span><br><span class="line">        process(arr,L,mid);</span><br><span class="line">        process(arr,mid+<span class="number">1</span>,R);</span><br><span class="line">        merge(arr,L,mid,R);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">merge</span><span class="params">(<span class="type">int</span> []arr,<span class="type">int</span> L,<span class="type">int</span> M,<span class="type">int</span> R)</span>&#123;<span class="comment">// 比较</span></span><br><span class="line">        <span class="type">int</span>[] help=<span class="keyword">new</span> <span class="title class_">int</span>[R-L+<span class="number">1</span>];<span class="comment">// 辅助空间</span></span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> p1=L; <span class="comment">// 左指针</span></span><br><span class="line">        <span class="type">int</span> p2=M+<span class="number">1</span>; <span class="comment">// 右指针</span></span><br><span class="line">        <span class="comment">// O（N）</span></span><br><span class="line">        <span class="keyword">while</span> (p1 &lt;= M &amp;&amp; p2 &lt;= R)&#123;<span class="comment">// 比较</span></span><br><span class="line">           help[i++]= arr[p1]&lt;=arr[p2]?arr[p1++]: arr[p2++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 最终</span></span><br><span class="line">        <span class="keyword">while</span> (p1&lt;=M)&#123;</span><br><span class="line">            help[i++]=arr[p1++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (p2&lt;=R)&#123;</span><br><span class="line">            help[i++]=arr[p2++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// O（N）</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;help.length;j++)&#123;</span><br><span class="line">            arr[L+j]=help[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<hr>
+
+        <h2 id="2-归并排序拓展"   >
+          <a href="#2-归并排序拓展" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-归并排序拓展" class="headerlink" title="2.归并排序拓展"></a>2.归并排序拓展</h2>
+      
+        <h3 id="（1）求小和问题"   >
+          <a href="#（1）求小和问题" class="heading-link"><i class="fas fa-link"></i></a><a href="#（1）求小和问题" class="headerlink" title="（1）求小和问题"></a>（1）求小和问题</h3>
+      <blockquote>
+<p>描述：在一个数组中，每一个数左边比当前的数大累加起来，叫做这个数组的小和。求一个数组的小和。<br>例如：<br>[1,3,4,2,5],1左边比1小的数，没有；3左边比3小的数，1；4左边比4小的数，1、3；2左边比2小的数，1；5左边比5小的数，1、3、4、2；所以小和为1+1+3+1+1+3+4+2&#x3D;16。</p>
+</blockquote>
+<blockquote>
+<p>思路：转换问题，将求左边比当前数小改为求右边比当前数大的个数，再与该数相乘，最后相加得到小和。<br>例如：<br>1右边比1大的数有4个，就是1<em>4；3右边比3大的有2个，就是3</em>2；4右边比4大的有1个，就是4<em>1；2右边比2大的有1个，就是2</em>1；5右边没有比5大的数；所以小和为1<em>4+3</em>2+4<em>1+2</em>1&#x3D;16。</p>
+</blockquote>
+<blockquote>
+<p>利用归并找到小和，在左右两边都排序后，只要左边比右边的小，就要进行小和的累加，当相同时，先复制右边的，这样能更快找完但个数的小和。</p>
+</blockquote>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">smallSumProblem</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">process</span><span class="params">(<span class="type">int</span> []arr, <span class="type">int</span> L, <span class="type">int</span> R)</span>&#123; <span class="comment">// 递归</span></span><br><span class="line">        <span class="keyword">if</span> (L==R)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> mid=L+((R-L)&gt;&gt;<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> process(arr,L,mid) +process(arr,mid+<span class="number">1</span>,R)+merge(arr,L,mid,R); <span class="comment">//总小和</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">merge</span><span class="params">(<span class="type">int</span> []arr,<span class="type">int</span> L,<span class="type">int</span> M,<span class="type">int</span> R)</span>&#123;<span class="comment">// 比较</span></span><br><span class="line">        <span class="type">int</span>[] help=<span class="keyword">new</span> <span class="title class_">int</span>[R-L+<span class="number">1</span>];<span class="comment">// 辅助空间</span></span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> p1=L; <span class="comment">// 左指针</span></span><br><span class="line">        <span class="type">int</span> p2=M+<span class="number">1</span>; <span class="comment">// 右指针</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span><span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (p1 &lt;= M &amp;&amp; p2 &lt;= R)&#123;<span class="comment">// 比较 求小和</span></span><br><span class="line">            res+=arr[p1]&lt;arr[p2]?(R-p2+<span class="number">1</span>)*arr[p1]:<span class="number">0</span>; <span class="comment">// 左边小于右边时，计算小和数</span></span><br><span class="line">            help[i++]= arr[p1]&lt;arr[p2]?arr[p1++]: arr[p2++];<span class="comment">// 左右两边相等时先拷贝右边的</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 最终</span></span><br><span class="line">        <span class="keyword">while</span> (p1&lt;=M)&#123;</span><br><span class="line">            help[i++]=arr[p1++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (p2&lt;=R)&#123;</span><br><span class="line">            help[i++]=arr[p2++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;help.length;j++)&#123;</span><br><span class="line">            arr[L+j]=help[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<blockquote>
+<p>结果：<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/4ce416eaf43949438852cdefc3d76419.png"  alt="在这里插入图片描述">
+      </p>
+</blockquote>
+
+        <h3 id="（2）逆序对问题"   >
+          <a href="#（2）逆序对问题" class="heading-link"><i class="fas fa-link"></i></a><a href="#（2）逆序对问题" class="headerlink" title="（2）逆序对问题"></a>（2）逆序对问题</h3>
+      <blockquote>
+<p>描述：在一个数组中，左边的数如果比右边大，则这两个数构成一个逆序对，请打印所有逆序对。</p>
+</blockquote>
+<hr>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">reversePairProblem</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] arr = &#123;<span class="number">5</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>&#125;;</span><br><span class="line">        process(arr, <span class="number">0</span>, <span class="number">4</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">process</span><span class="params">(<span class="type">int</span>[] arr, <span class="type">int</span> L, <span class="type">int</span> R)</span> &#123; <span class="comment">// 递归</span></span><br><span class="line">        <span class="keyword">if</span> (L == R) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> L + ((R - L) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">         process(arr, L, mid);</span><br><span class="line">         process(arr, mid + <span class="number">1</span>, R);</span><br><span class="line">         merge(arr,L,mid,R);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">merge</span><span class="params">(<span class="type">int</span>[] arr, <span class="type">int</span> L, <span class="type">int</span> M, <span class="type">int</span> R)</span> &#123;<span class="comment">// 比较</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">p1</span> <span class="operator">=</span> L; <span class="comment">// 左指针</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">p2</span> <span class="operator">=</span> M + <span class="number">1</span>; <span class="comment">// 右指针</span></span><br><span class="line">        <span class="keyword">while</span> (p1 &lt;= M &amp;&amp; p2 &lt;= R) &#123;<span class="comment">// 比较</span></span><br><span class="line">            <span class="keyword">if</span> (arr[p1]&gt;arr[p2])&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;[&quot;</span>+arr[p1]+<span class="string">&quot;,&quot;</span>+arr[p2]+<span class="string">&quot;]&quot;</span>);</span><br><span class="line">                p1++;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                p2++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<blockquote>
+<p>结果：<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/59e2a6119b6b48c69281d8724ff9d01e.png"  alt="在这里插入图片描述">
+      </p>
+</blockquote>
+
+        <h2 id="3-荷兰国旗问题"   >
+          <a href="#3-荷兰国旗问题" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-荷兰国旗问题" class="headerlink" title="3.荷兰国旗问题"></a>3.荷兰国旗问题</h2>
+      
+        <h3 id="（1）荷兰国旗问题一"   >
+          <a href="#（1）荷兰国旗问题一" class="heading-link"><i class="fas fa-link"></i></a><a href="#（1）荷兰国旗问题一" class="headerlink" title="（1）荷兰国旗问题一"></a>（1）荷兰国旗问题一</h3>
+      <blockquote>
+<p>描述：<br>给定一个数组arr，和一个数num，请把小于等于num的数放在数组左边，大于num的数放在数组的右边，要求额外空间复杂度O(1)，时间复杂度O（N）。</p>
+</blockquote>
+<blockquote>
+<p>思路：<br>他并不要求有序，值啊要将小于等于num的数放左边，大于num的数放右边就可以。先规定一个小于等于num的区域area，area起始是arr第一个数的左边，让指针i指向arr第一个数，让arr[i]与num比较，如果比num小或等，就让i+1，让area往右边扩一位，将arr[i]包含其中；如果arr[i]大于num时，i+1,area不变，接着比较下一位，知道有一位比num小时，交换这一位和area下一位数的位置，再将area往下扩一位，以此类推。</p>
+</blockquote>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">dutchFlagQuestionOne</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span> []arr=&#123;<span class="number">3</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">8</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">7</span>&#125;;</span><br><span class="line">        <span class="type">int</span> num=<span class="number">5</span>;</span><br><span class="line">        hollandOne(arr,num);</span><br><span class="line">        System.out.println(Arrays.toString(arr));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">hollandOne</span><span class="params">(<span class="type">int</span> []arr,<span class="type">int</span> num)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr==<span class="literal">null</span>||arr.length&lt;<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        partition(arr,num,<span class="number">0</span>, arr.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">partition</span><span class="params">(<span class="type">int</span> []arr,<span class="type">int</span> num,<span class="type">int</span> L,<span class="type">int</span> R)</span>&#123;</span><br><span class="line">        <span class="type">int</span> less=L-<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> more=R+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (L&lt;more)&#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[L]&lt;=num)&#123;</span><br><span class="line">                swap(arr,++less,L++);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                swap(arr,--more,L);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//交换方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> []arr,<span class="type">int</span> L,<span class="type">int</span> R)</span>&#123;</span><br><span class="line">        <span class="type">int</span> temp=arr[L];</span><br><span class="line">        arr[L]=arr[R];</span><br><span class="line">        arr[R]=temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+<blockquote>
+<p>结果：<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/a75e03cdeb3741b7a111f22f9db649dc.png"  alt="在这里插入图片描述">
+      </p>
+</blockquote>
+
+        <h3 id="（2）荷兰国旗问题二"   >
+          <a href="#（2）荷兰国旗问题二" class="heading-link"><i class="fas fa-link"></i></a><a href="#（2）荷兰国旗问题二" class="headerlink" title="（2）荷兰国旗问题二"></a>（2）荷兰国旗问题二</h3>
+      <blockquote>
+<p>描述：<br>给定一个数组arr，和一个数num，请把小于num的数放在数组左边，等于num的数放在数组中间，大于num的数放在数组的右边，要求额外空间复杂度O(1)，时间复杂度O（N）。</p>
+</blockquote>
+<blockquote>
+<p>思路:<br>和上一个差不多，只不过多了一个等于的区域</p>
+<ul>
+<li>[i]&lt;num,[i]和小于区下一位交换，小于区右扩一位，i++</li>
+<li>[i]&#x3D;num，i++</li>
+<li>[i]&gt;num,[i]和大于区前一位交换，大于区左扩一位，i不变</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">dutchFlagQuestionOne</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span> []arr=&#123;<span class="number">3</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">8</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">7</span>&#125;;</span><br><span class="line">        <span class="type">int</span> num=<span class="number">5</span>;</span><br><span class="line">        hollandOne(arr,num);</span><br><span class="line">        System.out.println(Arrays.toString(arr));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">hollandOne</span><span class="params">(<span class="type">int</span> []arr,<span class="type">int</span> num)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr==<span class="literal">null</span>||arr.length&lt;<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        partition(arr,num,<span class="number">0</span>, arr.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">partition</span><span class="params">(<span class="type">int</span> []arr,<span class="type">int</span> num,<span class="type">int</span> L,<span class="type">int</span> R)</span>&#123;</span><br><span class="line">        <span class="type">int</span> less=L-<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> more=R+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (L&lt;more)&#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[L]&lt;=num)&#123;</span><br><span class="line">                swap(arr,++less,L++);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                swap(arr,--more,L);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//交换方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> []arr,<span class="type">int</span> L,<span class="type">int</span> R)</span>&#123;</span><br><span class="line">        <span class="type">int</span> temp=arr[L];</span><br><span class="line">        arr[L]=arr[R];</span><br><span class="line">        arr[R]=temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<blockquote>
+<p>结果：<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/1e965cf11de343cb8e584ed7a2bdc9c5.png"  alt="在这里插入图片描述">
+      </p>
+</blockquote>
+
+        <h2 id="4-快排"   >
+          <a href="#4-快排" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-快排" class="headerlink" title="4.快排"></a>4.快排</h2>
+      
+        <h3 id="（1）快排1（荷兰国旗问题一的递归）"   >
+          <a href="#（1）快排1（荷兰国旗问题一的递归）" class="heading-link"><i class="fas fa-link"></i></a><a href="#（1）快排1（荷兰国旗问题一的递归）" class="headerlink" title="（1）快排1（荷兰国旗问题一的递归）"></a>（1）快排1（荷兰国旗问题一的递归）</h3>
+      <blockquote>
+<p>将最后一个数作为划分数进行判断，先判断第一个数与划分数的大小关系，如果小于等于划分数，与小于区后一位交换，小于区域右扩一位；如果大于划分数，与大于区前一位数交换，大于区左扩一位，返回小于区与大于区的交界值，进行递归，最终必定能得到一个有序数组。<br>时间复杂度为：O（N^2）<br>空间复杂度为：O（logN）</p>
+</blockquote>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">quickRowOne</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span> []arr=&#123;<span class="number">1</span>,<span class="number">9</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>&#125;;</span><br><span class="line">        quickSort(arr);</span><br><span class="line">        System.out.println(Arrays.toString(arr));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">quickSort</span><span class="params">(<span class="type">int</span> []arr)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr==<span class="literal">null</span>||arr.length&lt;<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        quickSort(arr,<span class="number">0</span>,arr.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">quickSort</span><span class="params">(<span class="type">int</span>[]arr,<span class="type">int</span> L,<span class="type">int</span> R)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (L&lt;R)&#123;</span><br><span class="line">            <span class="type">int</span> p=partition(arr,L,R);</span><br><span class="line">            quickSort(arr,<span class="number">0</span>,p-<span class="number">1</span>);</span><br><span class="line">            quickSort(arr,p,R);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="type">int</span> []arr,<span class="type">int</span> L,<span class="type">int</span> R)</span>&#123;</span><br><span class="line">        <span class="type">int</span> less=L-<span class="number">1</span>; <span class="comment">// 小于等于区右边界</span></span><br><span class="line">        <span class="type">int</span> more=R;<span class="comment">// 大于区左边界</span></span><br><span class="line">       <span class="keyword">while</span> (L&lt;more)&#123;</span><br><span class="line">           <span class="keyword">if</span> (arr[L]&lt;=arr[R])&#123;</span><br><span class="line">               swap(arr,++less,L++);</span><br><span class="line">           &#125;<span class="keyword">else</span> swap(arr,--more,L);</span><br><span class="line">       &#125;</span><br><span class="line">        swap(arr,more,R);</span><br><span class="line">       <span class="keyword">return</span> more;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> []arr,<span class="type">int</span> L,<span class="type">int</span> R)</span>&#123;</span><br><span class="line">        <span class="type">int</span> temp=arr[L];</span><br><span class="line">        arr[L]=arr[R];</span><br><span class="line">        arr[R]=temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<blockquote>
+<p>结果：<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/e3651b96fdc34e3ba46580ab7af5f008.png"  alt="在这里插入图片描述">
+      </p>
+</blockquote>
+
+        <h3 id="（2）快排2（荷兰国旗问题二的递归）"   >
+          <a href="#（2）快排2（荷兰国旗问题二的递归）" class="heading-link"><i class="fas fa-link"></i></a><a href="#（2）快排2（荷兰国旗问题二的递归）" class="headerlink" title="（2）快排2（荷兰国旗问题二的递归）"></a>（2）快排2（荷兰国旗问题二的递归）</h3>
+      <blockquote>
+<p>在一的基础上添加了&#x3D;的区域，也就是说&#x3D;区域的那部分在后面就不用递归排序了。<br>时间复杂度为：O（N^2）<br>空间复杂度为：O（logN）</p>
+</blockquote>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">quicksortTwo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span> []arr=&#123;<span class="number">1</span>,<span class="number">9</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>&#125;;</span><br><span class="line">        quickSort(arr);</span><br><span class="line">        System.out.println(Arrays.toString(arr));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">quickSort</span><span class="params">(<span class="type">int</span> []arr)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr==<span class="literal">null</span>||arr.length&lt;<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        quickSort(arr,<span class="number">0</span>,arr.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">quickSort</span><span class="params">(<span class="type">int</span>[]arr,<span class="type">int</span> L,<span class="type">int</span> R)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (L&lt;R)&#123;</span><br><span class="line">            <span class="type">int</span> p[]=partition(arr,L,R);</span><br><span class="line">            quickSort(arr,<span class="number">0</span>,p[<span class="number">0</span>]-<span class="number">1</span>);</span><br><span class="line">            quickSort(arr,p[<span class="number">1</span>]+<span class="number">1</span>,R);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span>[] partition(<span class="type">int</span> []arr,<span class="type">int</span> L,<span class="type">int</span> R)&#123;</span><br><span class="line">        <span class="type">int</span> less=L-<span class="number">1</span>; <span class="comment">// 小于等于区右边界</span></span><br><span class="line">        <span class="type">int</span> more=R;<span class="comment">// 大于区左边界</span></span><br><span class="line">        <span class="keyword">while</span> (L&lt;more)&#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[L]&lt;arr[R])&#123;</span><br><span class="line">                swap(arr,++less,L++);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (arr[L]&gt;arr[R])&#123;</span><br><span class="line">                swap(arr,--more,L);</span><br><span class="line">            &#125;<span class="keyword">else</span> L++;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(arr,more,R);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;less+<span class="number">1</span>,more&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> []arr,<span class="type">int</span> L,<span class="type">int</span> R)</span>&#123;</span><br><span class="line">        <span class="type">int</span> temp=arr[L];</span><br><span class="line">        arr[L]=arr[R];</span><br><span class="line">        arr[R]=temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<blockquote>
+<p>结果：<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/eeff751387c1457993dbdbba754f4e50.png"  alt="在这里插入图片描述">
+      </p>
+</blockquote>
+
+        <h3 id="（3）快排3（随机选取数来划分）"   >
+          <a href="#（3）快排3（随机选取数来划分）" class="heading-link"><i class="fas fa-link"></i></a><a href="#（3）快排3（随机选取数来划分）" class="headerlink" title="（3）快排3（随机选取数来划分）"></a>（3）快排3（随机选取数来划分）</h3>
+      <blockquote>
+<p>选取划分数时，在列表中随机选取一个数，并人为的将其放到列表的最后一位。<br>时间复杂度为：O（N*logN）<br>空间复杂度为：O（logN）</p>
+</blockquote>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">quickRowThree</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span> []arr=&#123;<span class="number">1</span>,<span class="number">9</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>&#125;;</span><br><span class="line">        quickSort(arr);</span><br><span class="line">        System.out.println(Arrays.toString(arr));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">quickSort</span><span class="params">(<span class="type">int</span>[]arr)</span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (arr==<span class="literal">null</span>||arr.length&lt;<span class="number">2</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       quickSort(arr,<span class="number">0</span>,arr.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 递归排序</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">quickSort</span><span class="params">(<span class="type">int</span>[]arr,<span class="type">int</span> L,<span class="type">int</span> R)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (L&lt;R)&#123;</span><br><span class="line">            swap(arr,L+(<span class="type">int</span>)(Math.random()*(R-L+<span class="number">1</span>)),R); <span class="comment">// 随机范围数，手动交换到最后一位</span></span><br><span class="line">            <span class="type">int</span>[]p=partition(arr,L,R);<span class="comment">// 用来确定等于区域边界</span></span><br><span class="line">            quickSort(arr,L,p[<span class="number">0</span>]-<span class="number">1</span>);<span class="comment">// 小于区域</span></span><br><span class="line">            quickSort(arr,p[<span class="number">1</span>]+<span class="number">1</span>,R);<span class="comment">// 大于区域</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span>[] partition(<span class="type">int</span>[]arr, <span class="type">int</span> L, <span class="type">int</span> R)&#123;</span><br><span class="line">        <span class="type">int</span> less=L-<span class="number">1</span>; <span class="comment">// 小于取右边界</span></span><br><span class="line">        <span class="type">int</span> more=R;<span class="comment">// 大于区左边界</span></span><br><span class="line">        <span class="keyword">while</span> (L&lt;more)&#123;</span><br><span class="line">            <span class="comment">// [i]&lt;num,[i]和小于区下一位交换，小于区右扩一位，i++</span></span><br><span class="line">            <span class="comment">// [i]=num，i++</span></span><br><span class="line">            <span class="comment">// [i]&gt;num,[i]和大于区前一位交换，大于区左扩一位，i不变</span></span><br><span class="line">            <span class="keyword">if</span> (arr[L]&lt;arr[R])&#123;</span><br><span class="line">                swap(arr,++less,L++);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (arr[L]&gt;arr[R])&#123;</span><br><span class="line">                swap(arr,--more,L);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                L++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(arr,more,R);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;less+<span class="number">1</span>,more&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[]arr,<span class="type">int</span> L,<span class="type">int</span> R)</span>&#123;</span><br><span class="line">        <span class="type">int</span> temp=arr[L];</span><br><span class="line">        arr[L]=arr[R];</span><br><span class="line">        arr[R]=temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<blockquote>
+<p>结果：<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/0f4ca14d34364059bafc3a33d8e0af19.png"  alt="在这里插入图片描述">
+      </p>
+</blockquote>
+<hr>
+
+        <h1 id="总结"   >
+          <a href="#总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
+      <p>上文主要讲了master公式的使用，归并排序以及快排逻辑，以及递归解决问题。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/">算法</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">排序算法</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">归并排序</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E5%BF%AB%E6%8E%92%E6%8E%92%E5%BA%8F/">快排排序</a></span></div><div class="post-reward reward"><div class="reward-button">请我喝杯咖啡~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/images/collection/ZF.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/images/collection/WX.jpg"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2022/09/12/%E5%A0%86%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8F%E5%BA%94%E7%94%A8/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">堆结构、堆排序及其应用</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2022/09/12/%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E7%AE%80%E5%8D%95%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%8F%8A%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%AE%9E%E9%99%85%E9%97%AE%E9%A2%98/"><span class="paginator-prev__text">复杂度和简单排序算法及位运算的实际问题</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="utterances-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">
+          前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%95%B0%E7%BB%84%E4%B8%AD%E7%82%B9%E9%98%B2%E6%BA%A2%E5%87%BA"><span class="toc-number">2.</span> <span class="toc-text">
+          一、数组中点防溢出</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81master%E5%85%AC%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">
+          二、master公式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-master%E5%85%AC%E5%BC%8F%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">3.1.</span> <span class="toc-text">
+          1.master公式的使用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="toc-number">4.</span> <span class="toc-text">
+          归并排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%B5%81%E7%A8%8B"><span class="toc-number">4.1.</span> <span class="toc-text">
+          1.流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E6%8B%93%E5%B1%95"><span class="toc-number">4.2.</span> <span class="toc-text">
+          2.归并排序拓展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E6%B1%82%E5%B0%8F%E5%92%8C%E9%97%AE%E9%A2%98"><span class="toc-number">4.2.1.</span> <span class="toc-text">
+          （1）求小和问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E9%80%86%E5%BA%8F%E5%AF%B9%E9%97%AE%E9%A2%98"><span class="toc-number">4.2.2.</span> <span class="toc-text">
+          （2）逆序对问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%8D%B7%E5%85%B0%E5%9B%BD%E6%97%97%E9%97%AE%E9%A2%98"><span class="toc-number">4.3.</span> <span class="toc-text">
+          3.荷兰国旗问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E8%8D%B7%E5%85%B0%E5%9B%BD%E6%97%97%E9%97%AE%E9%A2%98%E4%B8%80"><span class="toc-number">4.3.1.</span> <span class="toc-text">
+          （1）荷兰国旗问题一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E8%8D%B7%E5%85%B0%E5%9B%BD%E6%97%97%E9%97%AE%E9%A2%98%E4%BA%8C"><span class="toc-number">4.3.2.</span> <span class="toc-text">
+          （2）荷兰国旗问题二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%BF%AB%E6%8E%92"><span class="toc-number">4.4.</span> <span class="toc-text">
+          4.快排</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%BF%AB%E6%8E%921%EF%BC%88%E8%8D%B7%E5%85%B0%E5%9B%BD%E6%97%97%E9%97%AE%E9%A2%98%E4%B8%80%E7%9A%84%E9%80%92%E5%BD%92%EF%BC%89"><span class="toc-number">4.4.1.</span> <span class="toc-text">
+          （1）快排1（荷兰国旗问题一的递归）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%BF%AB%E6%8E%922%EF%BC%88%E8%8D%B7%E5%85%B0%E5%9B%BD%E6%97%97%E9%97%AE%E9%A2%98%E4%BA%8C%E7%9A%84%E9%80%92%E5%BD%92%EF%BC%89"><span class="toc-number">4.4.2.</span> <span class="toc-text">
+          （2）快排2（荷兰国旗问题二的递归）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%BF%AB%E6%8E%923%EF%BC%88%E9%9A%8F%E6%9C%BA%E9%80%89%E5%8F%96%E6%95%B0%E6%9D%A5%E5%88%92%E5%88%86%EF%BC%89"><span class="toc-number">4.4.3.</span> <span class="toc-text">
+          （3）快排3（随机选取数来划分）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">
+          总结</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/apple-touch-icon.png" alt="avatar"></div><p class="sidebar-ov-author__text">积少成多</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/minzhongshi" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:2240941938@qq.com" target="_blank" rel="noopener" data-popover="发送邮件" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a><a class="sidebar-ov-social-item" href="tencent://message?uin=2240941938" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://blog.csdn.net/smznbhh" target="_blank" rel="noopener" data-popover="CSDN" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">C</span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">18</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">35</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-yin-yang"></i></span><span>MinZhongShi All Rights Reserved</span><span class="footer__devider">|</span><span>备案 XXXXXXXX 号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>托管于 <a href="https://github.com/minzhongshi/" rel="noopener" target="_blank">Github Pages</a>）</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
+  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
+  // 加载进度条的计时器
+  var loadingTimer = null;
+
+  // 重置页面 Y 方向上的滚动偏移量
+  document.addEventListener('pjax:send', function () {
+    $('.header-nav-menu').removeClass('show');
+    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
+      $('html').velocity('scroll', {
+        duration: 500,
+        offset: $('#header').height(),
+        easing: 'easeInOutCubic'
+      });
+    }
+
+    var loadingBarWidth = 20;
+    var MAX_LOADING_WIDTH = 95;
+
+    $('.loading-bar').addClass('loading');
+    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    clearInterval(loadingTimer);
+    loadingTimer = setInterval(function () {
+      loadingBarWidth += 3;
+      if (loadingBarWidth > MAX_LOADING_WIDTH) {
+        loadingBarWidth = MAX_LOADING_WIDTH;
+      }
+      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    }, 500);
+  }, false);
+
+  window.addEventListener('pjax:complete', function () {
+    clearInterval(loadingTimer);
+    $('.loading-bar__progress').css('width', '100%');
+    $('.loading-bar').removeClass('loading');
+    setTimeout(function () {
+      $('.loading-bar__progress').css('width', '0');
+    }, 400);
+    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
+      $(this).remove();
+    });
+    $('script[data-pjax], #pjax-reload script').each(function () {
+      $(this).parent().append($(this).remove());
+    });
+
+    if (Stun.utils.pjaxReloadBoot) {
+      Stun.utils.pjaxReloadBoot();
+    }
+    if (Stun.utils.pjaxReloadScroll) {
+      Stun.utils.pjaxReloadScroll();
+    }
+    if (Stun.utils.pjaxReloadSidebar) {
+      Stun.utils.pjaxReloadSidebar();
+    }
+    if (false) {
+      if (Stun.utils.pjaxReloadHeader) {
+        Stun.utils.pjaxReloadHeader();
+      }
+      if (Stun.utils.pjaxReloadScrollIcon) {
+        Stun.utils.pjaxReloadScrollIcon();
+      }
+      if (Stun.utils.pjaxReloadLocalSearch) {
+        Stun.utils.pjaxReloadLocalSearch();
+      }
+    }
+  }, false);
+}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/quicklink@1.0.1/dist/quicklink.umd.js"></script><script>function initQuicklink() {
+  quicklink({
+    timeout: '10000',
+    priority: true,
+    ignores: [uri => uri.includes('#'), uri => uri === 'http://120.48.161.105:4000/2022/09/12/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%EF%BC%8C%E5%BF%AB%E6%8E%92%E5%8F%98%E5%BD%A2%E5%BA%94%E7%94%A8/', /\/api\/?/,uri => uri.includes('.xml'),uri => uri.includes('.zip'),(uri, el) => el.hasAttribute('nofollow'),(uri, el) => el.hasAttribute('noprefetch')]
+  });
+}
+
+if (true || false) {
+  initQuicklink();
+} else {
+  window.addEventListener('DOMContentLoaded', initQuicklink, false);
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script data-pjax="">function loadUtterances() {
+  var d = document, s = d.createElement('script');
+  var container = d.getElementById('utterances-container');
+
+  if (!container) {
+    return;
+  }
+  s.src = 'https://utteranc.es/client.js';
+  s.setAttribute('repo', 'minzhongshi/minzhongshi.github.io');
+  s.setAttribute('issue-term', 'title');
+  s.setAttribute('label', 'utterances');
+  s.setAttribute('theme', 'github-light');
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('async', '');
+  if (true) {
+    s.setAttribute('data-pjax-rm', '');
+  }
+  container.append(s);
+}
+
+if (true) {
+  loadUtterances();
+} else {
+  window.addEventListener('DOMContentLoaded', loadUtterances, false);
+}</script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script type="application/json" src="/search.json"></script></body></html>
