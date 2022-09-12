@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Min&#39;s Blog</title>
+  <icon>http://120.48.161.105:4000/icon.png</icon>
+  <subtitle>well begun is half done</subtitle>
+  <link href="http://120.48.161.105:4000/subscribe.xml" rel="self"/>
+  
+  <link href="http://120.48.161.105:4000/"/>
+  <updated>2022-09-10T06:41:00.074Z</updated>
+  <id>http://120.48.161.105:4000/</id>
+  
+  <author>
+    <name>史明忠</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>两数之和II-输入有序数组</title>
+    <link href="http://120.48.161.105:4000/2022/09/10/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8CII-%E8%BE%93%E5%85%A5%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84/"/>
+    <id>http://120.48.161.105:4000/2022/09/10/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8CII-%E8%BE%93%E5%85%A5%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84/</id>
+    <published>2022-09-10T06:41:00.074Z</published>
+    <updated>2022-09-10T06:41:00.074Z</updated>
+    
+    
+    <summary type="html">给你一个下标从 1 开始的整数数组 numbers ，该数组已按 非递减顺序排列  ，请你从数组中找出满足相加之和等于目标数 target 的两个数。如果设这两个数分别是 numbers[index1] 和 numbers[index2] ，则 1 &lt;= index1 &lt; index2 &lt;= numbers.length 。 以长度为 2 的整数数组 [index1, index2] 的形式返回这两个整数的下标 index1 和 index2。</summary>
+    
+    
+    
+    <category term="算法" scheme="http://120.48.161.105:4000/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="力扣" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/"/>
+    
+    
+    <category term="算法" scheme="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="数组" scheme="http://120.48.161.105:4000/tags/%E6%95%B0%E7%BB%84/"/>
+    
+    <category term="简单" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95/"/>
+    
+    <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
+    
+    <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一些JS的插件库</title>
+    <link href="http://120.48.161.105:4000/2022/09/10/js%E6%8F%92%E4%BB%B6%E5%BA%93/"/>
+    <id>http://120.48.161.105:4000/2022/09/10/js%E6%8F%92%E4%BB%B6%E5%BA%93/</id>
+    <published>2022-09-10T06:41:00.073Z</published>
+    <updated>2022-09-12T05:40:32.225Z</updated>
+    
+    
+    <summary type="html">Vue生命周期的运行与各个阶段的效果，应该在正确的阶段执行正确的操作</summary>
+    
+    
+    
+    <category term="JS" scheme="http://120.48.161.105:4000/categories/JS/"/>
+    
+    <category term="前端" scheme="http://120.48.161.105:4000/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+    <category term="前端" scheme="http://120.48.161.105:4000/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="JS" scheme="http://120.48.161.105:4000/tags/JS/"/>
+    
+    <category term="插件" scheme="http://120.48.161.105:4000/tags/%E6%8F%92%E4%BB%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vue的生命周期，各个组件间的执行情况</title>
+    <link href="http://120.48.161.105:4000/2022/09/10/Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8F%8A%E5%90%84%E7%BB%84%E4%BB%B6%E9%97%B4%E7%9A%84%E6%89%A7%E8%A1%8C%E6%83%85%E5%86%B5/"/>
+    <id>http://120.48.161.105:4000/2022/09/10/Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8F%8A%E5%90%84%E7%BB%84%E4%BB%B6%E9%97%B4%E7%9A%84%E6%89%A7%E8%A1%8C%E6%83%85%E5%86%B5/</id>
+    <published>2022-09-10T06:41:00.071Z</published>
+    <updated>2022-09-10T06:41:00.071Z</updated>
+    
+    
+    <summary type="html">Vue生命周期的运行与各个阶段的效果，应该在正确的阶段执行正确的操作</summary>
+    
+    
+    
+    <category term="Vue" scheme="http://120.48.161.105:4000/categories/Vue/"/>
+    
+    
+    <category term="Vue" scheme="http://120.48.161.105:4000/tags/Vue/"/>
+    
+    <category term="生命周期" scheme="http://120.48.161.105:4000/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
+    
+    <category term="组件" scheme="http://120.48.161.105:4000/tags/%E7%BB%84%E4%BB%B6/"/>
+    
+  </entry>
+  
+</feed>
