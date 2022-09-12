@@ -3,7 +3,7 @@
   <title>Min&#39;s Blog</title>
   <icon>http://120.48.161.105:4000/icon.png</icon>
   <subtitle>well begun is half done</subtitle>
-  <link href="http://120.48.161.105:4000/subscribe.xml" rel="self"/>
+  <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
   <updated>2022-09-10T06:41:00.074Z</updated>
