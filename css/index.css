@@ -2309,18 +2309,6 @@ a.fancybox {
   font-size: 0.9em;
   color: #999;
 }
-.busuanzi-siteuv__icon,
-.busuanzi-sitepv__icon,
-.busuanzi-siteuv__info,
-.busuanzi-sitepv__info,
-.busuanzi-siteuv__value,
-.busuanzi-sitepv__value {
-  margin: 0 2px;
-}
-.busuanzi > span:nth-child(2)::before {
-  content: '|';
-  margin: 0 10px;
-}
 @media (min-width: 1338px) {
   .header-nav-inner {
     width: 1338px;
