@@ -6,7 +6,7 @@
   <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
-  <updated>2022-09-13T03:01:01.857Z</updated>
+  <updated>2022-09-13T05:56:03.335Z</updated>
   <id>http://120.48.161.105:4000/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>反转链表</title>
+    <link href="http://120.48.161.105:4000/2022/09/13/offer%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/"/>
+    <id>http://120.48.161.105:4000/2022/09/13/offer%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/</id>
+    <published>2022-09-13T05:54:51.363Z</published>
+    <updated>2022-09-13T05:56:03.335Z</updated>
+    
+    
+    <summary type="html">定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。</summary>
+    
+    
+    
+    <category term="算法" scheme="http://120.48.161.105:4000/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="力扣" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/"/>
+    
+    
+    <category term="算法" scheme="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="数组" scheme="http://120.48.161.105:4000/tags/%E6%95%B0%E7%BB%84/"/>
+    
+    <category term="简单" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95/"/>
+    
+    <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
+    
+    <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
+    
+    <category term="链表" scheme="http://120.48.161.105:4000/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>从尾到头打印链表</title>
