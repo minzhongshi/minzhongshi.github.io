@@ -6,7 +6,7 @@
   <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
-  <updated>2022-09-13T07:53:32.241Z</updated>
+  <updated>2022-09-14T09:50:39.212Z</updated>
   <id>http://120.48.161.105:4000/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>替换空格</title>
+    <link href="http://120.48.161.105:4000/2022/09/14/offer%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/"/>
+    <id>http://120.48.161.105:4000/2022/09/14/offer%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/</id>
+    <published>2022-09-14T09:49:45.793Z</published>
+    <updated>2022-09-14T09:50:39.212Z</updated>
+    
+    
+    <summary type="html">请实现一个函数，把字符串 s 中的每个空格替换成&quot;%20&quot;。</summary>
+    
+    
+    
+    <category term="算法" scheme="http://120.48.161.105:4000/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="力扣" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/"/>
+    
+    <category term="字符串" scheme="http://120.48.161.105:4000/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+    
+    <category term="算法" scheme="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="简单" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95/"/>
+    
+    <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
+    
+    <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
+    
+    <category term="字符串" scheme="http://120.48.161.105:4000/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+    <category term="栈" scheme="http://120.48.161.105:4000/tags/%E6%A0%88/"/>
+    
+  </entry>
   
   <entry>
     <title>复杂链表的复制</title>
@@ -562,31 +595,6 @@
     <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
     
     <category term="数组" scheme="http://120.48.161.105:4000/tags/%E6%95%B0%E7%BB%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一些JS的插件库</title>
-    <link href="http://120.48.161.105:4000/2022/09/10/js%E6%8F%92%E4%BB%B6%E5%BA%93/"/>
-    <id>http://120.48.161.105:4000/2022/09/10/js%E6%8F%92%E4%BB%B6%E5%BA%93/</id>
-    <published>2022-09-10T06:41:00.073Z</published>
-    <updated>2022-09-12T08:21:33.050Z</updated>
-    
-    
-    <summary type="html">Vue生命周期的运行与各个阶段的效果，应该在正确的阶段执行正确的操作</summary>
-    
-    
-    
-    <category term="JS" scheme="http://120.48.161.105:4000/categories/JS/"/>
-    
-    <category term="前端" scheme="http://120.48.161.105:4000/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-    <category term="前端" scheme="http://120.48.161.105:4000/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="JS" scheme="http://120.48.161.105:4000/tags/JS/"/>
-    
-    <category term="插件" scheme="http://120.48.161.105:4000/tags/%E6%8F%92%E4%BB%B6/"/>
     
   </entry>
   
