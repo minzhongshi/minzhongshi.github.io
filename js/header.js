@@ -1,12 +1,12 @@
 $(document).ready(function () {
-  var $menuBtn = $('.header-nav-menubtn')
-  var $menu = $('.header-nav-menu')
-  var $menuItem = $('.header-nav-menu-item')
-  var $submenu = $('.header-nav-submenu')
-  var isMobile = $menuBtn.is(':visible')
+  let $menuBtn = $('.header-nav-menubtn');
+  let $menu = $('.header-nav-menu');
+  let $menuItem = $('.header-nav-menu-item');
+  let $submenu = $('.header-nav-submenu');
+  let isMobile = $menuBtn.is(':visible');
 
-  var isMenuShow = false
-  var isSubmenuShow = false
+  let isMenuShow = false;
+  let isSubmenuShow = false;
 
   function resetMenuHeight () {
     $menuItem.velocity(
