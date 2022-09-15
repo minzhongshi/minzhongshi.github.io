@@ -6,7 +6,7 @@
   <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
-  <updated>2022-09-15T02:43:26.749Z</updated>
+  <updated>2022-09-15T04:11:51.456Z</updated>
   <id>http://120.48.161.105:4000/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数组中重复的数字</title>
+    <link href="http://120.48.161.105:4000/2022/09/15/%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/"/>
+    <id>http://120.48.161.105:4000/2022/09/15/%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/</id>
+    <published>2022-09-15T04:08:59.808Z</published>
+    <updated>2022-09-15T04:11:51.456Z</updated>
+    
+    
+    <summary type="html">在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</summary>
+    
+    
+    
+    <category term="力扣" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/"/>
+    
+    <category term="数组" scheme="http://120.48.161.105:4000/categories/%E6%95%B0%E7%BB%84/"/>
+    
+    
+    <category term="简单" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95/"/>
+    
+    <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
+    
+    <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
+    
+    <category term="数组" scheme="http://120.48.161.105:4000/tags/%E6%95%B0%E7%BB%84/"/>
+    
+  </entry>
   
   <entry>
     <title>左旋字符串</title>
@@ -564,39 +591,6 @@
     <category term="归并排序" scheme="http://120.48.161.105:4000/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/"/>
     
     <category term="快排排序" scheme="http://120.48.161.105:4000/tags/%E5%BF%AB%E6%8E%92%E6%8E%92%E5%BA%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>复杂度和简单排序算法及位运算的实际问题</title>
-    <link href="http://120.48.161.105:4000/2022/09/12/%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E7%AE%80%E5%8D%95%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%8F%8A%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%AE%9E%E9%99%85%E9%97%AE%E9%A2%98/"/>
-    <id>http://120.48.161.105:4000/2022/09/12/%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E7%AE%80%E5%8D%95%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%8F%8A%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%AE%9E%E9%99%85%E9%97%AE%E9%A2%98/</id>
-    <published>2022-09-12T07:35:50.449Z</published>
-    <updated>2022-09-12T07:41:28.138Z</updated>
-    
-    
-    <summary type="html">数据结构和算法是每个程序员必不可少的一部分，算法培养思维逻辑，而数据结构提供实现思维的载体，本文讲述了复杂度以及一些简单排序和实际算法问题的描述。</summary>
-    
-    
-    
-    <category term="算法" scheme="http://120.48.161.105:4000/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="数据结构和算法" scheme="http://120.48.161.105:4000/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="算法" scheme="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="数据结构" scheme="http://120.48.161.105:4000/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    <category term="排序算法" scheme="http://120.48.161.105:4000/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="复杂度" scheme="http://120.48.161.105:4000/tags/%E5%A4%8D%E6%9D%82%E5%BA%A6/"/>
-    
-    <category term="选择排序" scheme="http://120.48.161.105:4000/tags/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/"/>
-    
-    <category term="冒泡排序" scheme="http://120.48.161.105:4000/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/"/>
-    
-    <category term="插入排序" scheme="http://120.48.161.105:4000/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/"/>
     
   </entry>
   
