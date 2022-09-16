@@ -1,0 +1,1334 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="msvalidate.01" content="AFDB45CC21FD88E9C707C7C9162E5E5A"><meta name="baidu-site-verification" content="code-h3hQw6wxUc"><meta name="360-site-verification" content="1e4c79dee06e20b0af55fd4499a2d4a8"><meta name="sogou_site_verification" content="zG14f2yB7U"><meta name="description" content="V 5.9.6        FIX: Bodymovin export missing comps FIX: Disambiguate bevelEmboss properties (thanks @mbasaglia) FEATURE: Add support for image export individual settings via annota">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Min&#39;s Blog">
+<meta property="og:url" content="http://120.48.161.105:4000/technology-lottie/lottie-web/CHANGELOG.html">
+<meta property="og:site_name" content="Min&#39;s Blog">
+<meta property="og:description" content="V 5.9.6        FIX: Bodymovin export missing comps FIX: Disambiguate bevelEmboss properties (thanks @mbasaglia) FEATURE: Add support for image export individual settings via annota">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-16T01:53:20.103Z">
+<meta property="article:modified_time" content="2022-09-15T16:24:05.647Z">
+<meta property="article:author" content="史明忠">
+<meta name="twitter:card" content="summary"><title> | Min's Blog</title><link ref="canonical" href="http://120.48.161.105:4000/technology-lottie/lottie-web/CHANGELOG.html"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?e5397e2608cbb991400432801c7a10f1';
+  hm.async = true;
+
+  if (true) {
+    hm.setAttribute('data-pjax', '');
+  }
+  var s = document.getElementsByTagName('script')[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: false,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: true,
+  pjax: {"avoidBanner":true},
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-tie"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-rocket"></i></span><span class="header-nav-menu-item__text">乐趣</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/technology-lottie/"><span class="header-nav-submenu-item__icon"><i class="fas fa-umbrella-beach"></i></span><span class="header-nav-submenu-item__text">动画</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Min's Blog</div><div class="header-banner-info__subtitle">well begun is half done</div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><div class="custompage">
+        <h2 id="V-5-9-6"   >
+          <a href="#V-5-9-6" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-9-6" class="headerlink" title="V 5.9.6"></a>V 5.9.6</h2>
+      <ul>
+<li>FIX: Bodymovin export missing comps</li>
+<li>FIX: Disambiguate bevelEmboss properties (thanks @mbasaglia)</li>
+<li>FEATURE: Add support for image export individual settings via annotations</li>
+</ul>
+
+        <h2 id="V-5-9-5"   >
+          <a href="#V-5-9-5" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-9-5" class="headerlink" title="V 5.9.5"></a>V 5.9.5</h2>
+      <ul>
+<li>FIX: Expand the hybrid shape bounding box on stroke (thanks @mbasaglia)</li>
+<li>FEATURE: support filter size on drop shadow property</li>
+<li>FIX: canvas worker - handle destroying animation instance before data is loaded</li>
+<li>FIX: canvas worker &#x3D; pass own canvas fix (thanks @knenkne)</li>
+<li>FIX: bodymovin extension out of storage</li>
+<li>FEATURE: integration with canilottie</li>
+</ul>
+
+        <h2 id="V-5-9-4"   >
+          <a href="#V-5-9-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-9-4" class="headerlink" title="V 5.9.4"></a>V 5.9.4</h2>
+      <ul>
+<li>FIX: support for all marker definitions</li>
+<li>FIX: improve composable filters</li>
+<li>FIX: strokes with correct width on fonts</li>
+</ul>
+
+        <h2 id="V-5-9-3"   >
+          <a href="#V-5-9-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-9-3" class="headerlink" title="V 5.9.3"></a>V 5.9.3</h2>
+      <ul>
+<li>FEATURE: Add support for isPaused property on lottie worker</li>
+<li>FEATURE: Adds support for changing volume based on the audio layer data</li>
+<li>FEATURE: add support for removeEventListener on worker</li>
+<li>FEATURE: add support for updateDocumentData on worker</li>
+<li>FEATURE: add text as font support on worker</li>
+<li>FIX: avoid crash when script does not have src</li>
+</ul>
+
+        <h2 id="V-5-9-2"   >
+          <a href="#V-5-9-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-9-2" class="headerlink" title="V 5.9.2"></a>V 5.9.2</h2>
+      <ul>
+<li>FEATURE: add support for playsegments and blend mode on lottie worker</li>
+<li>FIX: Fix ts typing for loadAnimation parameter</li>
+<li>FEATURE: allows to set width and height of svg from config</li>
+<li>FIX: Fix getMarkerData bug</li>
+<li>FEATURE: Add type for goToAndPlay &amp; goToAndStop</li>
+<li>FIX: add time to list of code for preventing removal</li>
+<li>FIX: glyphs removed from DOM before reloading</li>
+</ul>
+
+        <h2 id="V-5-9-1"   >
+          <a href="#V-5-9-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-9-1" class="headerlink" title="V 5.9.1"></a>V 5.9.1</h2>
+      <ul>
+<li>FIX: navigator validation for SSR</li>
+</ul>
+
+        <h2 id="V-5-9-0"   >
+          <a href="#V-5-9-0" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-9-0" class="headerlink" title="V 5.9.0"></a>V 5.9.0</h2>
+      <ul>
+<li>FEATURE: Added support for using shapes as animated characters</li>
+<li>FIX: added methods used by expressions to an array to prevent treeshaking</li>
+<li>DEV: Migrated code to imports</li>
+<li>DEV: Use Rollup for build process</li>
+</ul>
+
+        <h2 id="V-5-8-1"   >
+          <a href="#V-5-8-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-8-1" class="headerlink" title="V 5.8.1"></a>V 5.8.1</h2>
+      <ul>
+<li>FEATURE: added more methods available for the lottie worker player</li>
+</ul>
+
+        <h2 id="V-5-8-0"   >
+          <a href="#V-5-8-0" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-8-0" class="headerlink" title="V 5.8.0"></a>V 5.8.0</h2>
+      <ul>
+<li>FEATURE: lottie player as a worker support</li>
+<li>FEATURE: added content-visibility prop support</li>
+<li>FEATURE: added header check for json type (improves initial parsing specially on large files)</li>
+<li>FEATURE: added lottie.useWebWorker method to support loading file on a separate web worker (different than the first feature)</li>
+<li>FEATURE: added frame rate to comp on export (not supported by payers yet)</li>
+<li>FIX: random seed expression fix</li>
+</ul>
+
+        <h2 id="V-5-7-14"   >
+          <a href="#V-5-7-14" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-7-14" class="headerlink" title="V 5.7.14"></a>V 5.7.14</h2>
+      <ul>
+<li>FEATURE: added support for Smoothness property on animated texts</li>
+<li>FEATURE: added support for animated text path properties</li>
+<li>FEATURE: added support for exporting source names as ids</li>
+<li>FEATURE: added clear cache button</li>
+<li>FIX: fixed importer with last keyframe</li>
+</ul>
+
+        <h2 id="V-5-7-13"   >
+          <a href="#V-5-7-13" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-7-13" class="headerlink" title="V 5.7.13"></a>V 5.7.13</h2>
+      <ul>
+<li>FEATURE: added support for emoji modifiers and sequences</li>
+<li>FEATURE: added support for metadata export on json files</li>
+</ul>
+
+        <h2 id="V-5-7-12"   >
+          <a href="#V-5-7-12" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-7-12" class="headerlink" title="V 5.7.12"></a>V 5.7.12</h2>
+      <ul>
+<li>FEATURE: added support for masked strokes line cap and line join</li>
+<li>FIX: callbacks list executing beyond index list</li>
+<li>FIX: missing TextExpressionSelectorPropFactor</li>
+<li>FEATURE: exporter improvements</li>
+</ul>
+
+        <h2 id="V-5-7-11"   >
+          <a href="#V-5-7-11" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-7-11" class="headerlink" title="V 5.7.11"></a>V 5.7.11</h2>
+      <ul>
+<li>FIX: another exporter fix</li>
+</ul>
+
+        <h2 id="V-5-7-10"   >
+          <a href="#V-5-7-10" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-7-10" class="headerlink" title="V 5.7.10"></a>V 5.7.10</h2>
+      <ul>
+<li>FIX: exporter fix</li>
+</ul>
+
+        <h2 id="V-5-7-9"   >
+          <a href="#V-5-7-9" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-7-9" class="headerlink" title="V 5.7.9"></a>V 5.7.9</h2>
+      <ul>
+<li>FEATURE: added support for prefixig ids</li>
+<li>FEATURE: security updates</li>
+<li>FIX: fix image sequencing preloading</li>
+<li>FEATURE: added support for gradient fill expressions</li>
+</ul>
+
+        <h2 id="V-5-7-8"   >
+          <a href="#V-5-7-8" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-7-8" class="headerlink" title="V 5.7.8"></a>V 5.7.8</h2>
+      <ul>
+<li>FIX: disable screen reader visibility of created font-nodes (thanks @)</li>
+<li>FEATURE: added FootageElement that supports json data layer types with expressions</li>
+</ul>
+
+        <h2 id="V-5-7-7"   >
+          <a href="#V-5-7-7" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-7-7" class="headerlink" title="V 5.7.7"></a>V 5.7.7</h2>
+      <ul>
+<li>FIX: xhr open order</li>
+<li>FEATURE: added markers support</li>
+<li>FIX: repeaters with reduced copies</li>
+<li>FIX: unintentional stroke clipping on shapes with large stroke-width (thanks Manan Jadhav)</li>
+<li>FIX: ie11 append missing</li>
+<li>FIX: repeater calling trim twice</li>
+</ul>
+
+        <h2 id="V-5-7-6"   >
+          <a href="#V-5-7-6" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-7-6" class="headerlink" title="V 5.7.6"></a>V 5.7.6</h2>
+      <ul>
+<li>FIX: es6 support on export</li>
+<li>IMPROVEMENT: added linting rules</li>
+<li>FIX: seedrandom and main fix</li>
+<li>FIX: image export fix</li>
+</ul>
+
+        <h2 id="V-5-7-5"   >
+          <a href="#V-5-7-5" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-7-5" class="headerlink" title="V 5.7.5"></a>V 5.7.5</h2>
+      <ul>
+<li>FIX: Enable HImageElement to use preloaded images thanks @dbettini</li>
+<li>FIX: lottie-light effects breaking on destroy</li>
+<li>FIX: loaded_images event fired in safari</li>
+</ul>
+
+        <h2 id="V-5-7-4"   >
+          <a href="#V-5-7-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-7-4" class="headerlink" title="V 5.7.4"></a>V 5.7.4</h2>
+      <ul>
+<li>FIX: <code>addEventListener</code> method returns function except <code>void</code></li>
+<li>EXPRESSIONS:  added support for toWorldVec, fromWorldVec and getValueAtTime for transforms</li>
+<li>EXPRESSIONS: fixed propertyGroup expression</li>
+<li>FIX: added svg effects placeholder</li>
+<li>FIX: added check for wrapper on destroy canvas</li>
+<li>EXPORTER: missing layer styles</li>
+<li>EXPORTER: export only work area</li>
+</ul>
+
+        <h2 id="V-5-7-3"   >
+          <a href="#V-5-7-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-7-3" class="headerlink" title="V 5.7.3"></a>V 5.7.3</h2>
+      <ul>
+<li>EXPRESSIONS: Added more expressions support</li>
+</ul>
+
+        <h2 id="V-5-7-2"   >
+          <a href="#V-5-7-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-7-2" class="headerlink" title="V 5.7.2"></a>V 5.7.2</h2>
+      <ul>
+<li>FIX: Trusted Types compliance by removing calls to .innerHTML</li>
+<li>FIX: make callback parameter of removeEventListener optional</li>
+<li>FEATURE: Audio Support</li>
+</ul>
+
+        <h2 id="V-5-7-1"   >
+          <a href="#V-5-7-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-7-1" class="headerlink" title="V 5.7.1"></a>V 5.7.1</h2>
+      <ul>
+<li>REPORT: Improved animation report</li>
+<li>FIX: Expressions separate dimensions</li>
+<li>FIX: propertyGroup for expressions (Duik bones are supported)</li>
+<li>FEATURE: supported Pucked and Bloat</li>
+</ul>
+
+        <h2 id="V-5-7-0"   >
+          <a href="#V-5-7-0" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-7-0" class="headerlink" title="V 5.7.0"></a>V 5.7.0</h2>
+      <ul>
+<li>FEATURE: Extension: reports for not supported features</li>
+<li>FEATURE: Extension: baking keyframes for unsupported expressions</li>
+<li>FEATURE: Extension: improved preview and added Skottie preview</li>
+</ul>
+
+        <h2 id="V-5-6-10"   >
+          <a href="#V-5-6-10" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-6-10" class="headerlink" title="V 5.6.10"></a>V 5.6.10</h2>
+      <ul>
+<li>FIX: default loop to true</li>
+<li>FIX: removing sans-serif and monospace from font preloader to calculate correctly when font is loaded</li>
+<li>FIX: improved image caching when preloading svg image tags</li>
+<li>updated definitions</li>
+</ul>
+
+        <h2 id="V-5-6-9"   >
+          <a href="#V-5-6-9" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-6-9" class="headerlink" title="V 5.6.9"></a>V 5.6.9</h2>
+      <ul>
+<li>fix compression options</li>
+<li>initialization improvement</li>
+</ul>
+
+        <h2 id="V-5-6-8"   >
+          <a href="#V-5-6-8" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-6-8" class="headerlink" title="V 5.6.8"></a>V 5.6.8</h2>
+      <ul>
+<li>not using non breaking spaces for text spaces</li>
+<li>added support for exporting video layers (only export, players don’t support them)</li>
+<li>fix for path properties open without nodes</li>
+</ul>
+
+        <h2 id="V-5-6-7"   >
+          <a href="#V-5-6-7" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-6-7" class="headerlink" title="V 5.6.7"></a>V 5.6.7</h2>
+      <ul>
+<li>use original comp name as export name</li>
+<li>added default filter values for banner template</li>
+<li>added option to load local file as lottie player</li>
+<li>initialSegment set before animation configuration</li>
+</ul>
+
+        <h2 id="V-5-6-6"   >
+          <a href="#V-5-6-6" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-6-6" class="headerlink" title="V 5.6.6"></a>V 5.6.6</h2>
+      <ul>
+<li>reading file extension correctly when copying original assets</li>
+<li>fixed inlined json objects with carriage returns</li>
+<li>added loop support for banners</li>
+<li>exporting adjustment layers as null layers</li>
+<li>added checkbox to select comp names as default</li>
+<li>added filter size configuration and defaulting to 100%</li>
+<li>Add missing animation event name definitions</li>
+</ul>
+
+        <h2 id="V-5-6-5"   >
+          <a href="#V-5-6-5" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-6-5" class="headerlink" title="V 5.6.5"></a>V 5.6.5</h2>
+      <ul>
+<li>added initialSegment property</li>
+<li>fix for zip file without root folder</li>
+<li>support for including json in banner html template</li>
+<li>Export ‘blur’ text animator property</li>
+</ul>
+
+        <h2 id="V-5-6-4"   >
+          <a href="#V-5-6-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-6-4" class="headerlink" title="V 5.6.4"></a>V 5.6.4</h2>
+      <ul>
+<li>added support for using original images as assets</li>
+<li>Improved log error fix</li>
+<li>Fixed missing assets during export</li>
+</ul>
+
+        <h2 id="V-5-6-3"   >
+          <a href="#V-5-6-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-6-3" class="headerlink" title="V 5.6.3"></a>V 5.6.3</h2>
+      <ul>
+<li>Fix saving json files with special characters</li>
+<li>Improved lottie import</li>
+</ul>
+
+        <h2 id="V-5-6-2"   >
+          <a href="#V-5-6-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-6-2" class="headerlink" title="V 5.6.2"></a>V 5.6.2</h2>
+      <ul>
+<li>Fix lottie importer gradient data without keyframes</li>
+<li>Added hidden layers and hidden properties support for importer</li>
+<li>Improved error messaging</li>
+<li>Added assetsPath configuration for typescript</li>
+<li>fixed mangled lottie declaration</li>
+</ul>
+
+        <h2 id="V-5-6-1"   >
+          <a href="#V-5-6-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-6-1" class="headerlink" title="V 5.6.1"></a>V 5.6.1</h2>
+      <ul>
+<li>Fix on the exporter for older AE versions when a new project didn’t have a saved destination yet</li>
+</ul>
+
+        <h2 id="V-5-6-0"   >
+          <a href="#V-5-6-0" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-6-0" class="headerlink" title="V 5.6.0"></a>V 5.6.0</h2>
+      <ul>
+<li>Support new export mode: Rive</li>
+<li>Support new export mode: Banner</li>
+<li>Improved existing export modes</li>
+<li>Improved image compression solution (now PNGs get well compressed as jpegs)</li>
+<li>Support for importing Lottie Animations!</li>
+<li>fixed build to prevent polluting global scope</li>
+<li>text animator multiplier fix</li>
+<li>fixes #1883 text offset</li>
+<li>fixes #1878 supports id attribute for container</li>
+</ul>
+
+        <h2 id="V-5-5-10"   >
+          <a href="#V-5-5-10" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-5-10" class="headerlink" title="V 5.5.10"></a>V 5.5.10</h2>
+      <ul>
+<li>Improvement: validating if transform is linear to remove spatial interpolation</li>
+<li>Fix: subtract mask transformed fix</li>
+<li>Expressions: added posterize time support</li>
+<li>Fix: incorrect easing function calculation in TextSelectorProperty</li>
+<li>Fix: auto oriented properties with not keyframes</li>
+<li>New: Implement a new Canvas renderer that can run on worker threads</li>
+</ul>
+
+        <h2 id="V-5-5-9"   >
+          <a href="#V-5-5-9" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-5-9" class="headerlink" title="V 5.5.9"></a>V 5.5.9</h2>
+      <ul>
+<li>Typing: added resize to type definitions</li>
+<li>Feature: added image sequence support</li>
+<li>FIX: clipping compositions in canvas renderer</li>
+<li>FIX: added precision to auto orient</li>
+</ul>
+
+        <h2 id="V-5-5-8"   >
+          <a href="#V-5-5-8" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-5-8" class="headerlink" title="V 5.5.8"></a>V 5.5.8</h2>
+      <ul>
+<li>FIX: Setting assets data before loading extra compositions</li>
+<li>FIX: Removed appending json at end of url</li>
+<li>FIX: Camera separate position properties</li>
+<li>Typing: Added animation event name to Lottie definitions</li>
+<li>Feature: Add focusable renderer setting for SVGs</li>
+<li>Feature: Added error handling for config and frame rendering</li>
+</ul>
+
+        <h2 id="V-5-5-7"   >
+          <a href="#V-5-5-7" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-5-7" class="headerlink" title="V 5.5.7"></a>V 5.5.7</h2>
+      <ul>
+<li>EXPRESSIONS: added support for propertyIndex on shapes</li>
+<li>PERFORMANCE: big performance improvement on trim paths (and other modifiers) for paths that don’t change over time</li>
+<li>NEW: improved support for astral plane characters (like emojis)</li>
+</ul>
+
+        <h2 id="V-5-5-6"   >
+          <a href="#V-5-5-6" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-5-6" class="headerlink" title="V 5.5.6"></a>V 5.5.6</h2>
+      <ul>
+<li>FIX: surrogate pairs character support in animated text</li>
+<li>FIX: new expressions supported</li>
+</ul>
+
+        <h2 id="V-5-5-5"   >
+          <a href="#V-5-5-5" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-5-5" class="headerlink" title="V 5.5.5"></a>V 5.5.5</h2>
+      <ul>
+<li>changed failed image bg to transparent</li>
+<li>FIX: fix for old json expressions in key function</li>
+</ul>
+
+        <h2 id="V-5-5-4"   >
+          <a href="#V-5-5-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-5-4" class="headerlink" title="V 5.5.4"></a>V 5.5.4</h2>
+      <ul>
+<li>FIX: Updates to TypeScript definitions</li>
+<li>FEATURE: support for new expressions</li>
+</ul>
+
+        <h2 id="V-5-5-3"   >
+          <a href="#V-5-5-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-5-3" class="headerlink" title="V 5.5.3"></a>V 5.5.3</h2>
+      <ul>
+<li>FEATURE: Add SVG support for Gaussian Blur effects (thanks fmalita)</li>
+<li>FEATURE: Add TypeScript type definitions (thanks D34THWINGS)</li>
+<li>FIX: removed warning of text when created by text formatted</li>
+<li>FIX: fixed merged characters in fonts</li>
+<li>FEATURE: added mutiple settings functionality to extension</li>
+<li>FEATURE: added support for mask opacity in expressions</li>
+<li>FIX: fixes #1552 html renderer wrong font measurement</li>
+<li>FIX: Fix masksProperties key name in JSON docs (thanks john-preston)</li>
+</ul>
+
+        <h2 id="V-5-5-2"   >
+          <a href="#V-5-5-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-5-2" class="headerlink" title="V 5.5.2"></a>V 5.5.2</h2>
+      <ul>
+<li>FIX: Fix loader issue on pre-kitkat Android webview</li>
+<li>FIX: eroded masks in svg renderer</li>
+<li>FIX: text alignment in text boxes</li>
+</ul>
+
+        <h2 id="V-5-5-1"   >
+          <a href="#V-5-5-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-5-1" class="headerlink" title="V 5.5.1"></a>V 5.5.1</h2>
+      <ul>
+<li>FIX: key expression for new json format</li>
+<li>IMPROVEMENT: forcing a rerender when resize is called in canvas</li>
+<li>ACCESSIBILITY: added title, description and aria label for text layers for svg renderer</li>
+</ul>
+
+        <h2 id="V-5-5-0"   >
+          <a href="#V-5-5-0" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-5-0" class="headerlink" title="V 5.5.0"></a>V 5.5.0</h2>
+      <ul>
+<li>IMPROVEMENT: JSON filesize reduction. Around 25 to 33% filesize reduction with this new version.</li>
+<li>FEATURE: Bodymovin panel with new advanced settings to reduce filesize.</li>
+<li>FIX: honor <code>forceFlag</code> when calling <code>playSegments</code> (thanks @mrmos)</li>
+<li>FIX: added source-over as default blending mode for canvas renderer resetting</li>
+<li>FIX: fixed bezier easing property validation</li>
+<li>FIX: fixed property caching by index instead of bezier data</li>
+<li>FIX: added thisProperty expression value</li>
+</ul>
+
+        <h2 id="V-5-4-4"   >
+          <a href="#V-5-4-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-4-4" class="headerlink" title="V 5.4.4"></a>V 5.4.4</h2>
+      <ul>
+<li>FIX: viewport meta tag on android with mask fix</li>
+<li>FIX: fixed enterFrame direction property</li>
+<li>FIX: explicitly iterating math methods</li>
+<li>FIX: added missing expression properties</li>
+<li>FIX: setting class attribute via setAttribute</li>
+<li>FIX: added value property in key method expression</li>
+<li>FIX: text animator expression fix</li>
+<li>FIX: added smooth expression support</li>
+<li>FIX: hcamera expression fix</li>
+<li>FIX: fix animated dash property canvas</li>
+<li>NEW: sourceRectAtTime for images fix</li>
+<li>NEW: Advanced option in Bodymovin extension to skip expression properties</li>
+<li>NEW: removed some unused json properties</li>
+</ul>
+
+        <h2 id="V-5-4-3"   >
+          <a href="#V-5-4-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-4-3" class="headerlink" title="V 5.4.3"></a>V 5.4.3</h2>
+      <ul>
+<li>NEW: added blend mode support for shapes in svg renderer</li>
+<li>NEW: removed random ids in favour of incremental ids</li>
+<li>NEW: added new players</li>
+<li>NEW: updated build process. Removed vulnerable dependencies.</li>
+<li>FIX: canvas repeater fix</li>
+<li>FIX: Replaced typekit with Adobe Fonts support</li>
+<li>FIX: subtracting offsetTime for valueAtTime calculation on shapes</li>
+<li>FIX: expressions targeting keys fix</li>
+<li>FIX: multidimensional easing using first dimension value when set to 0</li>
+</ul>
+
+        <h2 id="V-5-4-2"   >
+          <a href="#V-5-4-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-4-2" class="headerlink" title="V 5.4.2"></a>V 5.4.2</h2>
+      <ul>
+<li>FIX: added enabled property on effect interfaces for expression</li>
+<li>FIX: font measuring fix for white spaces</li>
+<li>FIX: supporting Effects property on layers in expressions</li>
+<li>FIX: canvas sibling shapes with same style fix</li>
+<li>FIX: caching valueAtTime correctly</li>
+<li>FIX: AVD exporter fix on clip paths</li>
+<li>FIX: AVD exporter fix on initial and end values</li>
+<li>FIX: formatResponse if responseText - thanks @ansmonjol</li>
+<li>NEW: renders class name for nested group elements - thanks @russellgoldenberg</li>
+</ul>
+
+        <h2 id="V-5-4-1"   >
+          <a href="#V-5-4-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-4-1" class="headerlink" title="V 5.4.1"></a>V 5.4.1</h2>
+      <ul>
+<li>FIX: missing variable declaration</li>
+</ul>
+
+        <h2 id="V-5-4-0"   >
+          <a href="#V-5-4-0" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-4-0" class="headerlink" title="V 5.4.0"></a>V 5.4.0</h2>
+      <ul>
+<li>EXPRESSIONS: easing functions refactored</li>
+<li>FIX: stroke effect fix with multiple children elements</li>
+<li>FIX: adding max and min values to trim path start and end</li>
+<li>EXPRESSIONS: added velocity property</li>
+<li>FIX(text): Fix charCode assignment and optimize FontManager (thanks @kwilliams-curago)</li>
+<li>FIX: fix for small trim paths</li>
+<li>EXPRESSIONS: added valueAtTime property to expression thisProperty variable</li>
+<li>FIX:  added locationHref to gradient data</li>
+<li>EXPRESSIONS: big performance improvement for all expressions that use Expression Values heavily</li>
+</ul>
+
+        <h2 id="V-5-3-4"   >
+          <a href="#V-5-3-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-3-4" class="headerlink" title="V 5.3.4"></a>V 5.3.4</h2>
+      <ul>
+<li>FIX: font load fix</li>
+<li>TEXT: End of Text character support</li>
+</ul>
+
+        <h2 id="V-5-3-3"   >
+          <a href="#V-5-3-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-3-3" class="headerlink" title="V 5.3.3"></a>V 5.3.3</h2>
+      <ul>
+<li>FIX: light version fix</li>
+</ul>
+
+        <h2 id="V-5-3-2"   >
+          <a href="#V-5-3-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-3-2" class="headerlink" title="V 5.3.2"></a>V 5.3.2</h2>
+      <ul>
+<li>FIX: .playSegments when forcing a new segment correctly removes the previous list</li>
+<li>FIX: loading external assets before rendering the first frame of the animation on canvas renderer</li>
+<li>FIX: clearing caching spatial bezier data when previous frame is reached</li>
+<li>FIX: promoting text property to dynamic properties when using text update methods</li>
+<li>FIX: extra comps width and height properties supported</li>
+<li>FIX: multiple trims fixed</li>
+</ul>
+
+        <h2 id="V-5-3-1"   >
+          <a href="#V-5-3-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-3-1" class="headerlink" title="V 5.3.1"></a>V 5.3.1</h2>
+      <ul>
+<li>FIX: expressions with non computed memberExpressions</li>
+<li>FIX: animated gradient in svgs</li>
+</ul>
+
+        <h2 id="V-5-3-0"   >
+          <a href="#V-5-3-0" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-3-0" class="headerlink" title="V 5.3.0"></a>V 5.3.0</h2>
+      <ul>
+<li>REFACTOR: canvas shape renderer had an important refactor. Should support new render cases and have a performance improvement.</li>
+<li>EXPRESSIONS: preprocessing expressions allows to prevent getting values if not needed on expressions</li>
+<li>EXPRESSIONS: support for position, scale and anchorPoint variables</li>
+<li>EXPRESSIONS: added numLayer property support to comp interfaces</li>
+<li>REPEATERS: support for start and end opacity</li>
+<li>FIX: Rendering effects before masks fixes some small render cases</li>
+<li>FIX: added orientation support for 3d cameras</li>
+<li>FIX: dashed lines were not resetted in some scenarios</li>
+</ul>
+
+        <h2 id="V-5-2-1"   >
+          <a href="#V-5-2-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-2-1" class="headerlink" title="V 5.2.1"></a>V 5.2.1</h2>
+      <ul>
+<li>FIX: text animators based on words and percentages</li>
+<li>EXPRESSIONS: Latest Duik version support</li>
+</ul>
+
+        <h2 id="V-5-2-0"   >
+          <a href="#V-5-2-0" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-2-0" class="headerlink" title="V 5.2.0"></a>V 5.2.0</h2>
+      <ul>
+<li>FEATURE: gradient support in canvas renderer (some cases are not supported)</li>
+<li>EXPRESSIONS: layer name support for expressions</li>
+<li>FIX: reverse play on non loops</li>
+<li>SUPPORT: Orient along path with separate dimensions</li>
+<li>FIX: trim cache issue fixed</li>
+</ul>
+
+        <h2 id="V-5-1-20"   >
+          <a href="#V-5-1-20" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-20" class="headerlink" title="V 5.1.20"></a>V 5.1.20</h2>
+      <ul>
+<li>FIX: instaceof Array on expressions fixed</li>
+<li>FIX: text value on expressions fix</li>
+<li>FEATURE: new expressions supported</li>
+</ul>
+
+        <h2 id="V-5-1-19"   >
+          <a href="#V-5-1-19" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-19" class="headerlink" title="V 5.1.19"></a>V 5.1.19</h2>
+      <ul>
+<li>FIX: Trim Paths with empty paths fix</li>
+<li>FIX: linear method fix for inverted values</li>
+<li>FEATURE: Ignoring merge path’s last path if square</li>
+<li>FIX: Camera zoom</li>
+<li>FIX: Validating if text data is complete on first render</li>
+<li>FIX: Loop counting when playing backwards</li>
+<li>FEATURE: Added inPoint and outPoint to layer’s expressions</li>
+</ul>
+
+        <h2 id="V-5-1-18"   >
+          <a href="#V-5-1-18" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-18" class="headerlink" title="V 5.1.18"></a>V 5.1.18</h2>
+      <ul>
+<li>FIX: Moved defs to top to avoid Safari issues </li>
+<li>FEATURE: Added crossOrigin attribute to images to avoid tainted canvases</li>
+<li>FEATURE: Added imagePreserveAspectRatio to rendererSettings for image layers</li>
+<li>FIX: splitting animations in multiple files</li>
+</ul>
+
+        <h2 id="V-5-1-17"   >
+          <a href="#V-5-1-17" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-17" class="headerlink" title="V 5.1.17"></a>V 5.1.17</h2>
+      <ul>
+<li>FIX: asset error handling</li>
+<li>FEATURE: Rove across time support</li>
+<li>FIX: bevel line support</li>
+</ul>
+
+        <h2 id="V-5-1-16"   >
+          <a href="#V-5-1-16" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-16" class="headerlink" title="V 5.1.16"></a>V 5.1.16</h2>
+      <ul>
+<li>FIX: exporting images for older version of AE.</li>
+<li>FEATURE: if needed can skip images export once exported a first time.</li>
+</ul>
+
+        <h2 id="V-5-1-15"   >
+          <a href="#V-5-1-15" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-15" class="headerlink" title="V 5.1.15"></a>V 5.1.15</h2>
+      <ul>
+<li>FEATURE: Added freeze&#x2F;unfreeze methods to stop prevent any animation from playing</li>
+<li>FEATURE: Added getRegisterdAnimations method to get all current animations handled by lottie</li>
+<li>FEATURE: Exporting PNGs with render queue in order to fix black pixels around images</li>
+<li>FEATURE: Support for compressed jpgs when image is not transparent</li>
+<li>FEATURE: Support for exporting base 64 encoded images inlined in the json file</li>
+<li>FIX: Some small expression fixes</li>
+</ul>
+
+        <h2 id="V-5-1-14"   >
+          <a href="#V-5-1-14" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-14" class="headerlink" title="V 5.1.14"></a>V 5.1.14</h2>
+      <ul>
+<li>FIX: Dash property animated</li>
+<li>FIX: Canvas renderer skips hidden layers</li>
+<li>FIX: When clearCanvas is set to true on the canvas renderer, every frame is rendered</li>
+<li>FIX: calculation error on masks</li>
+</ul>
+
+        <h2 id="V-5-1-13"   >
+          <a href="#V-5-1-13" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-13" class="headerlink" title="V 5.1.13"></a>V 5.1.13</h2>
+      <ul>
+<li>EXPRESSIONS: fix for global variables used in functions</li>
+<li>EXPRESSIONS: operations supported for arrays</li>
+</ul>
+
+        <h2 id="V-5-1-12"   >
+          <a href="#V-5-1-12" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-12" class="headerlink" title="V 5.1.12"></a>V 5.1.12</h2>
+      <ul>
+<li>EXPRESSIONS: improved memory management for declared functions</li>
+<li>EXPRESSIONS: speedAtTime support</li>
+<li>FIX: trimmed paths fix</li>
+<li>FIX: destroy method fix</li>
+<li>SSR: checking for navigator to create library</li>
+</ul>
+
+        <h2 id="V-5-1-11"   >
+          <a href="#V-5-1-11" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-11" class="headerlink" title="V 5.1.11"></a>V 5.1.11</h2>
+      <ul>
+<li>PERFORMANCE: significant improvement on the svg and canvas renderers</li>
+<li>FIX: floating points fix</li>
+</ul>
+
+        <h2 id="V-5-1-10"   >
+          <a href="#V-5-1-10" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-10" class="headerlink" title="V 5.1.10"></a>V 5.1.10</h2>
+      <ul>
+<li>TEXT LAYERS: font measuring and some text fixes</li>
+<li>FIX: 2d and 3d layers stack fix</li>
+<li>FEATURE: added support for assetsPath when using animationData (@kwilliams-curago)</li>
+<li>FEATURE: added getDuration method. In frames and in seconds.</li>
+<li>FIX: fixed breaking change from AE 15.1 with text layers</li>
+</ul>
+
+        <h2 id="V-5-1-9"   >
+          <a href="#V-5-1-9" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-9" class="headerlink" title="V 5.1.9"></a>V 5.1.9</h2>
+      <ul>
+<li>EXPRESSIONS: adding name property to shape property group</li>
+<li>FIX: adding timeout before checking loaded fonts</li>
+<li>IMPROVEMENT: html elements now hide their base container when off render time bounds</li>
+<li>FIX: undeclared variable in reverse method</li>
+<li>FIX: text font issues</li>
+</ul>
+
+        <h2 id="V-5-1-8"   >
+          <a href="#V-5-1-8" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-8" class="headerlink" title="V 5.1.8"></a>V 5.1.8</h2>
+      <ul>
+<li>FIX: centered tracking</li>
+<li>FIX: augmenting linearity threshold</li>
+<li>FIX: using quaternions to calculate 3d orientation</li>
+<li>FIX: undeclared variables</li>
+<li>FIX: CW CCW ellipse fix</li>
+<li>EXPRESSIONS: added xRotation and yRotation support</li>
+<li>FEATURE: added skew to transform calculations</li>
+<li>FIX: Time remap on html renderer</li>
+<li>FEATURE: calculating shape bounds for html shape elements without depending on getBBox</li>
+<li>FEATURE: Supporting custom tags on html renderer</li>
+<li>FIX: dash array fix</li>
+</ul>
+
+        <h2 id="V-5-1-7"   >
+          <a href="#V-5-1-7" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-7" class="headerlink" title="V 5.1.7"></a>V 5.1.7</h2>
+      <ul>
+<li>FIX: looping and non looping animations end frame fix</li>
+</ul>
+
+        <h2 id="V-5-1-6"   >
+          <a href="#V-5-1-6" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-6" class="headerlink" title="V 5.1.6"></a>V 5.1.6</h2>
+      <ul>
+<li>FIX: HTMLRenderer image fix</li>
+<li>FIX: HTMLRenderer masked comp fix</li>
+<li>FIX: Text fWeight precedence over fStyle (thanks @nick-vincent)</li>
+</ul>
+
+        <h2 id="V-5-1-5"   >
+          <a href="#V-5-1-5" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-5" class="headerlink" title="V 5.1.5"></a>V 5.1.5</h2>
+      <ul>
+<li>FIX: text selector fix</li>
+<li>FIX: text expression fix</li>
+<li>FEATURE: more expressions supported</li>
+</ul>
+
+        <h2 id="V-5-1-4"   >
+          <a href="#V-5-1-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-4" class="headerlink" title="V 5.1.4"></a>V 5.1.4</h2>
+      <ul>
+<li>FIX: hidden parented layer with mask</li>
+<li>FIX: gradient property animated</li>
+<li>FIX: hindi combined characters support with text as font</li>
+</ul>
+
+        <h2 id="V-5-1-3"   >
+          <a href="#V-5-1-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-3" class="headerlink" title="V 5.1.3"></a>V 5.1.3</h2>
+      <ul>
+<li>FIX: Color interpolation fix</li>
+<li>FIX: id and classes fix for images and solids</li>
+<li>FIX: canvas nested groups transform fix</li>
+<li>FIX: lottie_light.js fix</li>
+</ul>
+
+        <h2 id="V-5-1-2"   >
+          <a href="#V-5-1-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-2" class="headerlink" title="V 5.1.2"></a>V 5.1.2</h2>
+      <ul>
+<li>FIX: Expressions switch statements adding variable declaration when missing</li>
+</ul>
+
+        <h2 id="V-5-1-1"   >
+          <a href="#V-5-1-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-1" class="headerlink" title="V 5.1.1"></a>V 5.1.1</h2>
+      <ul>
+<li>Text Layer keyframed fix</li>
+</ul>
+
+        <h2 id="V-5-1-0"   >
+          <a href="#V-5-1-0" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-1-0" class="headerlink" title="V 5.1.0"></a>V 5.1.0</h2>
+      <ul>
+<li>FEATURE: support for all text document property updates usign TextLayer.updateDocumentData (check Wiki for more information)</li>
+<li>FEATURE: text layers with text boxes have two new methods: TextLayer.canResizeFont and TextLayer.setMinimumFontSize (check Wiki for more information)</li>
+<li>PERFORMANCE: Significant performance improvement on all renderers</li>
+<li>PERFORMANCE: repeaters significant performance improvement</li>
+<li>PERFORMANCE: gradients with opacity significant performance improvement</li>
+<li>REFACTOR: reduced and organized main element classes</li>
+<li>TEXT: text align fix for font based text layers</li>
+</ul>
+
+        <h2 id="V-5-0-6"   >
+          <a href="#V-5-0-6" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-0-6" class="headerlink" title="V 5.0.6"></a>V 5.0.6</h2>
+      <ul>
+<li>FIX: totalFrames and resetFrames</li>
+<li>FIX: canvas destroy method</li>
+<li>FIX: expressions rect size support</li>
+<li>FIX: multiple requestAnimationFrame fix</li>
+<li>FIX: variable not being declared</li>
+<li>FEATURE: support for custom viewBox</li>
+</ul>
+
+        <h2 id="V-5-0-5"   >
+          <a href="#V-5-0-5" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-0-5" class="headerlink" title="V 5.0.5"></a>V 5.0.5</h2>
+      <ul>
+<li>FIX: totalFrames now ends at previous frame to respect AE’s last frame</li>
+<li>FIX: duplicate requestAnimationFrame call</li>
+<li>CHANGE: removed M0,0 added to every path. Should fix chrome issues.</li>
+<li>REFACTOR: small changes on AnimationItem</li>
+</ul>
+
+        <h2 id="V-5-0-4"   >
+          <a href="#V-5-0-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-0-4" class="headerlink" title="V 5.0.4"></a>V 5.0.4</h2>
+      <ul>
+<li>FIX: if initial value for multidimensional properties was 0 and not in start point, it wasn’t getting rendered</li>
+<li>EXPRESSIONS: support for “anchor_point”</li>
+<li>PERFORMANCE: separated opacity from transform properties</li>
+<li>FIX: effects properties offset</li>
+<li>FIX: 3d orientation for negative values</li>
+</ul>
+
+        <h2 id="V-5-0-3"   >
+          <a href="#V-5-0-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-0-3" class="headerlink" title="V 5.0.3"></a>V 5.0.3</h2>
+      <ul>
+<li>FIX: IE Arrays support</li>
+<li>FIX: destroy method wasn’t releasing all memory if a single animation was loaded.</li>
+<li>FIX: IE masks fix when used as Alpha Masks with gradients.</li>
+</ul>
+
+        <h2 id="V-5-0-2"   >
+          <a href="#V-5-0-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-0-2" class="headerlink" title="V 5.0.2"></a>V 5.0.2</h2>
+      <ul>
+<li>IE 10 fix</li>
+<li>loopIn and loopOut fix</li>
+</ul>
+
+        <h2 id="V-5-0-1"   >
+          <a href="#V-5-0-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-0-1" class="headerlink" title="V 5.0.1"></a>V 5.0.1</h2>
+      <ul>
+<li>expression fixes</li>
+<li>text box fix</li>
+<li>performance improvements</li>
+</ul>
+
+        <h2 id="V-5-0-0"   >
+          <a href="#V-5-0-0" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-5-0-0" class="headerlink" title="V 5.0.0"></a>V 5.0.0</h2>
+      <ul>
+<li>bodymovin renamed to lottie!</li>
+<li>gradients performance improved</li>
+<li>cleaned up code</li>
+</ul>
+
+        <h2 id="V-4-13-0"   >
+          <a href="#V-4-13-0" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-4-13-0" class="headerlink" title="V 4.13.0"></a>V 4.13.0</h2>
+      <ul>
+<li>text expression support</li>
+<li>text update support with updateDocumentData (check wiki)</li>
+<li>tangentOnPath, normalOnPath and more expressions</li>
+<li>loaded_images event</li>
+<li>fixed global calls</li>
+<li>fixed ie9 error</li>
+</ul>
+
+        <h2 id="V-4-12-3"   >
+          <a href="#V-4-12-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-4-12-3" class="headerlink" title="V 4.12.3"></a>V 4.12.3</h2>
+      <ul>
+<li>valueAtTime fix</li>
+</ul>
+
+        <h2 id="V-4-12-2"   >
+          <a href="#V-4-12-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-4-12-2" class="headerlink" title="V 4.12.2"></a>V 4.12.2</h2>
+      <ul>
+<li>caching fix</li>
+</ul>
+
+        <h2 id="V-4-12-1"   >
+          <a href="#V-4-12-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-4-12-1" class="headerlink" title="V 4.12.1"></a>V 4.12.1</h2>
+      <ul>
+<li>velocityAtTime fix</li>
+</ul>
+
+        <h2 id="V-4-12-0"   >
+          <a href="#V-4-12-0" class="heading-link"><i class="fas fa-link"></i></a><a href="#V-4-12-0" class="headerlink" title="V 4.12.0"></a>V 4.12.0</h2>
+      <ul>
+<li>pointOnLine support</li>
+<li>createPath support</li>
+<li>points, inTangents, outTangents support</li>
+<li>expressions fixes</li>
+<li>className for  container via loading config</li>
+<li>3d orientation fix</li>
+</ul>
+</div></div><div class="comments" id="comments"><div id="utterances-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-9-6"><span class="toc-number">1.</span> <span class="toc-text">
+          V 5.9.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-9-5"><span class="toc-number">2.</span> <span class="toc-text">
+          V 5.9.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-9-4"><span class="toc-number">3.</span> <span class="toc-text">
+          V 5.9.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-9-3"><span class="toc-number">4.</span> <span class="toc-text">
+          V 5.9.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-9-2"><span class="toc-number">5.</span> <span class="toc-text">
+          V 5.9.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-9-1"><span class="toc-number">6.</span> <span class="toc-text">
+          V 5.9.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-9-0"><span class="toc-number">7.</span> <span class="toc-text">
+          V 5.9.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-8-1"><span class="toc-number">8.</span> <span class="toc-text">
+          V 5.8.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-8-0"><span class="toc-number">9.</span> <span class="toc-text">
+          V 5.8.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-7-14"><span class="toc-number">10.</span> <span class="toc-text">
+          V 5.7.14</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-7-13"><span class="toc-number">11.</span> <span class="toc-text">
+          V 5.7.13</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-7-12"><span class="toc-number">12.</span> <span class="toc-text">
+          V 5.7.12</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-7-11"><span class="toc-number">13.</span> <span class="toc-text">
+          V 5.7.11</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-7-10"><span class="toc-number">14.</span> <span class="toc-text">
+          V 5.7.10</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-7-9"><span class="toc-number">15.</span> <span class="toc-text">
+          V 5.7.9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-7-8"><span class="toc-number">16.</span> <span class="toc-text">
+          V 5.7.8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-7-7"><span class="toc-number">17.</span> <span class="toc-text">
+          V 5.7.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-7-6"><span class="toc-number">18.</span> <span class="toc-text">
+          V 5.7.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-7-5"><span class="toc-number">19.</span> <span class="toc-text">
+          V 5.7.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-7-4"><span class="toc-number">20.</span> <span class="toc-text">
+          V 5.7.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-7-3"><span class="toc-number">21.</span> <span class="toc-text">
+          V 5.7.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-7-2"><span class="toc-number">22.</span> <span class="toc-text">
+          V 5.7.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-7-1"><span class="toc-number">23.</span> <span class="toc-text">
+          V 5.7.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-7-0"><span class="toc-number">24.</span> <span class="toc-text">
+          V 5.7.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-6-10"><span class="toc-number">25.</span> <span class="toc-text">
+          V 5.6.10</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-6-9"><span class="toc-number">26.</span> <span class="toc-text">
+          V 5.6.9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-6-8"><span class="toc-number">27.</span> <span class="toc-text">
+          V 5.6.8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-6-7"><span class="toc-number">28.</span> <span class="toc-text">
+          V 5.6.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-6-6"><span class="toc-number">29.</span> <span class="toc-text">
+          V 5.6.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-6-5"><span class="toc-number">30.</span> <span class="toc-text">
+          V 5.6.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-6-4"><span class="toc-number">31.</span> <span class="toc-text">
+          V 5.6.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-6-3"><span class="toc-number">32.</span> <span class="toc-text">
+          V 5.6.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-6-2"><span class="toc-number">33.</span> <span class="toc-text">
+          V 5.6.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-6-1"><span class="toc-number">34.</span> <span class="toc-text">
+          V 5.6.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-6-0"><span class="toc-number">35.</span> <span class="toc-text">
+          V 5.6.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-5-10"><span class="toc-number">36.</span> <span class="toc-text">
+          V 5.5.10</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-5-9"><span class="toc-number">37.</span> <span class="toc-text">
+          V 5.5.9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-5-8"><span class="toc-number">38.</span> <span class="toc-text">
+          V 5.5.8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-5-7"><span class="toc-number">39.</span> <span class="toc-text">
+          V 5.5.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-5-6"><span class="toc-number">40.</span> <span class="toc-text">
+          V 5.5.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-5-5"><span class="toc-number">41.</span> <span class="toc-text">
+          V 5.5.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-5-4"><span class="toc-number">42.</span> <span class="toc-text">
+          V 5.5.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-5-3"><span class="toc-number">43.</span> <span class="toc-text">
+          V 5.5.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-5-2"><span class="toc-number">44.</span> <span class="toc-text">
+          V 5.5.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-5-1"><span class="toc-number">45.</span> <span class="toc-text">
+          V 5.5.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-5-0"><span class="toc-number">46.</span> <span class="toc-text">
+          V 5.5.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-4-4"><span class="toc-number">47.</span> <span class="toc-text">
+          V 5.4.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-4-3"><span class="toc-number">48.</span> <span class="toc-text">
+          V 5.4.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-4-2"><span class="toc-number">49.</span> <span class="toc-text">
+          V 5.4.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-4-1"><span class="toc-number">50.</span> <span class="toc-text">
+          V 5.4.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-4-0"><span class="toc-number">51.</span> <span class="toc-text">
+          V 5.4.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-3-4"><span class="toc-number">52.</span> <span class="toc-text">
+          V 5.3.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-3-3"><span class="toc-number">53.</span> <span class="toc-text">
+          V 5.3.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-3-2"><span class="toc-number">54.</span> <span class="toc-text">
+          V 5.3.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-3-1"><span class="toc-number">55.</span> <span class="toc-text">
+          V 5.3.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-3-0"><span class="toc-number">56.</span> <span class="toc-text">
+          V 5.3.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-2-1"><span class="toc-number">57.</span> <span class="toc-text">
+          V 5.2.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-2-0"><span class="toc-number">58.</span> <span class="toc-text">
+          V 5.2.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-20"><span class="toc-number">59.</span> <span class="toc-text">
+          V 5.1.20</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-19"><span class="toc-number">60.</span> <span class="toc-text">
+          V 5.1.19</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-18"><span class="toc-number">61.</span> <span class="toc-text">
+          V 5.1.18</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-17"><span class="toc-number">62.</span> <span class="toc-text">
+          V 5.1.17</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-16"><span class="toc-number">63.</span> <span class="toc-text">
+          V 5.1.16</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-15"><span class="toc-number">64.</span> <span class="toc-text">
+          V 5.1.15</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-14"><span class="toc-number">65.</span> <span class="toc-text">
+          V 5.1.14</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-13"><span class="toc-number">66.</span> <span class="toc-text">
+          V 5.1.13</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-12"><span class="toc-number">67.</span> <span class="toc-text">
+          V 5.1.12</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-11"><span class="toc-number">68.</span> <span class="toc-text">
+          V 5.1.11</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-10"><span class="toc-number">69.</span> <span class="toc-text">
+          V 5.1.10</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-9"><span class="toc-number">70.</span> <span class="toc-text">
+          V 5.1.9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-8"><span class="toc-number">71.</span> <span class="toc-text">
+          V 5.1.8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-7"><span class="toc-number">72.</span> <span class="toc-text">
+          V 5.1.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-6"><span class="toc-number">73.</span> <span class="toc-text">
+          V 5.1.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-5"><span class="toc-number">74.</span> <span class="toc-text">
+          V 5.1.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-4"><span class="toc-number">75.</span> <span class="toc-text">
+          V 5.1.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-3"><span class="toc-number">76.</span> <span class="toc-text">
+          V 5.1.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-2"><span class="toc-number">77.</span> <span class="toc-text">
+          V 5.1.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-1"><span class="toc-number">78.</span> <span class="toc-text">
+          V 5.1.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-1-0"><span class="toc-number">79.</span> <span class="toc-text">
+          V 5.1.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-0-6"><span class="toc-number">80.</span> <span class="toc-text">
+          V 5.0.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-0-5"><span class="toc-number">81.</span> <span class="toc-text">
+          V 5.0.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-0-4"><span class="toc-number">82.</span> <span class="toc-text">
+          V 5.0.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-0-3"><span class="toc-number">83.</span> <span class="toc-text">
+          V 5.0.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-0-2"><span class="toc-number">84.</span> <span class="toc-text">
+          V 5.0.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-0-1"><span class="toc-number">85.</span> <span class="toc-text">
+          V 5.0.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-5-0-0"><span class="toc-number">86.</span> <span class="toc-text">
+          V 5.0.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-4-13-0"><span class="toc-number">87.</span> <span class="toc-text">
+          V 4.13.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-4-12-3"><span class="toc-number">88.</span> <span class="toc-text">
+          V 4.12.3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-4-12-2"><span class="toc-number">89.</span> <span class="toc-text">
+          V 4.12.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-4-12-1"><span class="toc-number">90.</span> <span class="toc-text">
+          V 4.12.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V-4-12-0"><span class="toc-number">91.</span> <span class="toc-text">
+          V 4.12.0</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/apple-touch-icon.png" alt="avatar"></div><p class="sidebar-ov-author__text">积少成多</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/minzhongshi" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:2240941938@qq.com" target="_blank" rel="noopener" data-popover="发送邮件" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a><a class="sidebar-ov-social-item" href="tencent://message?uin=2240941938" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://blog.csdn.net/smznbhh" target="_blank" rel="noopener" data-popover="CSDN" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">C</span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">24</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">37</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-yin-yang"></i></span><span>MinZhongShi All Rights Reserved</span><span class="footer__devider">|</span><span>备案 XXXXXXXX 号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>托管于 <a href="https://github.com/minzhongshi/" rel="noopener" target="_blank">Github Pages</a>）</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
+  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
+  // 加载进度条的计时器
+  var loadingTimer = null;
+
+  // 重置页面 Y 方向上的滚动偏移量
+  document.addEventListener('pjax:send', function () {
+    $('.header-nav-menu').removeClass('show');
+    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
+      $('html').velocity('scroll', {
+        duration: 500,
+        offset: $('#header').height(),
+        easing: 'easeInOutCubic'
+      });
+    }
+
+    var loadingBarWidth = 20;
+    var MAX_LOADING_WIDTH = 95;
+
+    $('.loading-bar').addClass('loading');
+    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    clearInterval(loadingTimer);
+    loadingTimer = setInterval(function () {
+      loadingBarWidth += 3;
+      if (loadingBarWidth > MAX_LOADING_WIDTH) {
+        loadingBarWidth = MAX_LOADING_WIDTH;
+      }
+      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    }, 500);
+  }, false);
+
+  window.addEventListener('pjax:complete', function () {
+    clearInterval(loadingTimer);
+    $('.loading-bar__progress').css('width', '100%');
+    $('.loading-bar').removeClass('loading');
+    setTimeout(function () {
+      $('.loading-bar__progress').css('width', '0');
+    }, 400);
+    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
+      $(this).remove();
+    });
+    $('script[data-pjax], #pjax-reload script').each(function () {
+      $(this).parent().append($(this).remove());
+    });
+
+    if (Stun.utils.pjaxReloadBoot) {
+      Stun.utils.pjaxReloadBoot();
+    }
+    if (Stun.utils.pjaxReloadScroll) {
+      Stun.utils.pjaxReloadScroll();
+    }
+    if (Stun.utils.pjaxReloadSidebar) {
+      Stun.utils.pjaxReloadSidebar();
+    }
+    if (false) {
+      if (Stun.utils.pjaxReloadHeader) {
+        Stun.utils.pjaxReloadHeader();
+      }
+      if (Stun.utils.pjaxReloadScrollIcon) {
+        Stun.utils.pjaxReloadScrollIcon();
+      }
+      if (Stun.utils.pjaxReloadLocalSearch) {
+        Stun.utils.pjaxReloadLocalSearch();
+      }
+    }
+  }, false);
+}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/quicklink@1.0.1/dist/quicklink.umd.js"></script><script>function initQuicklink() {
+  quicklink({
+    timeout: '10000',
+    priority: true,
+    ignores: [uri => uri.includes('#'), uri => uri === 'http://120.48.161.105:4000/technology-lottie/lottie-web/CHANGELOG.html', /\/api\/?/,uri => uri.includes('.xml'),uri => uri.includes('.zip'),(uri, el) => el.hasAttribute('nofollow'),(uri, el) => el.hasAttribute('noprefetch')]
+  });
+}
+
+if (true || false) {
+  initQuicklink();
+} else {
+  window.addEventListener('DOMContentLoaded', initQuicklink, false);
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script data-pjax="">function loadUtterances() {
+  var d = document, s = d.createElement('script');
+  var container = d.getElementById('utterances-container');
+
+  if (!container) {
+    return;
+  }
+  s.src = 'https://utteranc.es/client.js';
+  s.setAttribute('repo', 'minzhongshi/minzhongshi.github.io');
+  s.setAttribute('issue-term', 'title');
+  s.setAttribute('label', 'utterances');
+  s.setAttribute('theme', 'github-light');
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('async', '');
+  if (true) {
+    s.setAttribute('data-pjax-rm', '');
+  }
+  container.append(s);
+}
+
+if (true) {
+  loadUtterances();
+} else {
+  window.addEventListener('DOMContentLoaded', loadUtterances, false);
+}</script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script type="application/json" src="/search.json"></script></body></html>
