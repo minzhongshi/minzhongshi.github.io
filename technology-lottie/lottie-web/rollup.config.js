@@ -188,7 +188,7 @@ const exports = builds.reduce((acc, build) => {
       output: [
         {
           ...ESMModule.output[0],
-          file: 'dist/esm/' + build.file,
+          // file: 'dist/esm/' + build.file,
           file: `${destinationBuildFolder}esm/${build.file}`,
         },
         {
@@ -198,7 +198,7 @@ const exports = builds.reduce((acc, build) => {
       ]
     });
   }
-  
+
   acc = acc.concat(builds);
   return acc;
 }, []);
