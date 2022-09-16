@@ -33,13 +33,13 @@
     <category term="数组" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/%E6%95%B0%E7%BB%84/"/>
     
     
+    <category term="数组" scheme="http://120.48.161.105:4000/tags/%E6%95%B0%E7%BB%84/"/>
+    
     <category term="简单" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95/"/>
     
     <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
     
     <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
-    
-    <category term="数组" scheme="http://120.48.161.105:4000/tags/%E6%95%B0%E7%BB%84/"/>
     
   </entry>
   
@@ -122,13 +122,13 @@
     
     <category term="算法" scheme="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/"/>
     
-    <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
-    
-    <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
-    
     <category term="数组" scheme="http://120.48.161.105:4000/tags/%E6%95%B0%E7%BB%84/"/>
     
     <category term="链表" scheme="http://120.48.161.105:4000/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+    <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
+    
+    <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
     
     <category term="中等" scheme="http://120.48.161.105:4000/tags/%E4%B8%AD%E7%AD%89/"/>
     
@@ -153,15 +153,15 @@
     
     <category term="算法" scheme="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/"/>
     
+    <category term="数组" scheme="http://120.48.161.105:4000/tags/%E6%95%B0%E7%BB%84/"/>
+    
+    <category term="链表" scheme="http://120.48.161.105:4000/tags/%E9%93%BE%E8%A1%A8/"/>
+    
     <category term="简单" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95/"/>
     
     <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
     
     <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
-    
-    <category term="数组" scheme="http://120.48.161.105:4000/tags/%E6%95%B0%E7%BB%84/"/>
-    
-    <category term="链表" scheme="http://120.48.161.105:4000/tags/%E9%93%BE%E8%A1%A8/"/>
     
   </entry>
   
@@ -184,13 +184,13 @@
     
     <category term="算法" scheme="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/"/>
     
+    <category term="数组" scheme="http://120.48.161.105:4000/tags/%E6%95%B0%E7%BB%84/"/>
+    
     <category term="简单" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95/"/>
     
     <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
     
     <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
-    
-    <category term="数组" scheme="http://120.48.161.105:4000/tags/%E6%95%B0%E7%BB%84/"/>
     
     <category term="栈" scheme="http://120.48.161.105:4000/tags/%E6%A0%88/"/>
     
@@ -408,13 +408,13 @@
     
     <category term="算法" scheme="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/"/>
     
+    <category term="数组" scheme="http://120.48.161.105:4000/tags/%E6%95%B0%E7%BB%84/"/>
+    
     <category term="简单" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95/"/>
     
     <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
     
     <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
-    
-    <category term="数组" scheme="http://120.48.161.105:4000/tags/%E6%95%B0%E7%BB%84/"/>
     
   </entry>
   
