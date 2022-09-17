@@ -2353,12 +2353,12 @@ a.fancybox {
   content: '|';
   margin: 0 10px;
 }
-@media (min-width: 1338px) {
+@media (min-width: 1370px) {
   .header-nav-inner {
-    width: 1338px;
+    width: 1370px;
   }
   .main-inner {
-    width: 1338px;
+    width: 1370px;
   }
 }
 @media (min-width: 991.98px) {

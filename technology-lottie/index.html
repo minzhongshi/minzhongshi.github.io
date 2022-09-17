@@ -6,7 +6,7 @@
 <meta property="og:description" content=".animation{   background-color: #000; } .box {   max-width: 100%;   max-height: 100%;   background-color: #000;   top: 0;   left: 0;   right: 0;   bottom: 0;   margin: auto; }">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-15T09:52:13.000Z">
-<meta property="article:modified_time" content="2022-09-16T09:59:04.315Z">
+<meta property="article:modified_time" content="2022-09-17T15:08:42.978Z">
 <meta property="article:author" content="史明忠">
 <meta property="article:tag" content="动画">
 <meta name="twitter:card" content="summary"><title>动画 | Min's Blog</title><link ref="canonical" href="http://120.48.161.105:4000/technology-lottie/index.html"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
@@ -142,7 +142,7 @@ var animItem = bodymovin.loadAnimation({
 
     <div class="note-plugin success no-icon">
       
-      <p><strong>来自 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://codepen.io/" >CodePen</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 社区</strong><br>这是一个 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://github.com/airbnb/lottie-web" >lottie-web</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 动画插件的例子。</p>
+      <p><strong>来自 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://codepen.io/" >CodePen</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 社区</strong><br>这是一个 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://github.com/airbnb/lottie-web" >lottie-web</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 动画插件的例子。<br><strong>鼠标放上去试一试，滑动滚轮来将它放大吧</strong></p>
     </div>
   
 
@@ -259,317 +259,333 @@ var anim;
 <hr>
 <style>
 
-.box4{
-width: 100%;
-   height:500px;
-},
-.bm {
+.box4 {
+  background-color: black;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.title {
+  color: mintcream;
+  text-transform: uppercase;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  font-size: 1em;
+  letter-spacing: 0.3em;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  list-style: none;
+  display: flex;
+}
+
+li {
+  height: 3em;
+  width: 3em;
+  color: rgba(0,0,0,0.7);
+  border-radius: 0.4em;
+  line-height: 3em;
+  letter-spacing: 1px;
+  margin: 0.4em;
+  transition: 0.3s;
+  text-align: center;
+  font-size: 1em;
+}
+
+#tab {
+  width: 5em;
+}
+
+#caps {
+  width: 6em;
+}
+
+#left-shift {
+  width: 8em;
+}
+
+#enter {
+  width: 6em;
+}
+
+#right-shift {
+  width: 8em;
+}
+
+#back {
+  width: 5em;
+}
+
+.pinky { 
+  background-color: crimson;
+  border: 2px solid crimson;
+}
+.pinky.selected {
+  color: crimson;
+}
+
+.ring { 
+  background-color: coral;
+  border: 2px solid coral;
+}
+.ring.selected {
+  color: coral;
+}
+
+.middle { 
+  background-color: darkorange;
+  border: 2px solid darkorange;
+}
+.middle.selected {
+  color: darkorange;
+}
+
+.pointer1st { 
+  background-color: gold;
+  border: 2px solid gold;
+}
+.pointer1st.selected {
+  color: gold;
+}
+
+.pointer2nd { 
+  background-color: khaki;
+  border: 2px solid khaki;
+}
+.pointer2nd.selected {
+  color: khaki;
+}
+
+.fill-out-key {
+  background-color: slategrey;
+  border: 2px solid slategrey;
+}
+
+.selected {
   background-color: transparent;
-  width: 100px;
-  height: 120px;
-  display: inline-block;
-  vertical-align:top;
-  /*float: left;*/
-  overflow: hidden;
-  transform: translate3d(0, 0, 0);
-  margin-left: -35px;
+      -webkit-animation: vibrate-1 0.3s linear infinite both;
+            animation: vibrate-1 0.3s linear infinite both;
 }
 
-.clearer {
-  clear: both;
-  /*width: 0;*/
-  margin-left: 0;
-  width: 100%;
-  height: 0;
-  /*margin-left: -50px;*/
+.hit {
+    -webkit-animation: hit 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            animation: hit 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
-.bm.italic {
-  transform: translate3d(0, 0, 0) skewX(-10deg);
+@-webkit-keyframes hit {
+  0% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
-
-.bm.underline {
-  border-bottom: 5px solid #333333;
-}
-
-.hoverer {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, .5, 0, 0);
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.bm.exit {
-  opacity: 0;
-}
-
-.bm.blinker {
-  background-color: #333333;
-  width: 4px;
-  margin-left: 0px;
-  animation: blink-animation 1.5s steps(5, start) infinite;
-  -webkit-animation: blink-animation 1.5s steps(5, start) infinite;
-}
-
-.bm.blinker.hidden {
-  display: none;
-}
-
-@keyframes blink-animation {
-  to {
-    visibility: hidden;
+@keyframes hit {
+  0% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
 }
 
-@-webkit-keyframes blink-animation {
-  to {
-    visibility: hidden;
+@-webkit-keyframes vibrate-1 {
+  0% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+  20% {
+    -webkit-transform: translate(-2px, 2px);
+            transform: translate(-2px, 2px);
+  }
+  40% {
+    -webkit-transform: translate(-2px, -2px);
+            transform: translate(-2px, -2px);
+  }
+  60% {
+    -webkit-transform: translate(2px, 2px);
+            transform: translate(2px, 2px);
+  }
+  80% {
+    -webkit-transform: translate(2px, -2px);
+            transform: translate(2px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
   }
 }
-
-.elementsContainer {
-  text-align: left;
-  height: 100%;
-  padding: 0 20px;
-}
-
-@font-face {
-  font-family: "Franchise";
-  src: url('https://labs.nearpod.com/bodymovin/demo/franchise/fonts/Franchise-Bold.ttf') format("truetype");
+@keyframes vibrate-1 {
+  0% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+  20% {
+    -webkit-transform: translate(-2px, 2px);
+            transform: translate(-2px, 2px);
+  }
+  40% {
+    -webkit-transform: translate(-2px, -2px);
+            transform: translate(-2px, -2px);
+  }
+  60% {
+    -webkit-transform: translate(2px, 2px);
+            transform: translate(2px, 2px);
+  }
+  80% {
+    -webkit-transform: translate(2px, -2px);
+            transform: translate(2px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
 }
 
 </style>
 
-<div class="elementsContainer">
-  <div class="bm blinker" id="blinker">|</div>
+
+    <div class="note-plugin success no-icon">
+      
+      <p><strong>来自 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://codepen.io/" >CodePen</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 社区</strong></p><p>这是一个 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://github.com/airbnb/lottie-web" >lottie-web</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 键盘打字的例子。<br><strong>根据提示练一练打字</strong></p>
+    </div>
+  
+
+<div class="box4">
+<h1 class="title">Eyes on the screen</h1>
+<div class="keyboard">
+  <ul class="row row-0">
+    <li class="pinky" id="esc">ESC</li>
+    <li class="pinky" id="1">1</li>
+    <li class="ring" id="2">2</li>
+    <li class="middle" id="3">3</li>
+    <li class="pointer1st" id="4">4</li>
+    <li class="pointer2nd" id="5">5</li>
+    <li class="pointer2nd" id="6">6</li>
+    <li class="pointer1st" id="7">7</li>
+    <li class="middle" id="8">8</li>
+    <li class="ring" id="9">9</li>
+    <li class="pinky" id="10">0</li>
+    <li class="pinky" >-</li>
+    <li class="pinky" >+</li>
+    <li class="pinky" id="back">BACK</li>
+  </ul>
+  <ul class="row row-1">
+    <li class="pinky" id="tab">TAB</li>
+    <li class="pinky" id="Q">Q</li>
+    <li class="ring" id="W">W</li>
+    <li class="middle" id="E">E</li>
+    <li class="pointer1st" id="R">R</li>
+    <li class="pointer2nd" id="T">T</li>
+    <li class="pointer2nd" id="Y">Y</li>
+    <li class="pointer1st" id="U">U</li>
+    <li class="middle" id="I">I</li>
+    <li class="ring" id="O">O</li>
+    <li class="pinky" id="P">P</li>
+    <li class="pinky" >[</li>
+    <li class="pinky" >]</li>
+    <li class="pinky" >\</li>
+  </ul>
+  <ul class="row row-2">
+    <li class="pinky" id="caps">CAPS</li>
+    <li class="pinky" id="A">A</li>
+    <li class="ring" id="S">S</li>
+    <li class="middle" id="D">D</li>
+    <li class="pointer1st" id="F">F</li>
+    <li class="pointer2nd" id="G">G</li>
+    <li class="pointer2nd" id="H">H</li>
+    <li class="pointer1st" id="J">J</li>
+    <li class="middle" id="K">K</li>
+    <li class="ring" id="L">L</li>
+    <li class="pinky" >:</li>
+    <li class="pinky" >''</li>
+    <li class="pinky" id="enter">ENTER</li>
+  </ul>
+  <ul class="row row-3">
+    <li class="pinky" id="left-shift">SHIFT</li>
+    <li class="pinky" id="Z">Z</li>
+    <li class="ring" id="X">X</li>
+    <li class="middle" id="C">C</li>
+    <li class="pointer1st" id="V">V</li>
+    <li class="pointer2nd" id="B">B</li>
+    <li class="pointer2nd" id="N">N</li>
+    <li class="pointer1st" id="M">M</li>
+    <li class="middle" >,</li>
+    <li class="ring" >.</li>
+    <li class="pinky" >;</li>
+    <li class="pinky" id="right-shift">SHIFT</li>
+  </ul>
+</div>
+<h1 class="title">Hands on the keyboard</h1>
 </div>
 
 
 
+
+
 <script>
-var anims = [];
-var elementsContainer = document.getElementsByClassName('elementsContainer')[0];
-var updatedColors = {
-  0: [0, 2 / 255, 61 / 255, 0],
-  1: [243 / 255, 146 / 255, 0, 0],
-  2: [76 / 255, 181 / 255, 143 / 255, 0],
-  3: [1, 1, 1, 0]
-};
-var currentSource = -1;
-var blinker = document.getElementById('blinker');
-var caretPosition = 0;
+const keys = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 
-function addLetter(code, fromUserInput) {
-  var anim;
-  if (code === 13 || code === 10) {
-    anim = newLineFactory.animation();
-  } else {
-    anim = factoryAnimation.animation(code, fromUserInput);
-  }
+const timestamps = [];
 
-  anims.splice(caretPosition, 0, anim);
+timestamps.unshift(getTimestamp());
 
-  caretPosition += 1;
+function getRandomNumber(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function keydownHandler(ev) {
-  if (currentSource === 1) {
-    return;
-  }
-  if (ev.keyCode === 8 && caretPosition > 0) {
-    anims[caretPosition - 1].destroy();
-    ev.stopImmediatePropagation();
-    ev.preventDefault();
-  } else if (ev.keyCode === 37 && caretPosition > 0) {
-    caretPosition -= 1;
-    elementsContainer.insertBefore(blinker, anims[caretPosition].bmElem);
-  } else if (ev.keyCode === 39 && caretPosition < anims.length) {
-    caretPosition += 1;
-    if (caretPosition === anims.length) {
-      elementsContainer.appendChild(blinker);
-    } else {
-      elementsContainer.insertBefore(blinker, anims[caretPosition].bmElem);
-    }
-  } else if (ev.keyCode === 36) {
-    caretPosition = 0;
-    elementsContainer.insertBefore(blinker, anims[caretPosition].bmElem);
-  } else if (ev.keyCode === 35) {
-    caretPosition = anims.length;
-    elementsContainer.appendChild(blinker);
-  } else if (ev.keyCode === 46 && caretPosition < anims.length) {
-    anims[caretPosition].destroy();
-    caretPosition += 1;
-  }
+function getRandomKey() {
+  return keys[getRandomNumber(0, keys.length-1)]
 }
 
-function keypressHandler(ev) {
-  if (currentSource === 1) {
-    return;
-  }
-
-  var code = ev.keyCode || ev.charCode;
-  addLetter(code, true);
-  ev.preventDefault();
-  ev.stopImmediatePropagation();
+function targetRandomKey() {
+  const key = document.getElementById(getRandomKey());
+  key.classList.add("selected");
+  let start = Date.now()
 }
 
-function changeColor(pos, hex) {
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  var colorComponents = result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : [1, 0, 0, 0];
-  updatedColors[pos][0] = colorComponents.r / 255;
-  updatedColors[pos][1] = colorComponents.g / 255;
-  updatedColors[pos][2] = colorComponents.b / 255;
-  animationProvider.updateColors(updatedColors);
+function getTimestamp() {
+  return Math.floor(Date.now() / 1000)
 }
 
-function colorChange0(val) {
-  changeColor(0, val);
-}
+document.addEventListener("keyup", event => {
+  const keyPressed = String.fromCharCode(event.keyCode);
+  const keyElement = document.getElementById(keyPressed);
+  const highlightedKey = document.querySelector(".selected");
+  
+  keyElement.classList.add("hit");
+  keyElement.addEventListener('animationend', () => {
+    keyElement.classList.remove("hit")
+  });
+  
+  if (keyPressed === highlightedKey.innerHTML) {
+    timestamps.unshift(getTimestamp());
+    const elapsedTime = timestamps[0] - timestamps[1];
+    console.log(`Character per minute ${60/elapsedTime}`);
+    highlightedKey.classList.remove("selected");
+    targetRandomKey();
+  } 
+});
 
-function colorChange1(val) {
-  changeColor(1, val);
-}
-
-function colorChange2(val) {
-  changeColor(2, val);
-}
-
-function colorChange3(val) {
-  changeColor(3, val);
-}
-
-function resetColors() {
-  updatedColors = {
-    0: [0, 2 / 255, 61 / 255, 0],
-    1: [243 / 255, 146 / 255, 0, 0],
-    2: [76 / 255, 181 / 255, 143 / 255, 0],
-    3: [1, 1, 1, 0]
-  };
-  settings.setColor('Color 1', '#00023D');
-  settings.setColor('Color 2', '#F39200');
-  settings.setColor('Color 3', '#4CB58F');
-  settings.setColor('Color 4', '#ffffff');
-  try {
-    document.getElementById('Color 1').parentNode.getElementsByTagName('label')[0].style.backgroundColor = '#00023D';
-    document.getElementById('Color 2').parentNode.getElementsByTagName('label')[0].style.backgroundColor = '#F39200';
-    document.getElementById('Color 3').parentNode.getElementsByTagName('label')[0].style.backgroundColor = '#4CB58F';
-    document.getElementById('Color 4').parentNode.getElementsByTagName('label')[0].style.backgroundColor = '#ffffff';
-  } catch (err) {
-
-  }
-  animationProvider.updateColors(updatedColors);
-}
-
-function changeFeedSource(src,keepOpen) {
-  if (src.index === currentSource) {
-    return;
-  }
-  clear();
-  if (src.index === 0) {
-    twitter_feed.stop();
-    blinker.setAttribute('class', 'bm blinker');
-  } else {
-    twitter_feed.init();
-    blinker.setAttribute('class', 'bm blinker hidden');
-  }
-  currentSource = src.index;
-  if (!settings._collapsed && !keepOpen) {
-    settings.collapse();
-  }
-}
-
-function trackingChange(val){
-  var elems = document.getElementsByClassName('bm');
-  var i, len = elems.length;
-  for(i=0;i<len;i+=1){
-    if(elems[i].id !== 'blinker'){
-      elems[i].style.marginLeft = -(100-val)+'px';
-    }
-  }
-}
-
-function clear() {
-  while (anims.length) {
-    anims.pop().destroy();
-  }
-  caretPosition = 0;
-}
-
-function clearAnimation(elem) {
-  var i = 0,
-    len = anims.length;
-  while (i < len) {
-    if (anims[i] === elem) {
-      anims.splice(i, 1);
-      caretPosition -= 1;
-      break;
-    }
-    i += 1;
-  }
-}
-
-function changeAlignment(val) {
-  var align = '';
-  switch (val.index) {
-    case 0:
-      align = 'left';
-      break;
-    case 1:
-      align = 'right';
-      break;
-    case 2:
-      align = 'center';
-      break
-  }
-  elementsContainer.style.textAlign = align;
-}
-
-function collapse(){
-  settings.collapse();
-}
-
-document.addEventListener('keypress', keypressHandler);
-document.addEventListener('keydown', keydownHandler);
-
-animationProvider.init();
-
-if (QuickSettings) {
-
-  var settings = QuickSettings.create(window.innerWidth - 200, 10, 'Options Panel (Dbl Click to open)')
-    .addButton('Collapse', collapse)
-    .addColor('Color 1', '#00023D', colorChange0)
-    .addColor('Color 2', '#F39200', colorChange1)
-    .addColor('Color 3', '#4CB58F', colorChange2)
-    .addColor('Color 4', '#ffffff', colorChange3)
-    .addButton('Reset Colors', resetColors)
-    .addBoolean('Italic', 0, factoryAnimation.setItalic)
-    .addBoolean('Underline', 0, factoryAnimation.setUnderline)
-    .addDropDown('Text align', ['Left', 'Right', 'Center'], changeAlignment)
-  .addRange('Tracking', 60, 100, 70, 1, trackingChange)
-    .addDropDown('Source', ['I want to write', 'Automatic'], changeFeedSource)
-    .addButton('Clear', clear)
-  .collapse();
-}
-
-changeFeedSource({
-  index: 0
-}, true);
-
-window.onresize = function(){
-  if(settings){
-    settings._panel.style.left = (window.innerWidth - 200) + 'px';
-  }
-};
-
-window.focus();
+targetRandomKey();
 </script>
-</div><div class="reward"><div class="reward-button">请我喝杯咖啡~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/images/collection/ZF.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/images/collection/WX.jpg"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div></div><div class="comments" id="comments"><div id="utterances-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/apple-touch-icon.png" alt="avatar"></div><p class="sidebar-ov-author__text">积少成多</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/minzhongshi" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:2240941938@qq.com" target="_blank" rel="noopener" data-popover="发送邮件" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a><a class="sidebar-ov-social-item" href="tencent://message?uin=2240941938" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://blog.csdn.net/smznbhh" target="_blank" rel="noopener" data-popover="CSDN" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">C</span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">24</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">37</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-yin-yang"></i></span><span>MinZhongShi All Rights Reserved</span><span class="footer__devider">|</span><span>备案 XXXXXXXX 号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>托管于 <a href="https://github.com/minzhongshi/" rel="noopener" target="_blank">Github Pages</a>）</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+</div><div class="reward"><div class="reward-button">请我喝杯咖啡~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/images/collection/ZF.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/images/collection/WX.jpg"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div></div><div class="comments" id="comments"><div id="utterances-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">Eyes on the screen</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Hands on the keyboard</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/apple-touch-icon.png" alt="avatar"></div><p class="sidebar-ov-author__text">积少成多</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/minzhongshi" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:2240941938@qq.com" target="_blank" rel="noopener" data-popover="发送邮件" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a><a class="sidebar-ov-social-item" href="tencent://message?uin=2240941938" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://blog.csdn.net/smznbhh" target="_blank" rel="noopener" data-popover="CSDN" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">C</span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">24</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">37</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-yin-yang"></i></span><span>MinZhongShi All Rights Reserved</span><span class="footer__devider">|</span><span>备案 XXXXXXXX 号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>托管于 <a href="https://github.com/minzhongshi/" rel="noopener" target="_blank">Github Pages</a>）</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
   var isXML = true;
   var search_path = 'search.json';
 
