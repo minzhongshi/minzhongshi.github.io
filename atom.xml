@@ -297,16 +297,16 @@
     
     
     
-    <category term="前端" scheme="http://120.48.161.105:4000/categories/%E5%89%8D%E7%AB%AF/"/>
-    
     <category term="React" scheme="http://120.48.161.105:4000/categories/React/"/>
+    
+    <category term="前端" scheme="http://120.48.161.105:4000/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
     <category term="前端" scheme="http://120.48.161.105:4000/tags/%E5%89%8D%E7%AB%AF/"/>
     
-    <category term="API" scheme="http://120.48.161.105:4000/tags/API/"/>
-    
     <category term="react" scheme="http://120.48.161.105:4000/tags/react/"/>
+    
+    <category term="API" scheme="http://120.48.161.105:4000/tags/API/"/>
     
   </entry>
   
@@ -381,11 +381,11 @@
     
     <category term="JS" scheme="http://120.48.161.105:4000/tags/JS/"/>
     
+    <category term="API" scheme="http://120.48.161.105:4000/tags/API/"/>
+    
     <category term="Vue" scheme="http://120.48.161.105:4000/tags/Vue/"/>
     
     <category term="源码" scheme="http://120.48.161.105:4000/tags/%E6%BA%90%E7%A0%81/"/>
-    
-    <category term="API" scheme="http://120.48.161.105:4000/tags/API/"/>
     
   </entry>
   
