@@ -6,7 +6,7 @@
 <meta property="og:description" content=".animation{   background-color: #000; } .box {   max-width: 100%;   max-height: 100%;   background-color: #000;   top: 0;   left: 0;   right: 0;   bottom: 0;   margin: auto; }">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-15T09:52:13.000Z">
-<meta property="article:modified_time" content="2022-09-20T06:24:00.537Z">
+<meta property="article:modified_time" content="2022-09-20T06:54:36.408Z">
 <meta property="article:author" content="史明忠">
 <meta property="article:tag" content="动画">
 <meta name="twitter:card" content="summary"><title>动画 | Min's Blog</title><link ref="canonical" href="http://120.48.161.105:4000/technology-lottie/index.html"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
@@ -581,7 +581,6 @@ document.addEventListener("keyup", event => {
   if (keyPressed === highlightedKey.innerHTML) {
     timestamps.unshift(getTimestamp());
     const elapsedTime = timestamps[0] - timestamps[1];
-    console.log(`Character per minute ${60/elapsedTime}`);
     highlightedKey.classList.remove("selected");
     targetRandomKey();
   } 
@@ -648,7 +647,7 @@ background-color: #457CFC;
 },
 #animationWindow2 {
   width: 100%;
- height: 50%;
+ height: 20%;
  cursor: pointer;
 
 }
@@ -657,7 +656,7 @@ background-color: #457CFC;
 
     <div class="note-plugin success no-icon">
       
-      <p><strong>来自 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://codepen.io/" >CodePen</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 社区</strong><br>这是一个滑块动画的例子。</p>
+      <p><strong>来自 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://codepen.io/" >CodePen</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 社区</strong><br>这是一个滑块动画的例子，可交互。</p>
     </div>
   
 
@@ -681,7 +680,7 @@ anim3 = lottie.loadAnimation({
        loop: false,
        autoplay: true,
        initialSegment: [420, 452],
-       path: "source/technology-lottie/sliderJson.json"
+       path: "https://assets.codepen.io/35984/2022+toggle.json"
      });
 
  anim3.addEventListener('DOMLoaded', onDOMLoaded);
@@ -689,7 +688,7 @@ anim3 = lottie.loadAnimation({
 let count = 0;
 function onDOMLoaded(e){ 
 
- animationWindow.onclick = () => {
+ animationWindow2.onclick = () => {
   anim3.playSegments(clickArr[count], true);
   count++;
   if(count >= clickArr.length) {
