@@ -1,0 +1,107 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+svg {
+  position: absolute;
+}
+
+.demo {
+  margin-left: -10%;
+  margin-top: -11%;
+}
+.demo__buttons {
+  float: left;
+  transform: translate(100px, 100px);
+  filter: url("#goo");
+}
+.demo__buttons.step-0 .demo__social-btn-1, .demo__buttons.step-0 .demo__social-btn-2, .demo__buttons.step-0 .demo__social-btn-3, .demo__buttons.step-0 .demo__social-btn-4 {
+  transform: translate3d(-50px, -50px, 0);
+}
+.demo__buttons.step-1 .demo__social-btn-1 {
+  transform: translate3d(-50px, -50px, 0);
+}
+.demo__buttons.step-1 .demo__social-btn-2, .demo__buttons.step-1 .demo__social-btn-3, .demo__buttons.step-1 .demo__social-btn-4 {
+  transform: translate3d(-50px, 50px, 0);
+}
+.demo__buttons.step-2 .demo__social-btn-1 {
+  transform: translate3d(-50px, -50px, 0);
+}
+.demo__buttons.step-2 .demo__social-btn-2 {
+  transform: translate3d(-50px, 50px, 0);
+}
+.demo__buttons.step-2 .demo__social-btn-3, .demo__buttons.step-2 .demo__social-btn-4 {
+  transform: translate3d(50px, 50px, 0);
+}
+.demo__buttons.step-3 .demo__social-btn-1 {
+  transform: translate3d(-50px, -50px, 0);
+}
+.demo__buttons.step-3 .demo__social-btn-2 {
+  transform: translate3d(-50px, 50px, 0);
+}
+.demo__buttons.step-3 .demo__social-btn-3 {
+  transform: translate3d(50px, 50px, 0);
+}
+.demo__buttons.step-3 .demo__social-btn-4 {
+  transform: translate3d(50px, -50px, 0);
+}
+.demo__social-btn {
+  position: absolute;
+  left: 65px;
+  top: 65px;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  font-size: 30px;
+  background: white;
+  color: #261758;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.demo__social-btn:hover {
+  color: #106279;
+  box-shadow: 0 0 15px white;
+}
+.demo__open-btn {
+  position: absolute;
+  left: 65px;
+  top: 65px;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  font-weight: 700;
+  font-size: 30px;
+  font-family: sans-serif;
+  background: white;
+  color: #261758;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.demo__open-btn:hover {
+  color: #106279;
+  box-shadow: 0 0 15px white;
+}
+
+.about-me {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+  font-family: Roboto, Arial, sans-serif;
+}
+.about-me a {
+  color: white;
+}
+.about-me a:hover {
+  color: #6666ff;
+}
+
+/*# sourceMappingURL=about.css.map */

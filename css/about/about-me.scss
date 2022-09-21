@@ -1,0 +1,457 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,700,900,600,500|Righteous|Libre+Baskerville|Raleway:400,800,900|Oswald:700");
+$dark: #1c1d25;
+$not-too-dark: #4a4a4a;
+$before-light: #b0b2c3;
+$before-light-border: rgba(176, 178, 195, 0.25);
+$light: #f3f3f3;
+$dark-blue: #203f70;
+$blue: #4f6e9e;
+$cr: #b19386;
+$heroHeight: calc(100vh - 99px);
+$box-height: 250px;
+$border-mid: calc(50% - 1.5px);
+$basic-transition: 350ms;
+$cb: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+.about-mes {
+  padding: 0;
+  margin: 0;
+  background-color: $light;
+  color: $light;
+  font-family: Poppins, Raleway;
+}
+.about-mes.about{
+  -webkit-transition: filter $basic-transition $cb;
+  -moz-transition: filter $basic-transition $cb;
+  -o-transition: filter $basic-transition $cb;
+  transition: filter $basic-transition $cb;
+}
+
+//Third part ABOUT ME
+#about-me.active {
+  z-index:1;
+}
+
+#about-me {
+  overflow:hidden !important;
+  padding:5%;
+  top: 0;
+  width: 60%;
+  height: 1000px;
+  position: fixed;
+  z-index:-10;
+  .row.active{
+    -webkit-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.4);
+    -webkit-transition: all $basic-transition $cb;
+    -moz-transition: all $basic-transition $cb;
+    -o-transition: all $basic-transition $cb;
+    transition: all $basic-transition $cb;
+  }
+  .col-sm-6 {
+    height: 40vh;
+    overflow:hidden;
+    padding: 4%;
+  }
+  .col-sm-6:nth-child(odd){
+    border-radius:10px 10px 0 0;
+  }
+  .col-sm-6:nth-child(even){
+    border-radius:0px 0 10px 10px;
+  }
+  .left {
+    color:$dark;
+    background:$light;
+    transform: translate(-30%, 50%);
+    -webkit-transition: all $basic-transition $cb;
+    -moz-transition: all $basic-transition $cb;
+    -o-transition: all $basic-transition $cb;
+    transition: all $basic-transition $cb;
+    opacity: 0;
+    .back-text{
+      opacity:0.09;
+      top:0;
+      left:0;
+      transform:translate(25%,0);
+      position:absolute;
+      font-size: 200px;
+      font-weight: 700;
+      font-family: Poppins;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  }
+  .right {
+    color:$dark;
+    background:$light;
+    transform: translate(30%, 50%);
+    -webkit-transition: all $basic-transition $cb;
+    -moz-transition: all $basic-transition $cb;
+    -o-transition: all $basic-transition $cb;
+    transition: all $basic-transition $cb;
+    opacity: 0;
+    .back-text-2{
+      opacity:0.09;
+      bottom:5%;
+      left:20%;
+      transform:translate(35%,0);
+      position:absolute;
+      font-size: 200px;
+      font-weight: 700;
+      font-family: Poppins;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .last-ex{
+      padding-bottom:1em;
+    }
+    .progress-bars{
+      width:40%;
+    }
+    .progress-bars:nth-child(even){
+
+    }
+    svg{
+      position:relative;
+    }
+  }
+  .left.active{
+    z-index:10;
+    transform: translate(0%, 0);
+    -webkit-transition: all $basic-transition $cb;
+    -moz-transition: all $basic-transition $cb;
+    -o-transition: all $basic-transition $cb;
+    transition: all $basic-transition $cb;
+    opacity: 1;
+  }
+  .right.active {
+    z-index:10;
+    transform: translate(0%, 0);
+    -webkit-transition: all $basic-transition $cb;
+    -moz-transition: all $basic-transition $cb;
+    -o-transition: all $basic-transition $cb;
+    transition: all $basic-transition $cb;
+    opacity: 1;
+  }
+}
+//svg
+.st0{fill:#E7E7E7;}
+.st1{fill:#CECECE;}
+.st2{fill:#ACACAC;}
+.st3{fill:#FF6B81;}
+.st4{fill:#FF435F;}
+.st6{fill:#f2f2f2}
+.st0b{fill:#0669ac}
+.st1b{fill:#343433}
+
+//THE X BUTTON
+.close-container{
+  //position: absolute;
+  top:30px;
+  right:55px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.leftright{
+  height: 4px;
+  width: 35px;
+  position: absolute;
+  margin-top: 24px;
+  background-color: $light;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  transition: all .3s ease-in;
+}
+
+.rightleft{
+  height: 4px;
+  width: 35px;
+  position: absolute;
+  margin-top: 24px;
+  background-color: $light;
+  border-radius: 2px;
+  transform: rotate(-45deg);
+  transition: all .3s ease-in;
+}
+
+.close{
+  margin: 60px 0 0 5px;
+  position: absolute;
+}
+
+.close-container:hover .leftright{
+  transform: rotate(-45deg);
+  background-color: $blue;
+}
+.close-container:hover .rightleft{
+  transform: rotate(45deg);
+  background-color: $blue;
+}
+.close-containerMobile{
+  display:none;
+  position: absolute;
+  top:30px;
+  right:55px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.leftright{
+  height: 4px;
+  width: 35px;
+  position: absolute;
+  margin-top: 24px;
+  background-color: $blue;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  transition: all .3s ease-in;
+}
+
+.rightleft{
+  height: 4px;
+  width: 35px;
+  position: absolute;
+  margin-top: 24px;
+  background-color: $blue;
+  border-radius: 2px;
+  transform: rotate(-45deg);
+  transition: all .3s ease-in;
+}
+
+.close{
+  margin: 60px 0 0 5px;
+  position: absolute;
+}
+
+.close-containerMobile:hover .leftright{
+  transform: rotate(-45deg);
+  background-color: $dark-blue;
+}
+.close-containerMobile:hover .rightleft{
+  transform: rotate(45deg);
+  background-color: $dark-blue;
+}
+
+//MEDIA QUERIES
+
+/* SMARTPHONES PORTRAIT */
+@media only screen and (min-width: 220px) and (max-width: 479px) {
+  .full-height {
+    height: 100vh;
+  }
+  .landing-page {
+    height: 85vh; //height of main div
+  }
+
+  .items {
+    height: 85vh; //height of main div
+  }
+  .hero-go-next {
+    top: calc(85vh - 100px); //height of main div - 50px
+  }
+  .navbar-header {
+    right: -10%;
+  }
+  .work-path-2 {
+    width: 45px;
+    height: 45px;
+  }
+  .behind-title {
+    margin-left: -8%;
+    top: calc(85vh / 2); //half the height of main div
+    .title {
+      font-size: 1.8em;
+    }
+    .job {
+      font-size: 0.8em;
+    }
+  }
+
+  .links {
+    display: none;
+  }
+  .logo-mask {
+    top: calc(85vh / 2); //half the height of main div
+    .work-path {
+      height: 200px;
+      width: 200px;
+    }
+  }
+  .social-vertical-stripe {
+    top: calc(85vh / 2); //half the height of main div
+    width: 20px;
+  }
+
+  //second part
+  .container {
+    padding: 0 5% 0 5%;
+  }
+  .vertical-border {
+    height: 1465px;
+  }
+  .works {
+    transform: translateX(0px) !important;
+    height: $box-height - 150px;
+    margin-bottom: 75px;
+    .works-text {
+      padding:0 !important;
+      transform:translateY(-50%);
+      margin: 0px 0 0 0px;
+      position:absolute;
+      top:50%;
+      left:0;
+      text-align:center !important;
+      h2 {
+        font-size: 1.7em;
+        padding-bottom: 5px;
+      }
+      .under-text {
+        font-size: 1em;
+        padding-bottom: 5px;
+      }
+    }
+  }
+  .numbers {
+    display: none;
+  }
+  .footer {
+    .copyright {
+      font-size: 10px;
+    }
+  }
+}
+
+/* SMARTPHONES LANDSCAPE */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .full-height {
+    height: 85vh;
+  }
+  .hero-height {
+    height: 85vh;
+  }
+  .landing-page {
+    height: 85vh;
+  }
+  .items {
+    height: 85vh;
+  }
+  .hero-go-next {
+    top: calc(85vh - 100px);
+  }
+  .navbar-header {
+    right: 0%;
+  }
+  .work-path-2 {
+    width: 45px;
+    height: 45px;
+  }
+  .behind-title {
+    margin-left: -8%;
+    top: 42.5vh;
+    .title {
+      font-size: 2.3em;
+    }
+    .job {
+      font-size: 1.1em;
+    }
+  }
+
+  .links {
+    display: none;
+  }
+  .logo-mask {
+    top: 42.5vh;
+    .work-path {
+      height: 200px;
+      width: 200px;
+    }
+  }
+  .social-vertical-stripe {
+    right: 2%;
+    top: 42.5vh;
+    width: 20px;
+  }
+
+  .numbers {
+    display: none;
+  }
+}
+
+/* TABLETS PORTRAIT */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .full-height {
+    height: 90vh;
+  }
+  .hero-height {
+    height: 90vh;
+  }
+  .landing-page {
+    height: 90vh;
+  }
+  .items {
+    height: 90vh;
+  }
+  .hero-go-next {
+    top: calc(90vh - 100px);
+  }
+
+  .navbar-header {
+    right: -15%;
+  }
+  .behind-title {
+    margin-left: -8%;
+    top: 45vh;
+    .title {
+      font-size: 2.5em;
+    }
+    .job {
+      font-size: 1.2em;
+    }
+  }
+
+  .links {
+    display: none;
+  }
+  .logo-mask {
+    top: 45vh;
+    .work-path {
+      height: 200px;
+      width: 200px;
+    }
+  }
+  .social-vertical-stripe {
+    right: 2%;
+    top: 45vh;
+  }
+
+  .numbers {
+    display: none;
+  }
+}
+
+/* TABLET LANDSCAPE / DESKTOP */
+@media only screen and (min-width: 992px) and (max-width: 1999px) {
+}
+
+//Animations
+
+@keyframes show-nav {
+  0% {
+    transform: translate(0, -88px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
