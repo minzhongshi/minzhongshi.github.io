@@ -14,6 +14,8 @@ $basic-transition: 350ms;
 $cb: cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
 .about-mes {
+  width: 100%;
+  text-align: center;
   padding: 0;
   margin: 0;
   background-color: $light;
@@ -31,7 +33,6 @@ $cb: cubic-bezier(0.785, 0.135, 0.15, 0.86);
 #about-me.active {
   z-index:1;
 }
-
 #about-me {
   overflow:hidden !important;
   padding:5%;

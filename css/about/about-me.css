@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,700,900,600,500|Righteous|Libre+Baskerville|Raleway:400,800,900|Oswald:700");
 .about-mes {
+  width: 100%;
+  text-align: center;
   padding: 0;
   margin: 0;
   background-color: #f3f3f3;
