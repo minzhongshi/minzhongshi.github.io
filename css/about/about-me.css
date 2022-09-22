@@ -5,12 +5,12 @@
 
 #about-me {
   z-index: -10;
-  float: left;
   padding: 5%;
   top: 0;
+  right: 50%;
+  left: 50%;
   position: fixed;
   width: 80%;
-  margin: 0 auto;
 }
 #about-me .row.active {
   -webkit-box-shadow: 0px 0px 50px 10px rgba(0, 0, 0, 0.4);
