@@ -5,7 +5,6 @@
   background-color: #f3f3f3;
   color: #f3f3f3;
   font-family: Poppins, Raleway;
-  z-index: -12;
 }
 
 #about-mes.about {
@@ -351,9 +350,6 @@
   .social-vertical-stripe {
     top: 42.5vh;
     width: 20px;
-  }
-  .container {
-    padding: 0 5% 0 5%;
   }
   .vertical-border {
     height: 1465px;
