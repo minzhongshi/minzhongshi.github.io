@@ -36,8 +36,6 @@ $cb: cubic-bezier(0.785, 0.135, 0.15, 0.86);
   overflow:hidden !important;
   padding:5%;
   top: 0;
-  width: 60%;
-  height: 1000px;
   position: fixed;
   z-index:-10;
   .row.active{
@@ -63,19 +61,18 @@ $cb: cubic-bezier(0.785, 0.135, 0.15, 0.86);
   .left {
     color:$dark;
     background:$light;
-    transform: translate(-30%, 50%);
+    transform: translate(0%, 53%);
     -webkit-transition: all $basic-transition $cb;
     -moz-transition: all $basic-transition $cb;
     -o-transition: all $basic-transition $cb;
     transition: all $basic-transition $cb;
     opacity: 0;
+
     .back-text{
       opacity:0.09;
       top:0;
       left:0;
-      transform:translate(25%,0);
       position:absolute;
-      font-size: 200px;
       font-weight: 700;
       font-family: Poppins;
       -webkit-touch-callout: none;
@@ -84,6 +81,37 @@ $cb: cubic-bezier(0.785, 0.135, 0.15, 0.86);
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
+    }
+
+    @media screen and (min-width: 1200px){
+      .back-text{
+        transform:translate(35%,5%);
+        font-size: 215px;
+      }
+    }
+    @media screen and (min-width: 980px) and (max-width: 1199px){
+      .back-text{
+        transform:translate(12%,5%);
+        font-size: 215px;
+      }
+    }
+    @media screen and (min-width: 768px) and (max-width: 979px){
+      .back-text{
+        transform:translate(15%,15%);
+        font-size: 166px;
+      }
+    }
+    @media screen and (min-width: 491px) and (max-width: 767px){
+      .back-text{
+        transform:translate(15%,45%);
+        font-size: 100px;
+      }
+    }
+    @media screen and (max-width: 480px){
+      .back-text{
+        transform:translate(10%,70%);
+        font-size: 83px;
+      }
     }
   }
   .right {
@@ -99,9 +127,7 @@ $cb: cubic-bezier(0.785, 0.135, 0.15, 0.86);
       opacity:0.09;
       bottom:5%;
       left:20%;
-      transform:translate(35%,0);
       position:absolute;
-      font-size: 200px;
       font-weight: 700;
       font-family: Poppins;
       -webkit-touch-callout: none;
@@ -110,6 +136,36 @@ $cb: cubic-bezier(0.785, 0.135, 0.15, 0.86);
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
+    }
+    @media screen and (min-width: 1200px){
+      .back-text-2{
+        transform:translate(35%,35%);
+        font-size: 215px;
+      }
+    }
+    @media screen and (min-width: 980px) and (max-width: 1199px){
+      .back-text-2{
+        transform:translate(30%,25%);
+        font-size: 215px;
+      }
+    }
+    @media screen and (min-width: 768px) and (max-width: 979px){
+      .back-text-2{
+        transform:translate(15%,15%);
+        font-size: 166px;
+      }
+    }
+    @media screen and (min-width: 480px) and (max-width: 767px){
+      .back-text-2{
+        transform:translate(15%,-25%);
+        font-size: 100px;
+      }
+    }
+    @media screen and (max-width: 480px){
+      .back-text-2{
+        transform:translate(10%,-32%);
+        font-size: 96px;
+      }
     }
     .last-ex{
       padding-bottom:1em;

@@ -9,11 +9,10 @@ svg {
 }
 
 .demo {
-  margin-left: -10%;
-  margin-top: -11%;
+  margin-left: 0%;
+  margin-top: 0%;
 }
 .demo__buttons {
-  float: left;
   transform: translate(100px, 100px);
   filter: url("#goo");
 }
