@@ -1,9 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,700,900,600,500|Righteous|Libre+Baskerville|Raleway:400,800,900|Oswald:700");
 #about-me.active {
-  z-index: -10;
+  z-index: 1;
 }
 
 #about-me {
+  z-index: -10;
   float: left;
   padding: 5%;
   top: 0;
