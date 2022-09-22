@@ -23,6 +23,7 @@
   padding: 5%;
   top: 0;
   position: fixed;
+  margin: 0 auto;
   z-index: -10;
 }
 #about-me .row.active {
