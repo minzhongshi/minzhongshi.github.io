@@ -2,6 +2,7 @@
 #about-mes {
   padding: 0;
   margin: 0;
+  align-content: center;
   background-color: #f3f3f3;
   color: #f3f3f3;
   font-family: Poppins, Raleway;
@@ -23,7 +24,6 @@
   padding: 5%;
   top: 0;
   position: fixed;
-  margin: 0 auto;
   width: 80%;
 }
 #about-me .row.active {
