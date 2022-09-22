@@ -13,21 +13,6 @@ $border-mid: calc(50% - 1.5px);
 $basic-transition: 350ms;
 $cb: cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
-#about-mes {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  align-content: center;
-  background-color: $light;
-  color: $light;
-  font-family: Poppins, Raleway;
-}
-#about-mes.about{
-  -webkit-transition: filter $basic-transition $cb;
-  -moz-transition: filter $basic-transition $cb;
-  -o-transition: filter $basic-transition $cb;
-  transition: filter $basic-transition $cb;
-}
 
 //Third part ABOUT ME
 #about-me.active {
@@ -39,6 +24,7 @@ $cb: cubic-bezier(0.785, 0.135, 0.15, 0.86);
   top: 0;
   position: fixed;
   width: 80%;
+  margin: 0 auto;
   .row.active{
     -webkit-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.4);
     -moz-box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.4);
