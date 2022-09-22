@@ -19,7 +19,6 @@ $cb: cubic-bezier(0.785, 0.135, 0.15, 0.86);
   z-index:-10;
 }
 #about-me {
-  overflow:hidden !important;
   float: left;
   padding:5%;
   top: 0;
@@ -37,7 +36,7 @@ $cb: cubic-bezier(0.785, 0.135, 0.15, 0.86);
   }
   .col-sm-6 {
     height: 40vh;
-    overflow:hidden;
+
     padding: 4%;
   }
   .col-sm-6:nth-child(odd){

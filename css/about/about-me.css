@@ -4,7 +4,6 @@
 }
 
 #about-me {
-  overflow: hidden !important;
   float: left;
   padding: 5%;
   top: 0;
@@ -23,7 +22,6 @@
 }
 #about-me .col-sm-6 {
   height: 40vh;
-  overflow: hidden;
   padding: 4%;
 }
 #about-me .col-sm-6:nth-child(odd) {
