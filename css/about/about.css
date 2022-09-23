@@ -9,8 +9,8 @@ svg {
 }
 
 .demo {
-  margin-left: 0%;
-  margin-top: 0%;
+  height: 30%;
+  width: 30%;
 }
 .demo__buttons {
   transform: translate(100px, 100px);
