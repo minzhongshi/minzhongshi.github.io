@@ -8,7 +8,7 @@ ul {
 }
 @media screen and (max-width: 480px) {
     ul {
-        width: 350px;
+        width: 320px;
         height: 60px;
         padding: 0 10px 10px 10px;
     }
