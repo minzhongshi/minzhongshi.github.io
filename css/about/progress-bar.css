@@ -9,16 +9,7 @@
   text-shadow: 0 0 3px #518bf0;
   display: inline-block;
 }
-.span-g:focus {
-  outline: 0;
-  border-bottom: dashed 1px #ff8080;
-}
-.span-g::selection {
-  color: #1a1a1a;
-  background-color: #c6e4ee;
-}
 .wrapper {
-  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -26,19 +17,13 @@
 }
 .green {
   display: flex;
-  margin: 20px auto;
+  margin: auto;
 }
 .green .progress,
 .red .progress,
 .orange .progress {
   position: relative;
   border-radius: 50%;
-}
-.green .progress,
-.red .progress,
-.orange .progress {
-  width: 200px;
-  height: 200px;
 }
 @media screen and (max-width: 480px) {
   .green .progress,
@@ -64,6 +49,14 @@
     height: 150px;
   }
 }
+@media screen and (min-width: 980px) {
+  .green .progress,
+  .red .progress,
+  .orange .progress {
+    width: 200px;
+    height: 200px;
+  }
+}
 .green .progress {
   border: 5px solid #53fc53;
 }
@@ -82,12 +75,6 @@
   overflow: hidden;
   z-index: 2;
   border-radius: 50%;
-}
-.green .progress .inner,
-.red .progress .inner,
-.orange .progress .inner {
-  width: 190px;
-  height: 190px;
 }
 @media screen and (max-width: 480px) {
   .green .progress .inner,
@@ -111,6 +98,14 @@
   .orange .progress .inner {
     width: 140px;
     height: 140px;
+  }
+}
+@media screen and (min-width: 980px) {
+  .green .progress .inner,
+  .red .progress .inner,
+  .orange .progress .inner {
+    width: 190px;
+    height: 190px;
   }
 }
 .green .progress .inner,
@@ -188,12 +183,6 @@
   font-weight: bold;
   text-align: center;
 }
-.green .progress .inner .percent,
-.red .progress .inner .percent,
-.orange .progress .inner .percent {
-  line-height: 190px;
-  font-size: 73.07692307692308px;
-}
 @media screen and (max-width: 480px) {
   .green .progress .inner .percent,
   .red .progress .inner .percent,
@@ -216,6 +205,14 @@
   .orange .progress .inner .percent {
     line-height: 140px;
     font-size: 53.84615384615385px;
+  }
+}
+@media screen and (min-width: 979px) {
+  .green .progress .inner .percent,
+  .red .progress .inner .percent,
+  .orange .progress .inner .percent {
+    line-height: 190px;
+    font-size: 73.07692307692308px;
   }
 }
 .green .progress .inner .percent {
