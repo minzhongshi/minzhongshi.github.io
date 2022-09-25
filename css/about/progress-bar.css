@@ -17,7 +17,7 @@
 }
 .green {
   display: flex;
-  margin: auto;
+  margin: 0 auto;
 }
 .green .progress,
 .red .progress,
