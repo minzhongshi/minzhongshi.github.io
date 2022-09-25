@@ -1,0 +1,64 @@
+.morphing {
+  font-family: "Roboto Slab", serif;
+  position: relative;
+  font-size: 100px;
+  color: #fff;
+  filter: contrast(25) blur(1px);
+}
+
+@media screen and (max-width: 480px) {
+  .morphing {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .morphing {
+    font-size: 30px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 979px) {
+  .morphing {
+    font-size: 50px;
+  }
+}
+@media screen and (min-width: 980px) {
+  .morphing {
+    font-size: 100px;
+  }
+}
+.word {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: word 16s infinite ease-in-out;
+}
+.word:nth-child(1) {
+  animation-delay: -16s;
+}
+.word:nth-child(2) {
+  animation-delay: -13.7142857143s;
+}
+.word:nth-child(3) {
+  animation-delay: -11.4285714286s;
+}
+.word:nth-child(4) {
+  animation-delay: -9.1428571429s;
+}
+.word:nth-child(5) {
+  animation-delay: -6.8571428571s;
+}
+.word:nth-child(6) {
+  animation-delay: -4.5714285714s;
+}
+@keyframes word {
+  0%, 5%, 100% {
+    filter: blur(0px);
+    opacity: 1;
+  }
+  20%, 80% {
+    filter: blur(1em);
+    opacity: 0;
+  }
+}
+

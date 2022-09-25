@@ -1,0 +1,275 @@
+
+ul {
+    list-style: none;
+    position: relative;
+    margin:  auto;
+    border-bottom: 3px solid #217D8C;
+
+}
+@media screen and (max-width: 480px) {
+    ul {
+        width: 350px;
+        height: 60px;
+        padding: 0 10px 10px 10px;
+    }
+    .a1 {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        line-height: 40px;
+    }
+
+    .b {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        line-height: 40px;
+    }
+
+    .c {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        line-height: 40px;
+    }
+
+
+    .e {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        line-height: 40px;
+    }
+    ul span {
+        line-height: 45px;
+        font-size: 10px;
+        margin-left: 5px;
+    }
+}
+@media screen and (min-width: 480px) and (max-width: 767px) {
+    ul {
+        width: 400px;
+        height: 70px;
+        padding: 0 15px 15px 15px;
+    }
+    .a1 {
+        width: 45px;
+        height: 45px;
+        font-size: 25px;
+        line-height: 45px;
+    }
+
+    .b {
+        width: 45px;
+        height: 45px;
+        font-size: 25px;
+        line-height: 45px;
+    }
+
+    .c {
+        width: 45px;
+        height: 45px;
+        font-size: 25px;
+        line-height: 45px;
+    }
+
+
+    .e {
+        width: 45px;
+        height: 45px;
+        font-size: 25px;
+        line-height: 45px;
+    }
+    ul span {
+        line-height: 50px;
+        font-size: 20px;
+        margin-left: 10px;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1250px) {
+    ul {
+        width: 500px;
+        height: 90px;
+        padding: 0 20px 20px 20px;
+    }
+    .a1 {
+        width: 60px;
+        height: 60px;
+        font-size: 30px;
+        line-height: 60px;
+    }
+
+    .b {
+        width: 60px;
+        height: 60px;
+        font-size: 30px;
+        line-height: 60px;
+    }
+
+    .c {
+        width: 60px;
+        height: 60px;
+        font-size: 30px;
+        line-height: 60px;
+    }
+
+
+    .e {
+        width: 60px;
+        height: 60px;
+        font-size: 30px;
+        line-height: 60px;
+    }
+    ul span {
+        line-height: 60px;
+        font-size: 30px;
+        margin-left: 20px;
+    }
+}
+@media screen and (min-width: 1251px) {
+    ul {
+        width: 700px;
+        height: 100px;
+        padding: 0 30px 30px 30px;
+    }
+    .a1 {
+        width: 80px;
+        height: 80px;
+        font-size: 40px;
+        line-height: 80px;
+    }
+
+    .b {
+        width: 80px;
+        height: 80px;
+        font-size: 40px;
+        line-height: 80px;
+    }
+
+    .c {
+        width: 80px;
+        height: 80px;
+        font-size: 40px;
+        line-height: 80px;
+    }
+
+
+    .e {
+        width: 80px;
+        height: 80px;
+        font-size: 40px;
+        line-height: 80px;
+    }
+    ul span {
+        line-height: 80px;
+        font-size: 40px;
+        margin-left: 30px;
+    }
+}
+
+li {
+    display: inline-block;
+    padding: 5px;
+}
+
+.a1 {
+    background: #1DAD9B;
+    color: #143D53;
+    text-align: center;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.b {
+    background: #C83B3B;
+    color: #143D53;
+    text-align: center;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.c {
+    background: #7CA9D6;
+    color: #143D53;
+    text-align: center;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+
+.e {
+    background: #85BD3F;
+    color: #143D53;
+    text-align: center;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+span#bz,
+span#cz,
+span#dz,
+span#ez {
+    visibility: hidden;
+}
+
+li#a:hover ~ #az {
+    visibility: visible;
+    opacity: 1;
+}
+
+li#b:hover ~ #bz {
+    visibility: visible;
+    opacity: 1;
+}
+
+li#c:hover ~ #cz {
+    visibility: visible;
+    opacity: 1;
+}
+
+li#d:hover ~ #dz {
+    visibility: visible;
+    opacity: 1;
+}
+
+li#e:hover ~ #ez {
+    visibility: visible;
+    opacity: 1;
+}
+
+#b:hover ~ #az,
+#c:hover ~ #az,
+#d:hover ~ #az,
+#e:hover ~ #az {
+    visibility: hidden;
+    opacity: 0;
+}
+
+ul span {
+    position: absolute;
+    font-weight: bold;
+    opacity: 0;
+}
+
+#az {
+    color: #A0DAFF;
+    visibility: visible;
+    opacity: 1;
+    transition: all .1s;
+}
+
+#bz {
+    color: #A0DAFF;
+    transition: all .4s;
+}
+
+#cz {
+    color: #A0DAFF;
+    transition: all .4s;
+}
+
+#ez {
+    color: #A0DAFF;
+    transition: all .4s;
+}
+
