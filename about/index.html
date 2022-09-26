@@ -6,7 +6,7 @@
 <meta property="og:description" content="如何找到我：                                                     GitHub         CSDN         邮箱         QQ">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-12T06:51:45.000Z">
-<meta property="article:modified_time" content="2022-09-25T17:20:43.560Z">
+<meta property="article:modified_time" content="2022-09-25T18:34:35.725Z">
 <meta property="article:author" content="史明忠">
 <meta property="article:tag" content="作者简介">
 <meta name="twitter:card" content="summary"><title>作者简介 | Min's Blog</title><link ref="canonical" href="http://120.48.161.105:4000/about/index.html"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
@@ -217,72 +217,72 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></he
 
 <script>
 
-var AboutMe = function() {
-    $(".left").addClass('active');
-    $("#nav-icon1").addClass('open');
-    $("#about-me").addClass("active");
-    $("nav").addClass("about");
-    $(".social-vertical-stripe").addClass("about");
-    $(".behind-title").addClass("about");
-    $(".hero-go-next").addClass("about");
-};
-var AboutMeTwo = function() {
-    $(".right").addClass('active');
-};
-var Boverflow = function(){
-    $("body").addClass("about");
-    $(".row").addClass('active');
-    $(".behind-title").addClass("zdex");
-};
-var removeAll = function() {
-    $("nav").removeClass("about");
-    $(".right").removeClass('active');
-    $(".left").removeClass('active');
-    $("#nav-icon1").removeClass('open');
-    $(".social-vertical-stripe").removeClass("about");
-    $(".behind-title").removeClass("about zdex");
-    $(".hero-go-next").removeClass("about");
-    $(".row").removeClass('active');
-};
-var zIndex = function(){
-    $("#about-me").removeClass("active");
-    $("body").removeClass("about");
-};
+ const AboutMe = function() {
+     $(".left").addClass('active');
+     $("#nav-icon1").addClass('open');
+     $("#about-me").addClass("active");
+     $("nav").addClass("about");
+     $(".social-vertical-stripe").addClass("about");
+     $(".behind-title").addClass("about");
+     $(".hero-go-next").addClass("about");
+ };
+ const AboutMeTwo = function() {
+     $(".right").addClass('active');
+ };
+ const Boverflow = function(){
+     $("body").addClass("about");
+     $(".row").addClass('active');
+     $(".behind-title").addClass("zdex");
+ };
+ const removeAll = function() {
+     $("nav").removeClass("about");
+     $(".right").removeClass('active');
+     $(".left").removeClass('active');
+     $("#nav-icon1").removeClass('open');
+     $(".social-vertical-stripe").removeClass("about");
+     $(".behind-title").removeClass("about zdex");
+     $(".hero-go-next").removeClass("about");
+     $(".row").removeClass('active');
+ };
+ const zIndex = function(){
+     $("#about-me").removeClass("active");
+     $("body").removeClass("about");
+ };
 function progressHTML(){
-    var test = $("#progressHTML");
-    var strokeLen = 85;
+    const test = $("#progressHTML");
+    const strokeLen = 85;
     document.getElementById("percentHTML").innerHTML = strokeLen + "%";
-    var stroke = (strokeLen * 18.01) - 25;
+    const stroke = (strokeLen * 18.01) - 25;
     test.attr({
         'stroke-dasharray': stroke + " 1800",
     },1000)
 }
 progressHTML();
 function progressJS(){
-    var test = $("#progressJS");
-    var strokeLen = 65;
+    const test = $("#progressJS");
+    const strokeLen = 65;
     document.getElementById("percentJS").innerHTML = strokeLen + "%";
-    var stroke = (strokeLen * 18.01) - 25;
+    const stroke = (strokeLen * 18.01) - 25;
     test.attr({
         'stroke-dasharray': stroke + " 1800",
     },1000)
 }
 progressJS();
 function progressCSS(){
-    var test = $("#progressCSS");
-    var strokeLen = 90;
+    const test = $("#progressCSS");
+    const strokeLen = 90;
     document.getElementById("percentCSS").innerHTML = strokeLen + "%";
-    var stroke = (strokeLen * 18.01) - 25;
+    const stroke = (strokeLen * 18.01) - 25;
     test.attr({
         'stroke-dasharray': stroke + " 1800",
     },1000)
 }
 progressCSS();
 function progressJQ(){
-    var test = $("#progressJQ");
-    var strokeLen = 75;
+    const test = $("#progressJQ");
+    const strokeLen = 75;
     document.getElementById("percentJQ").innerHTML = strokeLen + "%";
-    var stroke = (strokeLen * 18.01) - 25;
+    const stroke = (strokeLen * 18.01) - 25;
     test.attr({
         'stroke-dasharray': stroke + " 1800",
     },1000)
