@@ -6,7 +6,7 @@
   <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
-  <updated>2022-09-29T05:52:29.105Z</updated>
+  <updated>2022-09-29T14:01:38.625Z</updated>
   <id>http://120.48.161.105:4000/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript 设计模式核⼼原理与应⽤实践(二)创建型</title>
+    <link href="http://120.48.161.105:4000/2022/09/29/JavaScript%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%BA%8C%EF%BC%89%E5%88%9B%E5%BB%BA%E5%9E%8B/"/>
+    <id>http://120.48.161.105:4000/2022/09/29/JavaScript%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%BA%8C%EF%BC%89%E5%88%9B%E5%BB%BA%E5%9E%8B/</id>
+    <published>2022-09-29T13:58:47.853Z</published>
+    <updated>2022-09-29T14:01:38.625Z</updated>
+    
+    
+    <summary type="html">创建型设计模式用于描述“怎么创建对象”。它的主要特点是“将对象的创建与使用分离”。 前端创建型设计模式用到的有：`构造器模式`、`工厂模式`、`抽象工厂模式`</summary>
+    
+    
+    
+    <category term="设计模式" scheme="http://120.48.161.105:4000/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="前端" scheme="http://120.48.161.105:4000/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+    <category term="前端" scheme="http://120.48.161.105:4000/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="设计模式" scheme="http://120.48.161.105:4000/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript 设计模式核⼼原理与应⽤实践(一)原则与核心思想</title>
@@ -488,16 +511,16 @@
     
     
     
-    <category term="JS" scheme="http://120.48.161.105:4000/categories/JS/"/>
-    
     <category term="Vue" scheme="http://120.48.161.105:4000/categories/Vue/"/>
+    
+    <category term="JS" scheme="http://120.48.161.105:4000/categories/JS/"/>
     
     <category term="前端" scheme="http://120.48.161.105:4000/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-    <category term="JS" scheme="http://120.48.161.105:4000/tags/JS/"/>
-    
     <category term="Vue" scheme="http://120.48.161.105:4000/tags/Vue/"/>
+    
+    <category term="JS" scheme="http://120.48.161.105:4000/tags/JS/"/>
     
     <category term="源码" scheme="http://120.48.161.105:4000/tags/%E6%BA%90%E7%A0%81/"/>
     
@@ -562,35 +585,6 @@
     <category term="栈" scheme="http://120.48.161.105:4000/tags/%E6%A0%88/"/>
     
     <category term="队列" scheme="http://120.48.161.105:4000/tags/%E9%98%9F%E5%88%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>二进制加法</title>
-    <link href="http://120.48.161.105:4000/2022/09/12/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8A%A0%E6%B3%95/"/>
-    <id>http://120.48.161.105:4000/2022/09/12/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8A%A0%E6%B3%95/</id>
-    <published>2022-09-12T08:00:05.152Z</published>
-    <updated>2022-09-15T07:16:39.771Z</updated>
-    
-    
-    <summary type="html">给定两个 01 字符串 a 和 b ，请计算它们的和，并以二进制字符串的形式输出。 输入为 非空 字符串且只包含数字 1 和 0。</summary>
-    
-    
-    
-    <category term="力扣" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/"/>
-    
-    <category term="字符串" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-    
-    <category term="算法" scheme="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="简单" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95/"/>
-    
-    <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
-    
-    <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
-    
-    <category term="字符串" scheme="http://120.48.161.105:4000/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     
   </entry>
   
