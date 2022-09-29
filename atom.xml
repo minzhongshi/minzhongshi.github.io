@@ -6,7 +6,7 @@
   <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
-  <updated>2022-09-22T02:15:54.623Z</updated>
+  <updated>2022-09-29T03:02:27.598Z</updated>
   <id>http://120.48.161.105:4000/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Webpack5核心原理与应用实践（基础用法)一</title>
+    <link href="http://120.48.161.105:4000/2022/09/29/Webpack5%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5%EF%BC%88%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95%EF%BC%89%E4%B8%80/"/>
+    <id>http://120.48.161.105:4000/2022/09/29/Webpack5%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5%EF%BC%88%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95%EF%BC%89%E4%B8%80/</id>
+    <published>2022-09-29T02:59:25.232Z</published>
+    <updated>2022-09-29T03:02:27.598Z</updated>
+    
+    
+    <summary type="html">记录Webpack基本配置规则；根据场景、技术栈运用具体方法、工具与技巧。 主要有：搭建完善的JavaScript、CSS开发环境；搭建微前端、NPM包、桌面应用等。</summary>
+    
+    
+    
+    <category term="前端" scheme="http://120.48.161.105:4000/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="Webpack" scheme="http://120.48.161.105:4000/categories/Webpack/"/>
+    
+    
+    <category term="前端" scheme="http://120.48.161.105:4000/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="Webpack" scheme="http://120.48.161.105:4000/tags/Webpack/"/>
+    
+    <category term="Babel" scheme="http://120.48.161.105:4000/tags/Babel/"/>
+    
+    <category term="ESLint" scheme="http://120.48.161.105:4000/tags/ESLint/"/>
+    
+    <category term="TypeScript" scheme="http://120.48.161.105:4000/tags/TypeScript/"/>
+    
+  </entry>
   
   <entry>
     <title>旋转数组中的最小数字</title>
@@ -562,33 +591,6 @@
     <category term="算法" scheme="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/"/>
     
     <category term="数组" scheme="http://120.48.161.105:4000/tags/%E6%95%B0%E7%BB%84/"/>
-    
-    <category term="简单" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95/"/>
-    
-    <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
-    
-    <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>offer整数除法</title>
-    <link href="http://120.48.161.105:4000/2022/09/12/offer%E6%95%B4%E6%95%B0%E9%99%A4%E6%B3%95/"/>
-    <id>http://120.48.161.105:4000/2022/09/12/offer%E6%95%B4%E6%95%B0%E9%99%A4%E6%B3%95/</id>
-    <published>2022-09-12T07:56:49.372Z</published>
-    <updated>2022-09-15T07:16:39.712Z</updated>
-    
-    
-    <summary type="html">给定两个整数 a 和 b ，求它们的除法的商 a/b ，要求不得使用乘号 &#39;*&#39;、除号 &#39;/&#39; 以及求余符号 &#39;%&#39; 。</summary>
-    
-    
-    
-    <category term="力扣" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/"/>
-    
-    <category term="整数" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/%E6%95%B4%E6%95%B0/"/>
-    
-    
-    <category term="算法" scheme="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/"/>
     
     <category term="简单" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95/"/>
     
