@@ -6,7 +6,7 @@
   <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
-  <updated>2022-09-29T14:01:38.625Z</updated>
+  <updated>2023-06-25T02:00:24.431Z</updated>
   <id>http://120.48.161.105:4000/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>开发tips</title>
+    <link href="http://120.48.161.105:4000/2023/06/25/%E5%BC%80%E5%8F%91%E5%B0%8Ftips/"/>
+    <id>http://120.48.161.105:4000/2023/06/25/%E5%BC%80%E5%8F%91%E5%B0%8Ftips/</id>
+    <published>2023-06-25T01:56:23.662Z</published>
+    <updated>2023-06-25T02:00:24.431Z</updated>
+    
+    
+    <summary type="html">开发tips</summary>
+    
+    
+    
+    <category term="其它" scheme="http://120.48.161.105:4000/categories/%E5%85%B6%E5%AE%83/"/>
+    
+    
+    <category term="其它" scheme="http://120.48.161.105:4000/tags/%E5%85%B6%E5%AE%83/"/>
+    
+    <category term="tips" scheme="http://120.48.161.105:4000/tags/tips/"/>
+    
+    <category term="css" scheme="http://120.48.161.105:4000/tags/css/"/>
+    
+    <category term="注释" scheme="http://120.48.161.105:4000/tags/%E6%B3%A8%E9%87%8A/"/>
+    
+    <category term="位运算" scheme="http://120.48.161.105:4000/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+    
+    <category term="函数" scheme="http://120.48.161.105:4000/tags/%E5%87%BD%E6%95%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript 设计模式核⼼原理与应⽤实践(二)创建型</title>
@@ -554,37 +583,6 @@
     <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
     
     <category term="栈" scheme="http://120.48.161.105:4000/tags/%E6%A0%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>用两个栈实现队列</title>
-    <link href="http://120.48.161.105:4000/2022/09/12/%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/"/>
-    <id>http://120.48.161.105:4000/2022/09/12/%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/</id>
-    <published>2022-09-12T08:01:31.441Z</published>
-    <updated>2022-09-15T07:16:39.954Z</updated>
-    
-    
-    <summary type="html">用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，deleteHead操作返回 -1 )</summary>
-    
-    
-    
-    <category term="力扣" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/"/>
-    
-    <category term="栈" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/%E6%A0%88/"/>
-    
-    
-    <category term="算法" scheme="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="简单" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95/"/>
-    
-    <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
-    
-    <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
-    
-    <category term="栈" scheme="http://120.48.161.105:4000/tags/%E6%A0%88/"/>
-    
-    <category term="队列" scheme="http://120.48.161.105:4000/tags/%E9%98%9F%E5%88%97/"/>
     
   </entry>
   
