@@ -1,0 +1,630 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="msvalidate.01" content="AFDB45CC21FD88E9C707C7C9162E5E5A"><meta name="baidu-site-verification" content="code-h3hQw6wxUc"><meta name="360-site-verification" content="1e4c79dee06e20b0af55fd4499a2d4a8"><meta name="sogou_site_verification" content="zG14f2yB7U"><meta name="description" content="本文记录学习SpringCloud微服务学习的过程，通过B站视频《谷粒商城》项目进行学习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringCloud 学习-微服务简介">
+<meta property="og:url" content="http://120.48.161.105:4000/2023/06/30/SpringCloud(%E5%AD%A6%E4%B9%A0%20%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%AE%80%E4%BB%8B)%20%E4%B8%80/index.html">
+<meta property="og:site_name" content="Min&#39;s Blog">
+<meta property="og:description" content="本文记录学习SpringCloud微服务学习的过程，通过B站视频《谷粒商城》项目进行学习。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2ae8b9442529420894fff1ccb3a8a031.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c07c47e2f262426d9a896148367b60c6.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/cd36bb8e4f624796930396c10f01e66a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ec00eee6ba714276ad58f52cd9a99c18.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/9bf6fb953e344dff97b1debdb40c5cef.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/9ee9df2bc0ff476e85b52572593d51c3.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/6e5af0ab23e643eab38f3fa4c2fd909c.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/681491be5b4741dea2d26db8fa6a4d43.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/dc099d93e5974d92b40476e8c39a9a15.png">
+<meta property="article:published_time" content="2023-06-30T09:19:01.909Z">
+<meta property="article:modified_time" content="2023-06-30T10:02:29.588Z">
+<meta property="article:author" content="史明忠">
+<meta property="article:tag" content="后端">
+<meta property="article:tag" content="SpringCloud">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2ae8b9442529420894fff1ccb3a8a031.png"><title>SpringCloud 学习-微服务简介 | Min's Blog</title><link ref="canonical" href="http://120.48.161.105:4000/2023/06/30/SpringCloud(%E5%AD%A6%E4%B9%A0%20%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%AE%80%E4%BB%8B)%20%E4%B8%80/"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?e5397e2608cbb991400432801c7a10f1';
+  hm.async = true;
+
+  if (true) {
+    hm.setAttribute('data-pjax', '');
+  }
+  var s = document.getElementsByTagName('script')[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: true,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: true,
+  pjax: {"avoidBanner":true},
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-tie"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-rocket"></i></span><span class="header-nav-menu-item__text">乐趣</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/technology-lottie/"><span class="header-nav-submenu-item__icon"><i class="fas fa-umbrella-beach"></i></span><span class="header-nav-submenu-item__text">动画</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-cog"></i></span><span class="header-nav-menu-item__text">组件</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/module-vue/"><span class="header-nav-submenu-item__icon"><i class="fas fa-users-cog"></i></span><span class="header-nav-submenu-item__text">Vue</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Min's Blog</div><div class="header-banner-info__subtitle">well begun is half done</div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">SpringCloud 学习-微服务简介</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-06-30</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-06-30</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.6k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">10分</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h1 id="前言"   >
+          <a href="#前言" class="heading-link"><i class="fas fa-link"></i></a><a href="#前言" class="headerlink" title="前言"></a>前言</h1>
+      <p>本文记录学习SpringCloud微服务学习的过程，通过B站视频《谷粒商城》项目进行学习。</p>
+<p><strong>技术架构为：</strong></p>
+<ul>
+<li>后端：<br>Springboot + SpringCloud + Docker </li>
+<li>前端：<br>Vue + Element-ui</li>
+</ul>
+<hr>
+
+        <h1 id="一、什么是微服务？"   >
+          <a href="#一、什么是微服务？" class="heading-link"><i class="fas fa-link"></i></a><a href="#一、什么是微服务？" class="headerlink" title="一、什么是微服务？"></a>一、什么是微服务？</h1>
+      
+        <h2 id="1-微服务简介"   >
+          <a href="#1-微服务简介" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-微服务简介" class="headerlink" title="1.微服务简介"></a>1.微服务简介</h2>
+      <blockquote>
+<p>将大型单体应用，基于业务进行服务拆分，每个服务独立部署运行，互不影响。</p>
+</blockquote>
+
+        <h2 id="2-集群、分布式、节点"   >
+          <a href="#2-集群、分布式、节点" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-集群、分布式、节点" class="headerlink" title="2.集群、分布式、节点"></a>2.集群、分布式、节点</h2>
+      <p><strong>集群：</strong></p>
+<blockquote>
+<p>多台服务器，实现相同的业务<br><strong>分布式：</strong><br>将不同业务部署在不同的服务器上</p>
+</blockquote>
+<p><code>分布式中的每一个节点，都可以做集群。而集群并不一定就是分布式</code></p>
+
+        <h2 id="3-远程调用"   >
+          <a href="#3-远程调用" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-远程调用" class="headerlink" title="3.远程调用"></a>3.远程调用</h2>
+      <p>在分布式系统中，由于不同服务部署在不同的地方，在服务之间需要进行通讯。</p>
+<blockquote>
+<p>SpringCloud中使用HTTP+JSON的方式进行远程调用，可以通过不同语言不同平台进行传输，兼容性高。</p>
+</blockquote>
+
+        <h2 id="4-负载均衡"   >
+          <a href="#4-负载均衡" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-负载均衡" class="headerlink" title="4.负载均衡"></a>4.负载均衡</h2>
+      <p>在服务集群中，为了使集群中每个服务器充分利用，采用负载均衡的方式调用独立服务器。</p>
+<p>常用负载均衡算法：</p>
+<blockquote>
+<p>轮询：从服务器健康池中选择第一个服务器分配给第一个请求，然后按顺序依次向后选择，到最后以后从新开始循环。</p>
+</blockquote>
+<blockquote>
+<p>最小连接：优先选择连接数最少的服务器，在会话时间较长优先选择该方式。</p>
+</blockquote>
+<blockquote>
+<p>散列：相同IP地址连接相同的服务器，保证特定用户能连接到相同的服务器。如果应用需要处理状态而要求用户连接到相同的服务器，可以采用该方式。</p>
+</blockquote>
+
+        <h2 id="5-服务注册-x2F-发现、注册中心"   >
+          <a href="#5-服务注册-x2F-发现、注册中心" class="heading-link"><i class="fas fa-link"></i></a><a href="#5-服务注册-x2F-发现、注册中心" class="headerlink" title="5.服务注册&#x2F;发现、注册中心"></a>5.服务注册&#x2F;发现、注册中心</h2>
+      <blockquote>
+<p>由于有很多的服务，避免调用到不可用（不在线）的服务，为了感知每个服务的状态，在服务上线时，会在注册中心注册这个服务。在调用某个业务服务时会在注册中心查询相关服务进行调用。</p>
+</blockquote>
+
+        <h2 id="6-配置中心"   >
+          <a href="#6-配置中心" class="heading-link"><i class="fas fa-link"></i></a><a href="#6-配置中心" class="headerlink" title="6.配置中心"></a>6.配置中心</h2>
+      <blockquote>
+<p>每个业务都有大量的配置，而这个业务又会放在多个服务器形成集群，修改配置后需要在大量服务器上修改配置，这样及其不方便。因此才会有配置中心用来给服务进行管理服务配置。</p>
+</blockquote>
+
+        <h2 id="7-服务熔断、服务降级"   >
+          <a href="#7-服务熔断、服务降级" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-服务熔断、服务降级" class="headerlink" title="7.服务熔断、服务降级"></a>7.服务熔断、服务降级</h2>
+      <ul>
+<li>服务熔断<blockquote>
+<p>设置服务的超时，当被调用的服务经常失败达到某个阈值，启用断路保护机制，之后的请求不再去调用这个服务，本地直接返回默认数据。</p>
+</blockquote>
+</li>
+<li>服务降级<blockquote>
+<p>在运维期间，当系统处于高压状态，资源紧张，让非核心业务进行降级运行，被降级的业务将不处理或者简单处理（抛异常、返回NULL、调用Mock数据、调用Fallback处理逻辑）</p>
+</blockquote>
+</li>
+</ul>
+
+        <h2 id="8-API网关"   >
+          <a href="#8-API网关" class="heading-link"><i class="fas fa-link"></i></a><a href="#8-API网关" class="headerlink" title="8.API网关"></a>8.API网关</h2>
+      <p>对所有请求进行拦截并处理，保证服务的正常运行，其中处理包括：负载均衡、服务自动熔断、灰度发布、统一认证、限流流控、日志统计等公共功能，解决API管理困难。</p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/2ae8b9442529420894fff1ccb3a8a031.png" >
+      </p>
+
+        <h1 id="二、项目架构"   >
+          <a href="#二、项目架构" class="heading-link"><i class="fas fa-link"></i></a><a href="#二、项目架构" class="headerlink" title="二、项目架构"></a>二、项目架构</h1>
+      <ul>
+<li>微服务架构图<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/c07c47e2f262426d9a896148367b60c6.png"  alt="项目架构图">
+      </li>
+</ul>
+<hr>
+<ul>
+<li>微服务划分图</li>
+</ul>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/cd36bb8e4f624796930396c10f01e66a.png"  alt="微服务划分图">
+      </p>
+
+        <h1 id="三、环境配置"   >
+          <a href="#三、环境配置" class="heading-link"><i class="fas fa-link"></i></a><a href="#三、环境配置" class="headerlink" title="三、环境配置"></a>三、环境配置</h1>
+      <p>配置开发环境，在虚拟机中进行，虚拟机采用<strong>centos9</strong>这个版本，在虚拟机中安装<strong>docker</strong>，在docker中安装mysql等软件。</p>
+<ul>
+<li><p>安装虚拟机</p>
+<blockquote>
+<p>我在VM中安装虚拟机，具体安装可网上查询，版本选择centos9这个版本</p>
+</blockquote>
+</li>
+<li><p>安装Docker-CE(社区版)</p>
+<blockquote>
+<ul>
+<li>Docker官网给了各种虚拟机的安装流程，我安装的是CentOS版本的<br><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/centos/" >CentOS安装流程</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></li>
+<li>启动Docker<br>sudo systemctl start docker（这里sudo是以管理员身份启动，可以使用“su root”命令进入管理员模式）</li>
+<li>设置开机自启<br>sudo systemctl enable docker</li>
+<li>配置镜像加速<br>sudo mkdir -p &#x2F;etc&#x2F;docker<br>sudo tee &#x2F;etc&#x2F;docker&#x2F;daemon.json &lt;&lt;-‘EOF’ { “registry-mirrors”: [“<a href="https://82m9ar63.mirror.aliyuncs.com&quot;]">https://82m9ar63.mirror.aliyuncs.com&quot;]</a><br>}<br>EOF<br>sudo systemctl daemon-reload<br>sudo systemctl restart docker</li>
+</ul>
+</blockquote>
+</li>
+<li><p>在Docker安装mysql</p>
+<blockquote>
+<ul>
+<li>docker pull mysql:5.7</li>
+<li>创建实例并启动<br>docker run -p 3306:3306 –name mysql <br>-v &#x2F;mydata&#x2F;mysql&#x2F;log:&#x2F;var&#x2F;log&#x2F;mysql <br>-v &#x2F;mydata&#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql <br>-v &#x2F;mydata&#x2F;mysql&#x2F;conf:&#x2F;etc&#x2F;mysql <br>-e MYSQL_ROOT_PASSWORD&#x3D;root <br>-d mysql:5.7<br>参数说明<br>-p 3306:3306：将容器的 3306 端口映射到主机的 3306 端口<br>-v &#x2F;mydata&#x2F;mysql&#x2F;conf:&#x2F;etc&#x2F;mysql：将配置文件夹挂载到主机<br>-v &#x2F;mydata&#x2F;mysql&#x2F;log:&#x2F;var&#x2F;log&#x2F;mysql：将日志文件夹挂载到主机<br>-v &#x2F;mydata&#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql&#x2F;：将配置文件夹挂载到主机<br>-e MYSQL_ROOT_PASSWORD&#x3D;root：初始化 root 用户的密码</li>
+<li>配置自启动<br>docker update mysql –restart&#x3D;always</li>
+<li>连接mysql<br>查看虚拟机ip使用命令 ：ifconfig -a<br>然后我这里使用navicat连接数据库进行可视化</li>
+</ul>
+</blockquote>
+</li>
+<li><p>在Docker安装redis</p>
+<blockquote>
+<ul>
+<li>docker pull redi</li>
+<li>创建实例并建立配置文件并启动实例<br>mkdir -p &#x2F;mydata&#x2F;redis&#x2F;conf<br>touch &#x2F;mydata&#x2F;redis&#x2F;conf&#x2F;redis.conf<br>docker run -p 6379:6379 –name redis -v &#x2F;mydata&#x2F;redis&#x2F;data:&#x2F;data <br>-v &#x2F;mydata&#x2F;redis&#x2F;conf&#x2F;redis.conf:&#x2F;etc&#x2F;redis&#x2F;redis.conf <br>-d redis redis-server &#x2F;etc&#x2F;redis&#x2F;redis.conf</li>
+<li>持久化储存（修改配置文件）<br>docker exec -it redis redis-cli<br>输入“i”进入插入模式<br>appendonly yes（开启持久化）<br>“ESC”输入”:wq”保存退出<br>exit (退出redis)</li>
+<li>redis可视化<br>这里我是用IDEA的插件 “redis” 可以直接可视化redis<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/ec00eee6ba714276ad58f52cd9a99c18.png"  alt="在这里插入图片描述">
+      </li>
+</ul>
+</blockquote>
+</li>
+<li><p>新建项目</p>
+<blockquote>
+<p>JDK使用1.8，springboot使用2.7.8<br>后台管理使用码云开源项目“<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://gitee.com/renrenio/renren-fast" >renren-fast</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>“<br>前台使用”<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://gitee.com/renrenio/renren-fast-vue" >renren-fast-vue</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>“<br>后台项目中给了sql的文件<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/9bf6fb953e344dff97b1debdb40c5cef.png"  alt="在这里插入图片描述">
+      </p>
+</blockquote>
+</li>
+<li><p>微服务划分与创建</p>
+<blockquote>
+<p>根据服务划分图创建对应服务，其中common为全局服务，储存公共bean和依赖等<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/9ee9df2bc0ff476e85b52572593d51c3.png"  alt="在这里插入图片描述">
+      </p>
+</blockquote>
+</li>
+<li><p>利用码云开源项目”<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://gitee.com/renrenio/renren-generator" >renren-generator</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>“逆向出每个服务中表的CRUD功能</p>
+<blockquote>
+<ul>
+<li>在配置文件中配置数据库信息<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/6e5af0ab23e643eab38f3fa4c2fd909c.png"  alt="在这里插入图片描述">
+      <br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/681491be5b4741dea2d26db8fa6a4d43.png"  alt="在这里插入图片描述">
+      </li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>运行打开web页面后可选择对应表进行生成<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/dc099d93e5974d92b40476e8c39a9a15.png"  alt="在这里插入图片描述">
+      </li>
+<li>将生成的代码替换完成代码生成</li>
+<li>在配置文件配置数据源<br><code>spring: datasource:   username: root   password: root   url: jdbc:mysql://192.168.8.124:3306/guli-pms   driver-class-name: com.mysql.jdbc.Driver</code></li>
+<li>配置mybatis-plus(关联xml文件和设置主键自增)<br><code>mybatis-plus: mapper-locations: classpath:/mapper/**/*.xml global-config:   db-config: id-type: auto</code></li>
+<li>主类扫描实体类<br>添加注解@MapperScan<br>@MapperScan(“com&#x2F;smz&#x2F;guli&#x2F;product&#x2F;dao”)</li>
+<li>启动服务</li>
+</ul>
+</blockquote>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E5%90%8E%E7%AB%AF/">后端</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/SpringCloud/">SpringCloud</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/Docker/">Docker</a></span></div><div class="post-reward reward"><div class="reward-button">请我喝杯咖啡~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/images/collection/ZF.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/images/collection/WX.jpg"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/06/30/SpringCloud%EF%BC%88%E5%AD%A6%E4%B9%A0%20Gateway%EF%BC%89%E4%B8%89/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">SpringCloud 学习-Gateway</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/06/25/%E5%BC%80%E5%8F%91%E5%B0%8Ftips/"><span class="paginator-prev__text">开发tips</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="utterances-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">
+          前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AE%E6%9C%8D%E5%8A%A1%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">
+          一、什么是微服务？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%AE%80%E4%BB%8B"><span class="toc-number">2.1.</span> <span class="toc-text">
+          1.微服务简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%9B%86%E7%BE%A4%E3%80%81%E5%88%86%E5%B8%83%E5%BC%8F%E3%80%81%E8%8A%82%E7%82%B9"><span class="toc-number">2.2.</span> <span class="toc-text">
+          2.集群、分布式、节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8"><span class="toc-number">2.3.</span> <span class="toc-text">
+          3.远程调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">2.4.</span> <span class="toc-text">
+          4.负载均衡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C-x2F-%E5%8F%91%E7%8E%B0%E3%80%81%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">2.5.</span> <span class="toc-text">
+          5.服务注册&#x2F;发现、注册中心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">2.6.</span> <span class="toc-text">
+          6.配置中心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD%E3%80%81%E6%9C%8D%E5%8A%A1%E9%99%8D%E7%BA%A7"><span class="toc-number">2.7.</span> <span class="toc-text">
+          7.服务熔断、服务降级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-API%E7%BD%91%E5%85%B3"><span class="toc-number">2.8.</span> <span class="toc-text">
+          8.API网关</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text">
+          二、项目架构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">
+          三、环境配置</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/apple-touch-icon.png" alt="avatar"></div><p class="sidebar-ov-author__text">积少成多</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/minzhongshi" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:2240941938@qq.com" target="_blank" rel="noopener" data-popover="发送邮件" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a><a class="sidebar-ov-social-item" href="tencent://message?uin=2240941938" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://blog.csdn.net/smznbhh" target="_blank" rel="noopener" data-popover="CSDN" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">C</span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">36</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">33</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">58</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022~2023</span><span class="footer__icon"><i class="fas fa-yin-yang"></i></span><span>MinZhongShi All Rights Reserved</span><span class="footer__devider">|</span><span>备案 XXXXXXXX 号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>托管于 <a href="https://github.com/minzhongshi/" rel="noopener" target="_blank">Github Pages</a>）</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
+  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
+  // 加载进度条的计时器
+  var loadingTimer = null;
+
+  // 重置页面 Y 方向上的滚动偏移量
+  document.addEventListener('pjax:send', function () {
+    $('.header-nav-menu').removeClass('show');
+    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
+      $('html').velocity('scroll', {
+        duration: 500,
+        offset: $('#header').height(),
+        easing: 'easeInOutCubic'
+      });
+    }
+
+    var loadingBarWidth = 20;
+    var MAX_LOADING_WIDTH = 95;
+
+    $('.loading-bar').addClass('loading');
+    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    clearInterval(loadingTimer);
+    loadingTimer = setInterval(function () {
+      loadingBarWidth += 3;
+      if (loadingBarWidth > MAX_LOADING_WIDTH) {
+        loadingBarWidth = MAX_LOADING_WIDTH;
+      }
+      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    }, 500);
+  }, false);
+
+  window.addEventListener('pjax:complete', function () {
+    clearInterval(loadingTimer);
+    $('.loading-bar__progress').css('width', '100%');
+    $('.loading-bar').removeClass('loading');
+    setTimeout(function () {
+      $('.loading-bar__progress').css('width', '0');
+    }, 400);
+    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
+      $(this).remove();
+    });
+    $('script[data-pjax], #pjax-reload script').each(function () {
+      $(this).parent().append($(this).remove());
+    });
+
+    if (Stun.utils.pjaxReloadBoot) {
+      Stun.utils.pjaxReloadBoot();
+    }
+    if (Stun.utils.pjaxReloadScroll) {
+      Stun.utils.pjaxReloadScroll();
+    }
+    if (Stun.utils.pjaxReloadSidebar) {
+      Stun.utils.pjaxReloadSidebar();
+    }
+    if (false) {
+      if (Stun.utils.pjaxReloadHeader) {
+        Stun.utils.pjaxReloadHeader();
+      }
+      if (Stun.utils.pjaxReloadScrollIcon) {
+        Stun.utils.pjaxReloadScrollIcon();
+      }
+      if (Stun.utils.pjaxReloadLocalSearch) {
+        Stun.utils.pjaxReloadLocalSearch();
+      }
+    }
+  }, false);
+}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/quicklink@1.0.1/dist/quicklink.umd.js"></script><script>function initQuicklink() {
+  quicklink({
+    timeout: '10000',
+    priority: true,
+    ignores: [uri => uri.includes('#'), uri => uri === 'http://120.48.161.105:4000/2023/06/30/SpringCloud(%E5%AD%A6%E4%B9%A0%20%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%AE%80%E4%BB%8B)%20%E4%B8%80/', /\/api\/?/,uri => uri.includes('.xml'),uri => uri.includes('.zip'),(uri, el) => el.hasAttribute('nofollow'),(uri, el) => el.hasAttribute('noprefetch')]
+  });
+}
+
+if (true || false) {
+  initQuicklink();
+} else {
+  window.addEventListener('DOMContentLoaded', initQuicklink, false);
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script data-pjax="">function loadUtterances() {
+  var d = document, s = d.createElement('script');
+  var container = d.getElementById('utterances-container');
+
+  if (!container) {
+    return;
+  }
+  s.src = 'https://utteranc.es/client.js';
+  s.setAttribute('repo', 'minzhongshi/minzhongshi.github.io');
+  s.setAttribute('issue-term', 'title');
+  s.setAttribute('label', 'utterances');
+  s.setAttribute('theme', 'github-light');
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('async', '');
+  if (true) {
+    s.setAttribute('data-pjax-rm', '');
+  }
+  container.append(s);
+}
+
+if (true) {
+  loadUtterances();
+} else {
+  window.addEventListener('DOMContentLoaded', loadUtterances, false);
+}</script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script type="application/json" src="/search.json"></script></body></html>

@@ -6,7 +6,7 @@
   <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
-  <updated>2023-06-25T02:00:24.431Z</updated>
+  <updated>2023-06-30T10:02:29.573Z</updated>
   <id>http://120.48.161.105:4000/</id>
   
   <author>
@@ -15,6 +15,121 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringCloud 学习-Nacos</title>
+    <link href="http://120.48.161.105:4000/2023/06/30/SpringCloud(%E5%AD%A6%E4%B9%A0%20Nacos)%20%E4%BA%8C/"/>
+    <id>http://120.48.161.105:4000/2023/06/30/SpringCloud(%E5%AD%A6%E4%B9%A0%20Nacos)%20%E4%BA%8C/</id>
+    <published>2023-06-30T09:19:01.921Z</published>
+    <updated>2023-06-30T10:02:29.573Z</updated>
+    
+    
+    <summary type="html">本文主要讲述微服务组件中的：**注册中心**、**配置中心**</summary>
+    
+    
+    
+    <category term="SpingCloud" scheme="http://120.48.161.105:4000/categories/SpingCloud/"/>
+    
+    <category term="微服务" scheme="http://120.48.161.105:4000/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    <category term="组件" scheme="http://120.48.161.105:4000/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E7%BB%84%E4%BB%B6/"/>
+    
+    <category term="后端" scheme="http://120.48.161.105:4000/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="项目" scheme="http://120.48.161.105:4000/categories/%E9%A1%B9%E7%9B%AE/"/>
+    
+    <category term="谷粒商城" scheme="http://120.48.161.105:4000/categories/%E9%A1%B9%E7%9B%AE/%E8%B0%B7%E7%B2%92%E5%95%86%E5%9F%8E/"/>
+    
+    <category term="Nacos" scheme="http://120.48.161.105:4000/categories/SpingCloud/Nacos/"/>
+    
+    
+    <category term="后端" scheme="http://120.48.161.105:4000/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="SpringCloud" scheme="http://120.48.161.105:4000/tags/SpringCloud/"/>
+    
+    <category term="Nacos" scheme="http://120.48.161.105:4000/tags/Nacos/"/>
+    
+    <category term="注册中心" scheme="http://120.48.161.105:4000/tags/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/"/>
+    
+    <category term="配置中心" scheme="http://120.48.161.105:4000/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringCloud 学习-Gateway</title>
+    <link href="http://120.48.161.105:4000/2023/06/30/SpringCloud%EF%BC%88%E5%AD%A6%E4%B9%A0%20Gateway%EF%BC%89%E4%B8%89/"/>
+    <id>http://120.48.161.105:4000/2023/06/30/SpringCloud%EF%BC%88%E5%AD%A6%E4%B9%A0%20Gateway%EF%BC%89%E4%B8%89/</id>
+    <published>2023-06-30T09:19:01.919Z</published>
+    <updated>2023-06-30T10:02:29.571Z</updated>
+    
+    
+    <summary type="html">网关的存在就是让请求动态路由到正确的服务，也可以在网关层做鉴权、限流、日志输出等功能的实现。</summary>
+    
+    
+    
+    <category term="SpingCloud" scheme="http://120.48.161.105:4000/categories/SpingCloud/"/>
+    
+    <category term="Gateway" scheme="http://120.48.161.105:4000/categories/SpingCloud/Gateway/"/>
+    
+    <category term="微服务" scheme="http://120.48.161.105:4000/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    <category term="组件" scheme="http://120.48.161.105:4000/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E7%BB%84%E4%BB%B6/"/>
+    
+    <category term="后端" scheme="http://120.48.161.105:4000/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="项目" scheme="http://120.48.161.105:4000/categories/%E9%A1%B9%E7%9B%AE/"/>
+    
+    <category term="谷粒商城" scheme="http://120.48.161.105:4000/categories/%E9%A1%B9%E7%9B%AE/%E8%B0%B7%E7%B2%92%E5%95%86%E5%9F%8E/"/>
+    
+    <category term="网关" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E5%85%B3/"/>
+    
+    <category term="Gateway" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E5%85%B3/Gateway/"/>
+    
+    
+    <category term="后端" scheme="http://120.48.161.105:4000/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="SpringCloud" scheme="http://120.48.161.105:4000/tags/SpringCloud/"/>
+    
+    <category term="Gateway" scheme="http://120.48.161.105:4000/tags/Gateway/"/>
+    
+    <category term="网关" scheme="http://120.48.161.105:4000/tags/%E7%BD%91%E5%85%B3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringCloud 学习-微服务简介</title>
+    <link href="http://120.48.161.105:4000/2023/06/30/SpringCloud(%E5%AD%A6%E4%B9%A0%20%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%AE%80%E4%BB%8B)%20%E4%B8%80/"/>
+    <id>http://120.48.161.105:4000/2023/06/30/SpringCloud(%E5%AD%A6%E4%B9%A0%20%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%AE%80%E4%BB%8B)%20%E4%B8%80/</id>
+    <published>2023-06-30T09:19:01.909Z</published>
+    <updated>2023-06-30T10:02:29.588Z</updated>
+    
+    
+    <summary type="html">本文记录学习SpringCloud微服务学习的过程，通过B站视频《谷粒商城》项目进行学习。</summary>
+    
+    
+    
+    <category term="SpingCloud" scheme="http://120.48.161.105:4000/categories/SpingCloud/"/>
+    
+    <category term="微服务" scheme="http://120.48.161.105:4000/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    <category term="后端" scheme="http://120.48.161.105:4000/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="项目" scheme="http://120.48.161.105:4000/categories/%E9%A1%B9%E7%9B%AE/"/>
+    
+    <category term="谷粒商城" scheme="http://120.48.161.105:4000/categories/%E9%A1%B9%E7%9B%AE/%E8%B0%B7%E7%B2%92%E5%95%86%E5%9F%8E/"/>
+    
+    <category term="简介" scheme="http://120.48.161.105:4000/categories/SpingCloud/%E7%AE%80%E4%BB%8B/"/>
+    
+    <category term="Docker" scheme="http://120.48.161.105:4000/categories/Docker/"/>
+    
+    
+    <category term="后端" scheme="http://120.48.161.105:4000/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="SpringCloud" scheme="http://120.48.161.105:4000/tags/SpringCloud/"/>
+    
+    <category term="Docker" scheme="http://120.48.161.105:4000/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>开发tips</title>
@@ -500,89 +615,6 @@
     <category term="JS" scheme="http://120.48.161.105:4000/tags/JS/"/>
     
     <category term="方法" scheme="http://120.48.161.105:4000/tags/%E6%96%B9%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vue模板语法</title>
-    <link href="http://120.48.161.105:4000/2022/09/12/Vue%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95/"/>
-    <id>http://120.48.161.105:4000/2022/09/12/Vue%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95/</id>
-    <published>2022-09-12T08:08:16.977Z</published>
-    <updated>2022-09-15T07:09:56.213Z</updated>
-    
-    
-    <summary type="html">Vue插值语法，指令语法的使用与作用，以及指令间的关系</summary>
-    
-    
-    
-    <category term="Vue" scheme="http://120.48.161.105:4000/categories/Vue/"/>
-    
-    <category term="前端" scheme="http://120.48.161.105:4000/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="指令" scheme="http://120.48.161.105:4000/categories/Vue/%E6%8C%87%E4%BB%A4/"/>
-    
-    
-    <category term="Vue" scheme="http://120.48.161.105:4000/tags/Vue/"/>
-    
-    <category term="指令语法" scheme="http://120.48.161.105:4000/tags/%E6%8C%87%E4%BB%A4%E8%AF%AD%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS运行机制 Vue全局API nextTick源码分析</title>
-    <link href="http://120.48.161.105:4000/2022/09/12/JS%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%20Vue%E5%85%A8%E5%B1%80API%20nextTick%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
-    <id>http://120.48.161.105:4000/2022/09/12/JS%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%20Vue%E5%85%A8%E5%B1%80API%20nextTick%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</id>
-    <published>2022-09-12T08:05:13.336Z</published>
-    <updated>2022-09-12T08:15:39.507Z</updated>
-    
-    
-    <summary type="html">JS运行机制 Vue全局API nextTick源码分析</summary>
-    
-    
-    
-    <category term="Vue" scheme="http://120.48.161.105:4000/categories/Vue/"/>
-    
-    <category term="JS" scheme="http://120.48.161.105:4000/categories/JS/"/>
-    
-    <category term="前端" scheme="http://120.48.161.105:4000/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-    <category term="Vue" scheme="http://120.48.161.105:4000/tags/Vue/"/>
-    
-    <category term="JS" scheme="http://120.48.161.105:4000/tags/JS/"/>
-    
-    <category term="源码" scheme="http://120.48.161.105:4000/tags/%E6%BA%90%E7%A0%81/"/>
-    
-    <category term="API" scheme="http://120.48.161.105:4000/tags/API/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>包含min函数的栈</title>
-    <link href="http://120.48.161.105:4000/2022/09/12/%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88/"/>
-    <id>http://120.48.161.105:4000/2022/09/12/%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88/</id>
-    <published>2022-09-12T08:03:03.091Z</published>
-    <updated>2022-09-15T07:16:39.692Z</updated>
-    
-    
-    <summary type="html">定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的 min 函数在该栈中，调用 min、push 及 pop 的时间复杂度都是 O(1)。</summary>
-    
-    
-    
-    <category term="力扣" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/"/>
-    
-    <category term="栈" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/%E6%A0%88/"/>
-    
-    
-    <category term="算法" scheme="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="简单" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95/"/>
-    
-    <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
-    
-    <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
-    
-    <category term="栈" scheme="http://120.48.161.105:4000/tags/%E6%A0%88/"/>
     
   </entry>
   

@@ -1,0 +1,655 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="msvalidate.01" content="AFDB45CC21FD88E9C707C7C9162E5E5A"><meta name="baidu-site-verification" content="code-h3hQw6wxUc"><meta name="360-site-verification" content="1e4c79dee06e20b0af55fd4499a2d4a8"><meta name="sogou_site_verification" content="zG14f2yB7U"><meta name="description" content="本文主要讲述微服务组件中的：**注册中心**、**配置中心**">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringCloud 学习-Nacos">
+<meta property="og:url" content="http://120.48.161.105:4000/2023/06/30/SpringCloud(%E5%AD%A6%E4%B9%A0%20Nacos)%20%E4%BA%8C/index.html">
+<meta property="og:site_name" content="Min&#39;s Blog">
+<meta property="og:description" content="本文主要讲述微服务组件中的：**注册中心**、**配置中心**">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/88a8b667cbe746fdb3e18b673c596f70.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/00bcaff35f324c219151a657151945fc.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5cbf5c0b3f0c40feb84eebe71472b463.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/99b3ef7c5b91433895c648d4f3657188.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/7d5240cba94545bd80a59d61830ee4f3.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f3791bfec8844516aa48af647d1a3ba8.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/40c96b71bf7a4b5cac379ef82dfea0b4.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8099107cd2b841a5a6af9a1700e2b279.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ed8aec878a844c61a60ae62b0a5bce71.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2501289836b7426a87176b9838f4e133.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/838e45960e804773b1f2def46d96789d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/fd2e36dbcc4d4c519b347172a50ac649.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/3581a8623fee40ffbed21168d531f6a5.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/3cb5104cfa4449bcb1b8c17159ef0dda.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ea9efc4f1acb4633918b9211ea39bc80.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/13c5484fbdf84e01bf1b27f515878322.png">
+<meta property="article:published_time" content="2023-06-30T09:19:01.921Z">
+<meta property="article:modified_time" content="2023-06-30T10:02:29.573Z">
+<meta property="article:author" content="史明忠">
+<meta property="article:tag" content="后端">
+<meta property="article:tag" content="SpringCloud">
+<meta property="article:tag" content="Nacos">
+<meta property="article:tag" content="注册中心">
+<meta property="article:tag" content="配置中心">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/88a8b667cbe746fdb3e18b673c596f70.png"><title>SpringCloud 学习-Nacos | Min's Blog</title><link ref="canonical" href="http://120.48.161.105:4000/2023/06/30/SpringCloud(%E5%AD%A6%E4%B9%A0%20Nacos)%20%E4%BA%8C/"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?e5397e2608cbb991400432801c7a10f1';
+  hm.async = true;
+
+  if (true) {
+    hm.setAttribute('data-pjax', '');
+  }
+  var s = document.getElementsByTagName('script')[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: true,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: true,
+  pjax: {"avoidBanner":true},
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-tie"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-rocket"></i></span><span class="header-nav-menu-item__text">乐趣</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/technology-lottie/"><span class="header-nav-submenu-item__icon"><i class="fas fa-umbrella-beach"></i></span><span class="header-nav-submenu-item__text">动画</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-cog"></i></span><span class="header-nav-menu-item__text">组件</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/module-vue/"><span class="header-nav-submenu-item__icon"><i class="fas fa-users-cog"></i></span><span class="header-nav-submenu-item__text">Vue</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Min's Blog</div><div class="header-banner-info__subtitle">well begun is half done</div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">SpringCloud 学习-Nacos</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-06-30</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-06-30</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.4k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">10分</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h1 id="前言"   >
+          <a href="#前言" class="heading-link"><i class="fas fa-link"></i></a><a href="#前言" class="headerlink" title="前言"></a>前言</h1>
+      <p>本文主要讲述微服务组件中的：<strong>注册中心</strong>、<strong>配置中心</strong></p>
+<hr>
+
+        <h1 id="一、各组件关系与技术选择"   >
+          <a href="#一、各组件关系与技术选择" class="heading-link"><i class="fas fa-link"></i></a><a href="#一、各组件关系与技术选择" class="headerlink" title="一、各组件关系与技术选择"></a>一、各组件关系与技术选择</h1>
+      <p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/88a8b667cbe746fdb3e18b673c596f70.png"  alt="微服务组件关系图">
+      </p>
+<p> <strong>最终的技术搭配方案为：</strong><br>SpringCloud Alibaba - Nacos：注册中心（服务发现&#x2F;注册）<br>SpringCloud Alibaba - Nacos：配置中心（动态配置管理）<br>SpringCloud - Ribbon：负载均衡<br>SpringCloud - Feign：声明式 HTTP 客户端（调用远程服务）<br>SpringCloud Alibaba - Sentinel：服务容错（限流、降级、熔断）<br>SpringCloud - Gateway：API 网关（webflux 编程模式）<br>SpringCloud - Sleuth：调用链监控<br>SpringCloud Alibaba - Seata：原 Fescar，即分布式事务解决方案</p>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://spring-cloud-alibaba-group.github.io/github-pages/2021/en-us/index.html" >阿里官方文档</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/blob/2022.x/README-zh.md" >中文文档</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://start.spring.io/actuator/info" >各版本对应关系</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<blockquote>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/00bcaff35f324c219151a657151945fc.png"  alt="springcloud关系对应">
+      </p>
+</blockquote>
+<blockquote>
+<p><code>其中不止springboot与springcloud版本对应关系，还有其它与springboot的版本对应关系</code></p>
+</blockquote>
+<p>在引入组件前引入依赖管理，可以在后续引入组件依赖时忽略版本号，这些依赖都引入公共模块common中。</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencyManagement&gt;</span><br><span class="line">       &lt;dependencies&gt;</span><br><span class="line">           &lt;dependency&gt;</span><br><span class="line">               &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">               &lt;artifactId&gt;spring-cloud-alibaba-dependencies&lt;/artifactId&gt;</span><br><span class="line">               &lt;version&gt;<span class="number">2021.0</span><span class="number">.4</span><span class="number">.0</span>&lt;/version&gt;</span><br><span class="line">               &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">               &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line">           &lt;/dependency&gt;</span><br><span class="line">       &lt;/dependencies&gt;</span><br><span class="line">   &lt;/dependencyManagement&gt;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="二、Nacos"   >
+          <a href="#二、Nacos" class="heading-link"><i class="fas fa-link"></i></a><a href="#二、Nacos" class="headerlink" title="二、Nacos"></a>二、Nacos</h1>
+      
+        <h2 id="1-Nacos作为注册中心"   >
+          <a href="#1-Nacos作为注册中心" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-Nacos作为注册中心" class="headerlink" title="1.Nacos作为注册中心"></a>1.Nacos作为注册中心</h2>
+      <blockquote>
+<p>引入相关依赖：</p>
+</blockquote>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></div></figure>
+<hr>
+<ul>
+<li>下载Nacos注册中心 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/releases" >Nacos Server</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></li>
+<li>为每个服务配置nacos服务注册配置</li>
+</ul>
+<blockquote>
+<p><code>server.port=8081 spring.application.name=nacos-provider spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848 management.endpoints.web.exposure.include=*</code></p>
+</blockquote>
+<ul>
+<li>启动项添加注解@EnableDiscoveryClient开启服务注册&#x2F;发现</li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GuliCouponApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(GuliCouponApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>启动服务进行服务注册发现<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/5cbf5c0b3f0c40feb84eebe71472b463.png"  alt="在这里插入图片描述">
+      </li>
+</ul>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/99b3ef7c5b91433895c648d4f3657188.png"  alt="在这里插入图片描述">
+      </p>
+<hr>
+<p><code>如果使用win启动nacos则需要更改win启动脚本文件使用单机启动</code><br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/7d5240cba94545bd80a59d61830ee4f3.png"  alt="在这里插入图片描述">
+      <br><code>在脚本文件末尾加入pause endlocal 可以在启动错误时不闪退，可以看到报错信息</code><br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/f3791bfec8844516aa48af647d1a3ba8.png"  alt="在这里插入图片描述">
+      </p>
+
+        <h2 id="2-使用openFeign远程调用"   >
+          <a href="#2-使用openFeign远程调用" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-使用openFeign远程调用" class="headerlink" title="2.使用openFeign远程调用"></a>2.使用openFeign远程调用</h2>
+      <ul>
+<li>Feign是一个声明式HTTP客户端，使服务间远程调用更方便，它内置了HTTP请求模板，通过接口和注解就可以定义好HTTP请求的参数等信息。</li>
+<li>Feign整合了Ribbon（负载均衡）和Hystrix（服务熔断）</li>
+<li><code>这里在微服务版本超过2020时，Feign对负载均衡器做出了调整调整为Spring Cloud Loadbalancer，为此需要引入Spring Cloud Loadbalancer的相关依赖并移除Ribbon引用和增加配置,不然开启远程调用的服务会启动报错</code></li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.cloud.loadbalancer.ribbon.enabled: <span class="literal">false</span></span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-loadbalancer&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></div></figure>
+<hr>
+<blockquote>
+<p>引入依赖</p>
+</blockquote>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>远程调用步骤为<ul>
+<li><p>引入open-feign</p>
+</li>
+<li><p>在需要远程调用的服务里编写一个接口，这个接口需要调用远程服务</p>
+<ul>
+<li>声明接口的每一个方法都是调用那个远程服务的那个请求<br> 
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/40c96b71bf7a4b5cac379ef82dfea0b4.png"  alt="在这里插入图片描述">
+      </li>
+</ul>
+</li>
+<li><p>开启远程调用功能，在启动类中添加注解@EnableFeignClients(basePackages &#x3D; “com.smz.guli.member.feign”)，basePackages表示刚刚创建接口的位置。<br> 
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/8099107cd2b841a5a6af9a1700e2b279.png"  alt="在这里插入图片描述">
+      </p>
+</li>
+<li><p>在接口处使用远程调用的接口可获取其它服务接口的值<br> 
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/ed8aec878a844c61a60ae62b0a5bce71.png"  alt="在这里插入图片描述">
+      </p>
+</li>
+</ul>
+</li>
+</ul>
+
+        <h2 id="3-Nacos作为配置中心"   >
+          <a href="#3-Nacos作为配置中心" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-Nacos作为配置中心" class="headerlink" title="3.Nacos作为配置中心"></a>3.Nacos作为配置中心</h2>
+      <ul>
+<li>简介<blockquote>
+<p>配置中心主要解决的问题是，当需要修改某个服务的配置时，由于服务是集群化和分布式的，修改耗时耗力，配置中心则是统一化，将配置分发给对应的服务，这样就只用配置一遍而使所有服务都读取到配置。</p>
+</blockquote>
+</li>
+<li>在公共服务中添加依赖</li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-config&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p><code>如果微服务版本大于2020，则以下形式将需要引入bootstrap的依赖才可以，不导入依赖的方式比较麻烦这里不再赘述</code></p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;spring-cloud-starter-bootstrap&lt;/artifactId&gt;</span><br><span class="line">           &lt;version&gt;<span class="number">3.1</span><span class="number">.0</span>&lt;/version&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>为了使配置中心的读取在配置文件之前需要创建<strong>bootstrap.properties</strong>文件，springboot中<strong>bootstrap.properties</strong>文件会在<strong>application.yml</strong>之前。<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/2501289836b7426a87176b9838f4e133.png"  alt="在这里插入图片描述">
+      </li>
+<li>配置配置中心信息</li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spring.application.name=guli-coupon</span><br><span class="line">spring.cloud.nacos.config.server-addr=<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8848</span></span><br></pre></td></tr></table></div></figure>
+<ul>
+<li><p>给配置中心默认添加一个数据集（Data Id）guli-coupon.properties。默认规则，应用名.properties。</p>
+</li>
+<li><p>在guli-coupon.properties添加配置<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/838e45960e804773b1f2def46d96789d.png"  alt="在这里插入图片描述">
+      <br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/fd2e36dbcc4d4c519b347172a50ac649.png"  alt="在这里插入图片描述">
+      </p>
+</li>
+<li><p>动态获取配置</p>
+<ul>
+<li>动态刷新配置注解 <strong>@RefreshScope</strong></li>
+<li>获取配置值 <strong>@Value(“${配置项名}”)</strong></li>
+</ul>
+</li>
+</ul>
+<p><code>如果配置中心和配置文件中都配置了，优先使用配置中心的</code></p>
+
+        <h2 id="4-配置中心细节"   >
+          <a href="#4-配置中心细节" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-配置中心细节" class="headerlink" title="4.配置中心细节"></a>4.配置中心细节</h2>
+      <ul>
+<li>命名空间<blockquote>
+<p>配置隔离</p>
+<ul>
+<li>用来隔离不同环境下的配置（开发、测试、生产）<br>可以在bootstrap.properties配置指定命名空间<br><code>spring.cloud.nacos.config.namespace=c700d749-47f7-4b10-9116-4fe586a1a2a2</code><br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/3581a8623fee40ffbed21168d531f6a5.png"  alt="在这里插入图片描述">
+      </li>
+<li>各个服务间配置隔离<br>每个微服务创建自己的命名空间</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>  <code>默认：public（保留空间）;默认新增的所有配置都在public空间</code></p>
+<ul>
+<li>配置集<blockquote>
+<p>所有的配置的集合</p>
+</blockquote>
+</li>
+<li>配置集ID<blockquote>
+<p>Data ID</p>
+</blockquote>
+</li>
+<li>配置分组<blockquote>
+<p><code>默认所有的配置集都属于DEFAULT_GROUP</code><br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/3cb5104cfa4449bcb1b8c17159ef0dda.png"  alt="在这里插入图片描述">
+      <br>配置分组可以用来区分环境<br> 可以在bootstrap.properties配置指定配置分组<br><code>spring.cloud.nacos.config.group=1111</code>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/ea9efc4f1acb4633918b9211ea39bc80.png"  alt="在这里插入图片描述">
+      </p>
+</blockquote>
+</li>
+<li>同时加载多个配置集<br>在<strong>bootstrap.properties</strong>文件中配置如下代码</li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring.cloud.nacos.config.extension-configs[<span class="number">0</span>].data-id=datasource.yml <span class="comment">// Data ID</span></span><br><span class="line">spring.cloud.nacos.config.extension-configs[<span class="number">0</span>].group=dev <span class="comment">// 配置分组</span></span><br><span class="line">spring.cloud.nacos.config.extension-configs[<span class="number">0</span>].refresh=<span class="literal">true</span> <span class="comment">// 是否动态更新</span></span><br></pre></td></tr></table></div></figure>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/13c5484fbdf84e01bf1b27f515878322.png"  alt="在这里插入图片描述">
+      </p>
+<blockquote>
+<p>微服务中所有的配置都可以交给nacos配置中心管理。配置中心有的优先使用配置中心的</p>
+</blockquote>
+<hr>
+
+        <h1 id="总结"   >
+          <a href="#总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
+      <p>本章主要讲了微服务的注册发现和配置中心两个组件。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E5%90%8E%E7%AB%AF/">后端</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/SpringCloud/">SpringCloud</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/Nacos/">Nacos</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/">注册中心</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/">配置中心</a></span></div><div class="post-reward reward"><div class="reward-button">请我喝杯咖啡~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/images/collection/ZF.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/images/collection/WX.jpg"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2023/06/30/SpringCloud%EF%BC%88%E5%AD%A6%E4%B9%A0%20Gateway%EF%BC%89%E4%B8%89/"><span class="paginator-prev__text">SpringCloud 学习-Gateway</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="utterances-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">
+          前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%90%84%E7%BB%84%E4%BB%B6%E5%85%B3%E7%B3%BB%E4%B8%8E%E6%8A%80%E6%9C%AF%E9%80%89%E6%8B%A9"><span class="toc-number">2.</span> <span class="toc-text">
+          一、各组件关系与技术选择</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Nacos"><span class="toc-number">3.</span> <span class="toc-text">
+          二、Nacos</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Nacos%E4%BD%9C%E4%B8%BA%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">3.1.</span> <span class="toc-text">
+          1.Nacos作为注册中心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8openFeign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">
+          2.使用openFeign远程调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Nacos%E4%BD%9C%E4%B8%BA%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">3.3.</span> <span class="toc-text">
+          3.Nacos作为配置中心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E7%BB%86%E8%8A%82"><span class="toc-number">3.4.</span> <span class="toc-text">
+          4.配置中心细节</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">
+          总结</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/apple-touch-icon.png" alt="avatar"></div><p class="sidebar-ov-author__text">积少成多</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/minzhongshi" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:2240941938@qq.com" target="_blank" rel="noopener" data-popover="发送邮件" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a><a class="sidebar-ov-social-item" href="tencent://message?uin=2240941938" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://blog.csdn.net/smznbhh" target="_blank" rel="noopener" data-popover="CSDN" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">C</span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">36</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">33</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">58</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022~2023</span><span class="footer__icon"><i class="fas fa-yin-yang"></i></span><span>MinZhongShi All Rights Reserved</span><span class="footer__devider">|</span><span>备案 XXXXXXXX 号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>托管于 <a href="https://github.com/minzhongshi/" rel="noopener" target="_blank">Github Pages</a>）</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
+  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
+  // 加载进度条的计时器
+  var loadingTimer = null;
+
+  // 重置页面 Y 方向上的滚动偏移量
+  document.addEventListener('pjax:send', function () {
+    $('.header-nav-menu').removeClass('show');
+    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
+      $('html').velocity('scroll', {
+        duration: 500,
+        offset: $('#header').height(),
+        easing: 'easeInOutCubic'
+      });
+    }
+
+    var loadingBarWidth = 20;
+    var MAX_LOADING_WIDTH = 95;
+
+    $('.loading-bar').addClass('loading');
+    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    clearInterval(loadingTimer);
+    loadingTimer = setInterval(function () {
+      loadingBarWidth += 3;
+      if (loadingBarWidth > MAX_LOADING_WIDTH) {
+        loadingBarWidth = MAX_LOADING_WIDTH;
+      }
+      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    }, 500);
+  }, false);
+
+  window.addEventListener('pjax:complete', function () {
+    clearInterval(loadingTimer);
+    $('.loading-bar__progress').css('width', '100%');
+    $('.loading-bar').removeClass('loading');
+    setTimeout(function () {
+      $('.loading-bar__progress').css('width', '0');
+    }, 400);
+    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
+      $(this).remove();
+    });
+    $('script[data-pjax], #pjax-reload script').each(function () {
+      $(this).parent().append($(this).remove());
+    });
+
+    if (Stun.utils.pjaxReloadBoot) {
+      Stun.utils.pjaxReloadBoot();
+    }
+    if (Stun.utils.pjaxReloadScroll) {
+      Stun.utils.pjaxReloadScroll();
+    }
+    if (Stun.utils.pjaxReloadSidebar) {
+      Stun.utils.pjaxReloadSidebar();
+    }
+    if (false) {
+      if (Stun.utils.pjaxReloadHeader) {
+        Stun.utils.pjaxReloadHeader();
+      }
+      if (Stun.utils.pjaxReloadScrollIcon) {
+        Stun.utils.pjaxReloadScrollIcon();
+      }
+      if (Stun.utils.pjaxReloadLocalSearch) {
+        Stun.utils.pjaxReloadLocalSearch();
+      }
+    }
+  }, false);
+}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/quicklink@1.0.1/dist/quicklink.umd.js"></script><script>function initQuicklink() {
+  quicklink({
+    timeout: '10000',
+    priority: true,
+    ignores: [uri => uri.includes('#'), uri => uri === 'http://120.48.161.105:4000/2023/06/30/SpringCloud(%E5%AD%A6%E4%B9%A0%20Nacos)%20%E4%BA%8C/', /\/api\/?/,uri => uri.includes('.xml'),uri => uri.includes('.zip'),(uri, el) => el.hasAttribute('nofollow'),(uri, el) => el.hasAttribute('noprefetch')]
+  });
+}
+
+if (true || false) {
+  initQuicklink();
+} else {
+  window.addEventListener('DOMContentLoaded', initQuicklink, false);
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script data-pjax="">function loadUtterances() {
+  var d = document, s = d.createElement('script');
+  var container = d.getElementById('utterances-container');
+
+  if (!container) {
+    return;
+  }
+  s.src = 'https://utteranc.es/client.js';
+  s.setAttribute('repo', 'minzhongshi/minzhongshi.github.io');
+  s.setAttribute('issue-term', 'title');
+  s.setAttribute('label', 'utterances');
+  s.setAttribute('theme', 'github-light');
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('async', '');
+  if (true) {
+    s.setAttribute('data-pjax-rm', '');
+  }
+  container.append(s);
+}
+
+if (true) {
+  loadUtterances();
+} else {
+  window.addEventListener('DOMContentLoaded', loadUtterances, false);
+}</script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script type="application/json" src="/search.json"></script></body></html>
