@@ -6,7 +6,7 @@
   <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
-  <updated>2023-07-03T18:57:19.757Z</updated>
+  <updated>2023-07-03T19:08:18.513Z</updated>
   <id>http://120.48.161.105:4000/</id>
   
   <author>
@@ -17,24 +17,31 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>开发tips</title>
     <link href="http://120.48.161.105:4000/2023/07/04/%E5%BC%80%E5%8F%91%E5%B0%8Ftips/"/>
     <id>http://120.48.161.105:4000/2023/07/04/%E5%BC%80%E5%8F%91%E5%B0%8Ftips/</id>
-    <published>2023-07-03T18:56:44.265Z</published>
-    <updated>2023-07-03T18:57:19.757Z</updated>
+    <published>2023-07-03T19:05:24.987Z</published>
+    <updated>2023-07-03T19:08:18.513Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;hr&gt;
-&lt;p&gt;title: 开发tips&lt;br&gt;comments: true&lt;br&gt;quicklink: true&lt;br&gt;reward: true&lt;br&gt;excerpt:</summary>
-        
-      
+    <summary type="html">用于记录开发小tips。</summary>
     
     
     
+    <category term="其它" scheme="http://120.48.161.105:4000/categories/%E5%85%B6%E5%AE%83/"/>
+    
+    
+    <category term="其它" scheme="http://120.48.161.105:4000/tags/%E5%85%B6%E5%AE%83/"/>
+    
+    <category term="tips" scheme="http://120.48.161.105:4000/tags/tips/"/>
+    
+    <category term="css" scheme="http://120.48.161.105:4000/tags/css/"/>
+    
+    <category term="注释" scheme="http://120.48.161.105:4000/tags/%E6%B3%A8%E9%87%8A/"/>
+    
+    <category term="位运算" scheme="http://120.48.161.105:4000/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+    
+    <category term="函数" scheme="http://120.48.161.105:4000/tags/%E5%87%BD%E6%95%B0/"/>
     
   </entry>
   
