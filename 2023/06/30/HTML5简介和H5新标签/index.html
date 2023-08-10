@@ -1,0 +1,828 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="msvalidate.01" content="AFDB45CC21FD88E9C707C7C9162E5E5A"><meta name="baidu-site-verification" content="code-h3hQw6wxUc"><meta name="360-site-verification" content="1e4c79dee06e20b0af55fd4499a2d4a8"><meta name="sogou_site_verification" content="zG14f2yB7U"><meta name="description" content="H5的标签，骨架介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="H5声明和H5基本骨架，各种标签以及H5的新标签">
+<meta property="og:url" content="http://120.48.161.105:4000/2023/06/30/HTML5%E7%AE%80%E4%BB%8B%E5%92%8CH5%E6%96%B0%E6%A0%87%E7%AD%BE/index.html">
+<meta property="og:site_name" content="Min&#39;s Blog">
+<meta property="og:description" content="H5的标签，骨架介绍">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/cbd4185ac2664813b43d2ea3d4e9104d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e0929400b67343b3a6d2ea18c191862f.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4e0150229b284f5bba4ea22f6a928605.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/7a261b61db7043b38e35e02990225644.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/376c5daec6414c94a429fe268a826fbd.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c72d9e968358449f832b37f03811383b.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/05aab8e7a6cf46b6baa9a4003b36dfd3.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4f310307420543fa9dd9102a5d70b8d1.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8e5637b78c2c41ccb487f3fa73b61f0f.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1c0b1d670c414977a95ece9c4acee54b.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/17db97e3d1f644c7b19a98cfd16c7ef2.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2b2fdcf2f87a4acca2702c43f76bccbe.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/02c1c6efd9d3499f95d8c3978630f317.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/83ac69c89fef4a57a08de68efe985fee.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/10e8dfb02ed4447ebb82ed47cd187397.png">
+<meta property="article:published_time" content="2023-06-29T16:37:31.389Z">
+<meta property="article:modified_time" content="2023-06-29T16:37:31.394Z">
+<meta property="article:author" content="史明忠">
+<meta property="article:tag" content="HTML">
+<meta property="article:tag" content="标签">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/cbd4185ac2664813b43d2ea3d4e9104d.png"><title>H5声明和H5基本骨架，各种标签以及H5的新标签 | Min's Blog</title><link ref="canonical" href="http://120.48.161.105:4000/2023/06/30/HTML5%E7%AE%80%E4%BB%8B%E5%92%8CH5%E6%96%B0%E6%A0%87%E7%AD%BE/"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?e5397e2608cbb991400432801c7a10f1';
+  hm.async = true;
+
+  if (true) {
+    hm.setAttribute('data-pjax', '');
+  }
+  var s = document.getElementsByTagName('script')[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: true,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: true,
+  pjax: {"avoidBanner":true},
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-tie"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-rocket"></i></span><span class="header-nav-menu-item__text">乐趣</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/technology-lottie/"><span class="header-nav-submenu-item__icon"><i class="fas fa-umbrella-beach"></i></span><span class="header-nav-submenu-item__text">动画</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-cog"></i></span><span class="header-nav-menu-item__text">组件</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/module-vue/"><span class="header-nav-submenu-item__icon"><i class="fas fa-users-cog"></i></span><span class="header-nav-submenu-item__text">Vue</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Min's Blog</div><div class="header-banner-info__subtitle">well begun is half done</div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">H5声明和H5基本骨架，各种标签以及H5的新标签</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-06-30</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-06-30</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">2.2k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">17分</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h1 id="前言"   >
+          <a href="#前言" class="heading-link"><i class="fas fa-link"></i></a><a href="#前言" class="headerlink" title="前言"></a>前言</h1>
+      <p>H5声明和H5基本骨架，各种标签以及H5的新标签</p>
+<hr>
+
+        <h1 id="一、HTML5的DOCTYPE声明"   >
+          <a href="#一、HTML5的DOCTYPE声明" class="heading-link"><i class="fas fa-link"></i></a><a href="#一、HTML5的DOCTYPE声明" class="headerlink" title="一、HTML5的DOCTYPE声明"></a>一、HTML5的DOCTYPE声明</h1>
+      <blockquote>
+<p>DOCTYPE是document type(文档类型)的缩写，<!DOCTYPE html>是H5的声明，位于文档最前面，他是网页必备组成部分，避免浏览器的怪异模式。</p>
+</blockquote>
+
+        <h1 id="二、HTML5的基本骨架"   >
+          <a href="#二、HTML5的基本骨架" class="heading-link"><i class="fas fa-link"></i></a><a href="#二、HTML5的基本骨架" class="headerlink" title="二、HTML5的基本骨架"></a>二、HTML5的基本骨架</h1>
+      
+        <h2 id="1-html标签"   >
+          <a href="#1-html标签" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-html标签" class="headerlink" title="1.html标签"></a>1.html标签</h2>
+      <ul>
+<li>包裹其它标签</li>
+<li>限定文档的开始和结束<blockquote>
+<p><code>&lt;html lang=&quot;en&quot;&gt;</code>表示当前网页语言为英文</p>
+</blockquote>
+</li>
+</ul>
+
+        <h2 id="2-head标签"   >
+          <a href="#2-head标签" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-head标签" class="headerlink" title="2.head标签"></a>2.head标签</h2>
+      <ul>
+<li>定义文档的头部，包括文档的各种属性和信息，包括标题</li>
+<li>不展示给用户</li>
+<li>和其他文档的关系</li>
+<li>在Web中的位置</li>
+</ul>
+<blockquote>
+<p><code>&lt;meta charset=&quot;UTF-8&quot;&gt;</code>表示当前编码为UTF-8</p>
+</blockquote>
+
+        <h2 id="3-body标签"   >
+          <a href="#3-body标签" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-body标签" class="headerlink" title="3.body标签"></a>3.body标签</h2>
+      <ul>
+<li>定义文档的主体</li>
+<li>包括了文档所有内容（文本、超链接、图像、表格、列表）</li>
+<li>直接在页面中显示，用户直观看到的内容</li>
+</ul>
+
+        <h2 id="4-title标签"   >
+          <a href="#4-title标签" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-title标签" class="headerlink" title="4.title标签"></a>4.title标签</h2>
+      <ul>
+<li>定义文档标题</li>
+<li>显示在浏览器窗口的标题栏或状态栏上</li>
+<li>该标签是head标签中唯一必须的标签</li>
+<li>有利于SEO优化（浏览器搜索引擎搜索的排名）</li>
+</ul>
+<hr>
+
+        <h1 id="二、标题标签"   >
+          <a href="#二、标题标签" class="heading-link"><i class="fas fa-link"></i></a><a href="#二、标题标签" class="headerlink" title="二、标题标签"></a>二、标题标签</h1>
+      <blockquote>
+<p>标题（Heading）是通过<h1>~<h6>标签来定义的。</p>
+<h1>定义最大 标题，<h6定义最小标题>
+</blockquote>
+<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>一级标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>二级标题<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>三级标题<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h4</span>&gt;</span>四级标题<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h5</span>&gt;</span>五级标题<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h6</span>&gt;</span>六级标题<span class="tag">&lt;/<span class="name">h6</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/cbd4185ac2664813b43d2ea3d4e9104d.png"  alt="在这里插入图片描述">
+      </p>
+<blockquote>
+<p>标签位置摆放：<br>在标签中添加属性align&#x3D;”left | center | right”默认居左</p>
+</blockquote>
+<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">align</span>=<span class="string">&quot;center&quot;</span>&gt;</span>一级标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>二级标题<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>三级标题<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h4</span>&gt;</span>四级标题<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h5</span>&gt;</span>五级标题<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h6</span>&gt;</span>六级标题<span class="tag">&lt;/<span class="name">h6</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/e0929400b67343b3a6d2ea18c191862f.png"  alt="在这里插入图片描述">
+      </p>
+<p><code>正确使用标题标签有利于SEO优化</code></p>
+
+        <h1 id="三、段落、换行、水平线标签"   >
+          <a href="#三、段落、换行、水平线标签" class="heading-link"><i class="fas fa-link"></i></a><a href="#三、段落、换行、水平线标签" class="headerlink" title="三、段落、换行、水平线标签"></a>三、段落、换行、水平线标签</h1>
+      
+        <h2 id="1、-段落"   >
+          <a href="#1、-段落" class="heading-link"><i class="fas fa-link"></i></a><a href="#1、-段落" class="headerlink" title="1、 段落"></a>1、 段落</h2>
+      <blockquote>
+<p>段落用<code>&lt;p&gt;</code>标签定义</p>
+</blockquote>
+<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一个段落<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>这是另一个段落<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/4e0150229b284f5bba4ea22f6a928605.png"  alt="在这里插入图片描述">
+      </p>
+
+        <h2 id="2、-换行"   >
+          <a href="#2、-换行" class="heading-link"><i class="fas fa-link"></i></a><a href="#2、-换行" class="headerlink" title="2、 换行"></a>2、 换行</h2>
+      <blockquote>
+<p>换行用<code>&lt;br&gt;</code>标签定义,为单标签</p>
+</blockquote>
+<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一个段落<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>这是<span class="tag">&lt;<span class="name">br</span>/&gt;</span>另一个段落<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/7a261b61db7043b38e35e02990225644.png"  alt="在这里插入图片描述">
+      </p>
+
+        <h2 id="3、-水平线"   >
+          <a href="#3、-水平线" class="heading-link"><i class="fas fa-link"></i></a><a href="#3、-水平线" class="headerlink" title="3、 水平线"></a>3、 水平线</h2>
+      <blockquote>
+<p>水平线用<code>&lt;hr&gt;</code>标签定义,为单标签</p>
+</blockquote>
+<p>属性：</p>
+<ul>
+<li>color:设置水平线颜色</li>
+<li>width：设置水平线长度</li>
+<li>size:设置水平线的高度</li>
+<li>align:设置水平线对齐方式（默认居中），可取值 left | right</li>
+</ul>
+<p> <code>&lt;hr color=&quot;red&quot; width=&quot;300px&quot; size=&quot;5px&quot; align=&quot;left&quot;/&gt;</code><br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/376c5daec6414c94a429fe268a826fbd.png"  alt="在这里插入图片描述">
+      </p>
+
+        <h1 id="四、图片标签"   >
+          <a href="#四、图片标签" class="heading-link"><i class="fas fa-link"></i></a><a href="#四、图片标签" class="headerlink" title="四、图片标签"></a>四、图片标签</h1>
+      <blockquote>
+<p>图片用<code>&lt;img&gt;</code>标签定义,为单标签</p>
+</blockquote>
+<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+<p>属性：</p>
+<ul>
+<li>src:图片路径</li>
+<li>alt:规定图像的替代文本</li>
+<li>width：规定图像的宽度</li>
+<li>height：规定图像的高度</li>
+<li>title：鼠标悬停在图片上的提示文字</li>
+</ul>
+<p>路径：</p>
+<ul>
+<li>绝对路径：电脑中储存的具体位置</li>
+<li>相对路径：<br>       -  子级关系：&#x2F;<br>       -  父级关系：..&#x2F;<br>       -  同级关系：.&#x2F;</li>
+</ul>
+
+        <h1 id="五、超文本标签"   >
+          <a href="#五、超文本标签" class="heading-link"><i class="fas fa-link"></i></a><a href="#五、超文本标签" class="headerlink" title="五、超文本标签"></a>五、超文本标签</h1>
+      <blockquote>
+<p>超文本用<code>&lt;a&gt;</code>标签定义</p>
+</blockquote>
+<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+<p>属性：</p>
+<ul>
+<li>href:跳转链接地址</li>
+</ul>
+<hr>
+<ol>
+<li>一个未访问过的链接显示未蓝色字体并带有下划线</li>
+<li>访问过的链接显示未紫色并带有下划线</li>
+<li>点击链接时，链接显示为红色并带有下划线</li>
+</ol>
+
+        <h1 id="六、文本标签"   >
+          <a href="#六、文本标签" class="heading-link"><i class="fas fa-link"></i></a><a href="#六、文本标签" class="headerlink" title="六、文本标签"></a>六、文本标签</h1>
+      <blockquote>
+<p>常用文本标签：</p>
+</blockquote>
+<ul>
+<li><code>&lt;em&gt;</code>: 定义着重文字</li>
+<li><code>&lt;b&gt;</code>:定义粗体文本</li>
+<li><code>&lt;i&gt;</code>:定义斜体字</li>
+<li><code>&lt;strong&gt;</code>:定义加重语气</li>
+<li><code>&lt;del&gt;</code>:定义删除字</li>
+<li><code>&lt;span&gt;</code>:元素没有特定含义</li>
+</ul>
+<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span>em<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span>&gt;</span>i<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span>b<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span>strong<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">del</span>&gt;</span>del<span class="tag">&lt;/<span class="name">del</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>span<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/c72d9e968358449f832b37f03811383b.png"  alt="在这里插入图片描述">
+      </p>
+
+        <h1 id="七、有序列表标签"   >
+          <a href="#七、有序列表标签" class="heading-link"><i class="fas fa-link"></i></a><a href="#七、有序列表标签" class="headerlink" title="七、有序列表标签"></a>七、有序列表标签</h1>
+      <blockquote>
+<p>有序列表始于<code>&lt;ol&gt;</code>标签，每个列表始于<code>&lt;li&gt;</code>标签。</p>
+</blockquote>
+<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>123<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>123456<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/05aab8e7a6cf46b6baa9a4003b36dfd3.png"  alt="在这里插入图片描述">
+      <br>ol属性type的选项：</p>
+<ul>
+<li>1</li>
+<li>a</li>
+<li>A</li>
+<li>i</li>
+<li>I</li>
+</ul>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/4f310307420543fa9dd9102a5d70b8d1.png"  alt="在这里插入图片描述">
+      </p>
+<blockquote>
+<p>可嵌套列表：</p>
+</blockquote>
+<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span> <span class="attr">type</span>=<span class="string">&quot;A&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>123</span><br><span class="line">    <span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>123456<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/8e5637b78c2c41ccb487f3fa73b61f0f.png"  alt="在这里插入图片描述">
+      </p>
+
+        <h1 id="八、无序列表标签"   >
+          <a href="#八、无序列表标签" class="heading-link"><i class="fas fa-link"></i></a><a href="#八、无序列表标签" class="headerlink" title="八、无序列表标签"></a>八、无序列表标签</h1>
+      <blockquote>
+<p>无序列表始于<code>&lt;ul&gt;</code>标签，每个列表始于<code>&lt;li&gt;</code>标签。</p>
+</blockquote>
+<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>123<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>123456<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/1c0b1d670c414977a95ece9c4acee54b.png"  alt="在这里插入图片描述">
+      <br>ol属性type的选项：</p>
+<ul>
+<li>disc:默认实心圆</li>
+<li>circle:空心圆</li>
+<li>squarer:小方块</li>
+<li>none:不显示</li>
+</ul>
+<blockquote>
+<p>可嵌套列表：</p>
+</blockquote>
+<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>123</span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>123456<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/17db97e3d1f644c7b19a98cfd16c7ef2.png"  alt="在这里插入图片描述">
+      </p>
+
+        <h1 id="九、表格标签"   >
+          <a href="#九、表格标签" class="heading-link"><i class="fas fa-link"></i></a><a href="#九、表格标签" class="headerlink" title="九、表格标签"></a>九、表格标签</h1>
+      <blockquote>
+<p>表格：<code>&lt;table&gt;</code>标签<br>行：<code>&lt;tr&gt;</code>标签<br>单元格（列）：<code>&lt;td&gt;</code>标签</p>
+</blockquote>
+<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>3<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>4<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/2b2fdcf2f87a4acca2702c43f76bccbe.png"  alt="在这里插入图片描述">
+      </p>
+<blockquote>
+<p>快捷键<br><code>table&gt;tr*2&gt;td&#123;内容&#125;</code></p>
+</blockquote>
+<p>table表格属性：</p>
+<ul>
+<li>border: 设置表格的边框</li>
+<li>width: 设置表格的宽度</li>
+<li>height: 设置表格的高度</li>
+</ul>
+<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">&quot;1px&quot;</span> <span class="attr">width</span>=<span class="string">&quot;300px&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100px&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>3<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>4<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/02c1c6efd9d3499f95d8c3978630f317.png"  alt="在这里插入图片描述">
+      </p>
+<blockquote>
+<p>单元格合并属性<br>水平合并：colspan 保留左边，删除右边，值为合并单元格个数<br>垂直合并：rowspan 保留上边，删除下边，值为合并单元格个数</p>
+</blockquote>
+<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">&quot;1px&quot;</span> <span class="attr">width</span>=<span class="string">&quot;300px&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100px&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">&quot;2&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">rowspan</span>=<span class="string">&quot;2&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>4<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>5<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/83ac69c89fef4a57a08de68efe985fee.png"  alt="在这里插入图片描述">
+      </p>
+
+        <h1 id="十、Form表单"   >
+          <a href="#十、Form表单" class="heading-link"><i class="fas fa-link"></i></a><a href="#十、Form表单" class="headerlink" title="十、Form表单"></a>十、Form表单</h1>
+      <blockquote>
+<p>用来给用户填写信息，从而能采集用户信息，使网页具有交互的功能。<br>表单是由容器和控件组成，一个表单一般应该包括用户填写信息的输入框，提交按钮等，这些称为控件，表单就是容器，能容纳各种控件。</p>
+</blockquote>
+<blockquote>
+<p><code>&lt;form action=&quot;url&quot; method=&quot;get | post&quot; name=&quot;myForm&quot;&gt;</code><br>属性：<br>action:服务器地址<br>name:表单名称<br>meethod：请求方式（get | post）</p>
+</blockquote>
+<blockquote>
+<p>表单元素：<br>完整的表单包含三个基本组成部分：表单标签、表单域、表单按钮</p>
+</blockquote>
+<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;url&quot;</span> <span class="attr">method</span>=<span class="string">&quot;get | post&quot;</span> <span class="attr">name</span>=<span class="string">&quot;myForm&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/10e8dfb02ed4447ebb82ed47cd187397.png"  alt="在这里插入图片描述">
+      </p>
+<blockquote>
+<p>文本域：用户输入字母数字等内容<br><code>&lt;input type=&quot;text&quot;&gt;</code></p>
+</blockquote>
+<blockquote>
+<p>密码框：输入的密码<br><code>&lt;input type=&quot;password&quot;&gt;</code></p>
+</blockquote>
+<blockquote>
+<p>提交按钮：用来提交表单<br><code>&lt;input type=&quot;submit&quot; value=&quot;登录&quot;&gt;</code></p>
+</blockquote>
+
+        <h1 id="十一、元素分类（块、行内元素）"   >
+          <a href="#十一、元素分类（块、行内元素）" class="heading-link"><i class="fas fa-link"></i></a><a href="#十一、元素分类（块、行内元素）" class="headerlink" title="十一、元素分类（块、行内元素）"></a>十一、元素分类（块、行内元素）</h1>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>块级元素</th>
+<th>行内元素</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>块元素会在页面中独占一行（自上而下垂直排列）</td>
+<td>行内元素不会独占一行，只占自身的大小</td>
+</tr>
+<tr>
+<td>可以设置width,height属性</td>
+<td>行内元素设置width,height属性无效</td>
+</tr>
+<tr>
+<td>一般块级元素可以包含行内元素和其它块级元素</td>
+<td>一般行内元素不包含块级元素</td>
+</tr>
+</tbody></table></div>
+
+        <h2 id="块元素"   >
+          <a href="#块元素" class="heading-link"><i class="fas fa-link"></i></a><a href="#块元素" class="headerlink" title="块元素"></a>块元素</h2>
+      <blockquote>
+<p>常见：div、form、h1~h6、hr、p、table、ul、等</p>
+</blockquote>
+
+        <h2 id="行内元素"   >
+          <a href="#行内元素" class="heading-link"><i class="fas fa-link"></i></a><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h2>
+      <blockquote>
+<p>常见：a、b、em、i、span、strong、等</p>
+</blockquote>
+
+        <h2 id="行内块级元素"   >
+          <a href="#行内块级元素" class="heading-link"><i class="fas fa-link"></i></a><a href="#行内块级元素" class="headerlink" title="行内块级元素"></a>行内块级元素</h2>
+      <blockquote>
+<p>不换行、能够识别宽高<br>常见：button、img、input、等</p>
+</blockquote>
+
+        <h1 id="十二、HTML5新增标签"   >
+          <a href="#十二、HTML5新增标签" class="heading-link"><i class="fas fa-link"></i></a><a href="#十二、HTML5新增标签" class="headerlink" title="十二、HTML5新增标签"></a>十二、HTML5新增标签</h1>
+      <p>有利于搜索引擎SEO优化</p>
+<blockquote>
+<p>传统的页面采用DIV+CSS实现，某个模块最外层用<code>&lt;div&gt;</code>标签包裹</p>
+</blockquote>
+<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;url&quot;</span> <span class="attr">method</span>=<span class="string">&quot;get | post&quot;</span> <span class="attr">name</span>=<span class="string">&quot;myForm&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;登录&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+<blockquote>
+<p>H5新增标签：</p>
+</blockquote>
+<ul>
+<li><code>&lt;header&gt;&lt;/header&gt;</code>头部标签</li>
+<li><code>&lt;nav&gt;&lt;/nav&gt;</code>导航栏标签</li>
+<li><code>&lt;section&gt;&lt;/section&gt;</code>文档中的节，如章节、页眉、页脚</li>
+<li><code>&lt;article&gt;&lt;/article&gt;</code>一个独立的、完整的相关内容块</li>
+<li><code>&lt;aside&gt;&lt;/aside&gt;</code>侧边栏标签</li>
+<li><code>&lt;footer&gt;&lt;/footer&gt;</code>底部标签</li>
+</ul>
+
+        <h1 id="总结"   >
+          <a href="#总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
+      <p>本文仅仅简单介绍了HTML和H5，其中包括了H5声明和各种标签</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/HTML/">HTML</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E6%A0%87%E7%AD%BE/">标签</a></span></div><div class="post-reward reward"><div class="reward-button">请我喝杯咖啡~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/images/collection/ZF.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/images/collection/WX.jpg"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/06/30/JavaScript%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%BA%8C%EF%BC%89%E5%88%9B%E5%BB%BA%E5%9E%8B/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">JavaScript 设计模式核⼼原理与应⽤实践(二)创建型</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/06/30/0%EF%BD%9En-1%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97/"><span class="paginator-prev__text">0~n-1缺失的数字</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="utterances-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">
+          前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81HTML5%E7%9A%84DOCTYPE%E5%A3%B0%E6%98%8E"><span class="toc-number">2.</span> <span class="toc-text">
+          一、HTML5的DOCTYPE声明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81HTML5%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%AA%A8%E6%9E%B6"><span class="toc-number">3.</span> <span class="toc-text">
+          二、HTML5的基本骨架</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-html%E6%A0%87%E7%AD%BE"><span class="toc-number">3.1.</span> <span class="toc-text">
+          1.html标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-head%E6%A0%87%E7%AD%BE"><span class="toc-number">3.2.</span> <span class="toc-text">
+          2.head标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-body%E6%A0%87%E7%AD%BE"><span class="toc-number">3.3.</span> <span class="toc-text">
+          3.body标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-title%E6%A0%87%E7%AD%BE"><span class="toc-number">3.4.</span> <span class="toc-text">
+          4.title标签</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A0%87%E9%A2%98%E6%A0%87%E7%AD%BE"><span class="toc-number">4.</span> <span class="toc-text">
+          二、标题标签</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">~标签来定义的。
+定义最大 标题，
+</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link"><span class="toc-number">5.0.0.0.0.1.</span> <span class="toc-text">标签来定义的。
+定义最大 标题，
+</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">定义最大 标题，
+</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%AE%B5%E8%90%BD%E3%80%81%E6%8D%A2%E8%A1%8C%E3%80%81%E6%B0%B4%E5%B9%B3%E7%BA%BF%E6%A0%87%E7%AD%BE"><span class="toc-number">7.</span> <span class="toc-text">
+          三、段落、换行、水平线标签</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81-%E6%AE%B5%E8%90%BD"><span class="toc-number">7.1.</span> <span class="toc-text">
+          1、 段落</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81-%E6%8D%A2%E8%A1%8C"><span class="toc-number">7.2.</span> <span class="toc-text">
+          2、 换行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81-%E6%B0%B4%E5%B9%B3%E7%BA%BF"><span class="toc-number">7.3.</span> <span class="toc-text">
+          3、 水平线</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%9B%BE%E7%89%87%E6%A0%87%E7%AD%BE"><span class="toc-number">8.</span> <span class="toc-text">
+          四、图片标签</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%B6%85%E6%96%87%E6%9C%AC%E6%A0%87%E7%AD%BE"><span class="toc-number">9.</span> <span class="toc-text">
+          五、超文本标签</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%96%87%E6%9C%AC%E6%A0%87%E7%AD%BE"><span class="toc-number">10.</span> <span class="toc-text">
+          六、文本标签</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8%E6%A0%87%E7%AD%BE"><span class="toc-number">11.</span> <span class="toc-text">
+          七、有序列表标签</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8%E6%A0%87%E7%AD%BE"><span class="toc-number">12.</span> <span class="toc-text">
+          八、无序列表标签</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E8%A1%A8%E6%A0%BC%E6%A0%87%E7%AD%BE"><span class="toc-number">13.</span> <span class="toc-text">
+          九、表格标签</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E3%80%81Form%E8%A1%A8%E5%8D%95"><span class="toc-number">14.</span> <span class="toc-text">
+          十、Form表单</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E5%85%83%E7%B4%A0%E5%88%86%E7%B1%BB%EF%BC%88%E5%9D%97%E3%80%81%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%EF%BC%89"><span class="toc-number">15.</span> <span class="toc-text">
+          十一、元素分类（块、行内元素）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%97%E5%85%83%E7%B4%A0"><span class="toc-number">15.1.</span> <span class="toc-text">
+          块元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0"><span class="toc-number">15.2.</span> <span class="toc-text">
+          行内元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0"><span class="toc-number">15.3.</span> <span class="toc-text">
+          行内块级元素</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81HTML5%E6%96%B0%E5%A2%9E%E6%A0%87%E7%AD%BE"><span class="toc-number">16.</span> <span class="toc-text">
+          十二、HTML5新增标签</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">17.</span> <span class="toc-text">
+          总结</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/apple-touch-icon.png" alt="avatar"></div><p class="sidebar-ov-author__text">积少成多</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/minzhongshi" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:2240941938@qq.com" target="_blank" rel="noopener" data-popover="发送邮件" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a><a class="sidebar-ov-social-item" href="tencent://message?uin=2240941938" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://blog.csdn.net/smznbhh" target="_blank" rel="noopener" data-popover="CSDN" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">C</span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">38</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">37</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">64</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022~2023</span><span class="footer__icon"><i class="fas fa-yin-yang"></i></span><span>MinZhongShi All Rights Reserved</span><span class="footer__devider">|</span><span>备案 XXXXXXXX 号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>托管于 <a href="https://github.com/minzhongshi/" rel="noopener" target="_blank">Github Pages</a>）</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
+  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
+  // 加载进度条的计时器
+  var loadingTimer = null;
+
+  // 重置页面 Y 方向上的滚动偏移量
+  document.addEventListener('pjax:send', function () {
+    $('.header-nav-menu').removeClass('show');
+    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
+      $('html').velocity('scroll', {
+        duration: 500,
+        offset: $('#header').height(),
+        easing: 'easeInOutCubic'
+      });
+    }
+
+    var loadingBarWidth = 20;
+    var MAX_LOADING_WIDTH = 95;
+
+    $('.loading-bar').addClass('loading');
+    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    clearInterval(loadingTimer);
+    loadingTimer = setInterval(function () {
+      loadingBarWidth += 3;
+      if (loadingBarWidth > MAX_LOADING_WIDTH) {
+        loadingBarWidth = MAX_LOADING_WIDTH;
+      }
+      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    }, 500);
+  }, false);
+
+  window.addEventListener('pjax:complete', function () {
+    clearInterval(loadingTimer);
+    $('.loading-bar__progress').css('width', '100%');
+    $('.loading-bar').removeClass('loading');
+    setTimeout(function () {
+      $('.loading-bar__progress').css('width', '0');
+    }, 400);
+    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
+      $(this).remove();
+    });
+    $('script[data-pjax], #pjax-reload script').each(function () {
+      $(this).parent().append($(this).remove());
+    });
+
+    if (Stun.utils.pjaxReloadBoot) {
+      Stun.utils.pjaxReloadBoot();
+    }
+    if (Stun.utils.pjaxReloadScroll) {
+      Stun.utils.pjaxReloadScroll();
+    }
+    if (Stun.utils.pjaxReloadSidebar) {
+      Stun.utils.pjaxReloadSidebar();
+    }
+    if (false) {
+      if (Stun.utils.pjaxReloadHeader) {
+        Stun.utils.pjaxReloadHeader();
+      }
+      if (Stun.utils.pjaxReloadScrollIcon) {
+        Stun.utils.pjaxReloadScrollIcon();
+      }
+      if (Stun.utils.pjaxReloadLocalSearch) {
+        Stun.utils.pjaxReloadLocalSearch();
+      }
+    }
+  }, false);
+}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/quicklink@1.0.1/dist/quicklink.umd.js"></script><script>function initQuicklink() {
+  quicklink({
+    timeout: '10000',
+    priority: true,
+    ignores: [uri => uri.includes('#'), uri => uri === 'http://120.48.161.105:4000/2023/06/30/HTML5%E7%AE%80%E4%BB%8B%E5%92%8CH5%E6%96%B0%E6%A0%87%E7%AD%BE/', /\/api\/?/,uri => uri.includes('.xml'),uri => uri.includes('.zip'),(uri, el) => el.hasAttribute('nofollow'),(uri, el) => el.hasAttribute('noprefetch')]
+  });
+}
+
+if (true || false) {
+  initQuicklink();
+} else {
+  window.addEventListener('DOMContentLoaded', initQuicklink, false);
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script data-pjax="">function loadUtterances() {
+  var d = document, s = d.createElement('script');
+  var container = d.getElementById('utterances-container');
+
+  if (!container) {
+    return;
+  }
+  s.src = 'https://utteranc.es/client.js';
+  s.setAttribute('repo', 'minzhongshi/minzhongshi.github.io');
+  s.setAttribute('issue-term', 'title');
+  s.setAttribute('label', 'utterances');
+  s.setAttribute('theme', 'github-light');
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('async', '');
+  if (true) {
+    s.setAttribute('data-pjax-rm', '');
+  }
+  container.append(s);
+}
+
+if (true) {
+  loadUtterances();
+} else {
+  window.addEventListener('DOMContentLoaded', loadUtterances, false);
+}</script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script type="application/json" src="/search.json"></script></body></html>

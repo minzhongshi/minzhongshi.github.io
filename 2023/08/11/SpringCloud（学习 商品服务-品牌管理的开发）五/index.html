@@ -1,0 +1,716 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="msvalidate.01" content="AFDB45CC21FD88E9C707C7C9162E5E5A"><meta name="baidu-site-verification" content="code-h3hQw6wxUc"><meta name="360-site-verification" content="1e4c79dee06e20b0af55fd4499a2d4a8"><meta name="sogou_site_verification" content="zG14f2yB7U"><meta name="description" content="本章内容主要记录品牌服务的开发，重点在于阿里云平台oss对象存储、后端数据参数校验JSR303的使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringCloud（学习 商品服务-品牌管理的开发）五">
+<meta property="og:url" content="http://120.48.161.105:4000/2023/08/11/SpringCloud%EF%BC%88%E5%AD%A6%E4%B9%A0%20%E5%95%86%E5%93%81%E6%9C%8D%E5%8A%A1-%E5%93%81%E7%89%8C%E7%AE%A1%E7%90%86%E7%9A%84%E5%BC%80%E5%8F%91%EF%BC%89%E4%BA%94/index.html">
+<meta property="og:site_name" content="Min&#39;s Blog">
+<meta property="og:description" content="本章内容主要记录品牌服务的开发，重点在于阿里云平台oss对象存储、后端数据参数校验JSR303的使用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/adbd23d65c6f41faab8c002a43ab8509.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/818fc13900f14ee5b29672f159366ae0.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d12223e1ead641219b43dffeb2a9d920.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/bd6c695236bc4bcdb1e5657b353c42d2.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e36c739ddcd94eb68f2014a88d32c3e9.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e8e34df745d844f1a58712bc68bf761f.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/23fbee856cb945b6ac38aa20a4ce740d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d660bf52b6a14e7184af569b20f5861a.png">
+<meta property="article:published_time" content="2023-08-10T18:35:29.056Z">
+<meta property="article:modified_time" content="2023-08-10T18:47:48.509Z">
+<meta property="article:author" content="史明忠">
+<meta property="article:tag" content="后端">
+<meta property="article:tag" content="SpringCloud">
+<meta property="article:tag" content="品牌服务">
+<meta property="article:tag" content="参数校验">
+<meta property="article:tag" content="oss对象存储">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/adbd23d65c6f41faab8c002a43ab8509.png"><title>SpringCloud（学习 商品服务-品牌管理的开发）五 | Min's Blog</title><link ref="canonical" href="http://120.48.161.105:4000/2023/08/11/SpringCloud%EF%BC%88%E5%AD%A6%E4%B9%A0%20%E5%95%86%E5%93%81%E6%9C%8D%E5%8A%A1-%E5%93%81%E7%89%8C%E7%AE%A1%E7%90%86%E7%9A%84%E5%BC%80%E5%8F%91%EF%BC%89%E4%BA%94/"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?e5397e2608cbb991400432801c7a10f1';
+  hm.async = true;
+
+  if (true) {
+    hm.setAttribute('data-pjax', '');
+  }
+  var s = document.getElementsByTagName('script')[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: true,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: true,
+  pjax: {"avoidBanner":true},
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-tie"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-rocket"></i></span><span class="header-nav-menu-item__text">乐趣</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/technology-lottie/"><span class="header-nav-submenu-item__icon"><i class="fas fa-umbrella-beach"></i></span><span class="header-nav-submenu-item__text">动画</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-cog"></i></span><span class="header-nav-menu-item__text">组件</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/module-vue/"><span class="header-nav-submenu-item__icon"><i class="fas fa-users-cog"></i></span><span class="header-nav-submenu-item__text">Vue</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Min's Blog</div><div class="header-banner-info__subtitle">well begun is half done</div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">SpringCloud（学习 商品服务-品牌管理的开发）五</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-08-11</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-08-11</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">2.4k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">18分</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h1 id="前言"   >
+          <a href="#前言" class="heading-link"><i class="fas fa-link"></i></a><a href="#前言" class="headerlink" title="前言"></a>前言</h1>
+      <p>本章内容主要记录品牌服务的开发，重点在于阿里云平台oss对象存储、后端数据参数校验JSR303的使用。</p>
+<hr>
+
+        <h1 id="一、品牌服务"   >
+          <a href="#一、品牌服务" class="heading-link"><i class="fas fa-link"></i></a><a href="#一、品牌服务" class="headerlink" title="一、品牌服务"></a>一、品牌服务</h1>
+      <blockquote>
+<p>品牌服务用于管理品牌的添加、修改、删除等操作，可上传logo到图片服务器中，数据库存储的是图片地址,对于品牌的操作主要涉及添加和修改的操作，后端对于数据的校验分为普通校验、分组校验、自定义校验三种方式来校验数据。</p>
+</blockquote>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/adbd23d65c6f41faab8c002a43ab8509.png"  alt="品牌服务界面">
+      <br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/818fc13900f14ee5b29672f159366ae0.png"  alt="新增">
+      </p>
+<hr>
+
+        <h1 id="二、图片服务"   >
+          <a href="#二、图片服务" class="heading-link"><i class="fas fa-link"></i></a><a href="#二、图片服务" class="headerlink" title="二、图片服务"></a>二、图片服务</h1>
+      
+        <h2 id="1-开通oss对象存储服务"   >
+          <a href="#1-开通oss对象存储服务" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-开通oss对象存储服务" class="headerlink" title="1.开通oss对象存储服务"></a>1.开通oss对象存储服务</h2>
+      <blockquote>
+<p>首先，图片存储服务不止阿里云有，还有像七牛云之类的都有类似的服务，前期使用七牛云主要七牛云存储过程与本项目有点出入，所以这里还是选择阿里云平台进行存储。</p>
+</blockquote>
+<ul>
+<li><strong>首先找到oss对象存储并开通服务</strong></li>
+</ul>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/d12223e1ead641219b43dffeb2a9d920.png"  alt="阿里云平台oss对象存储">
+      </p>
+<ul>
+<li><p><strong>创建Bucket</strong><br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/bd6c695236bc4bcdb1e5657b353c42d2.png"  alt="创建Bucket">
+      <br><code>箭头标注的为比较重要的点，名称在项目中会使用到，而公共读是方便开发，后期可以修改私有</code></p>
+</li>
+<li><p><strong>找到AccessKey和SecretKey</strong></p>
+</li>
+<li><p><strong>添加权限</strong></p>
+</li>
+</ul>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/e36c739ddcd94eb68f2014a88d32c3e9.png"  alt="添加权限">
+      </p>
+<ul>
+<li><strong>找到外网访问域名</strong></li>
+</ul>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/e8e34df745d844f1a58712bc68bf761f.png"  alt="外网访问域名">
+      </p>
+<ul>
+<li><p><strong>配置跨域</strong><br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/23fbee856cb945b6ac38aa20a4ce740d.png"  alt="跨域">
+      <br><code>这里是配置了post的所有请求</code></p>
+</li>
+<li><p><strong>找到java的示例</strong></p>
+</li>
+</ul>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/d660bf52b6a14e7184af569b20f5861a.png"  alt="OSS JAVA">
+      </p>
+<hr>
+<blockquote>
+<p>至此阿里云平台的配置就完成了，可以进行图片服务的开发了</p>
+</blockquote>
+
+        <h2 id="2-图片储存服务"   >
+          <a href="#2-图片储存服务" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-图片储存服务" class="headerlink" title="2.图片储存服务"></a>2.图片储存服务</h2>
+      <ul>
+<li><strong>创建图片服务并在注册中心中注册</strong></li>
+<li><strong>添加maven依赖</strong></li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;spring-cloud-starter-alicloud-oss&lt;/artifactId&gt;</span><br><span class="line">           &lt;version&gt;<span class="number">2.2</span><span class="number">.0</span>.RELEASE&lt;/version&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p><code>这里的依赖是使用了cloud的依赖，这样可以直接使用ossClient实例，官方依赖如下:</code></p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.aliyun.oss&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;aliyun-sdk-oss&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">3.15</span><span class="number">.1</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><strong>编写接口类</strong></li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/oss/policy&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> R <span class="title function_">policy</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 填写Host地址，格式为https://bucketname.endpoint。</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">host</span> <span class="operator">=</span> <span class="string">&quot;https://&quot;</span> + bucket + <span class="string">&quot;.&quot;</span> + endpoint;</span><br><span class="line">        <span class="comment">// 设置上传回调URL，即回调服务器地址，用于处理应用服务器与OSS之间的通信。OSS会在文件上传完成后，把文件上传信息通过此回调URL发送给应用服务器。</span></span><br><span class="line">        <span class="comment">// String callbackUrl = &quot;https://192.168.0.0:8888&quot;;</span></span><br><span class="line">        <span class="comment">// 设置上传到OSS文件的前缀，可置空此项。置空后，文件将上传至Bucket的根目录下。</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">format</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd&quot;</span>).format(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">        <span class="type">String</span> <span class="variable">dir</span> <span class="operator">=</span> format + <span class="string">&quot;/&quot;</span>;</span><br><span class="line"></span><br><span class="line">        Map&lt;String, String&gt; respMap = <span class="literal">null</span>;</span><br><span class="line">        <span class="comment">// 创建ossClient实例。</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">long</span> <span class="variable">expireTime</span> <span class="operator">=</span> <span class="number">30</span>;</span><br><span class="line">            <span class="type">long</span> <span class="variable">expireEndTime</span> <span class="operator">=</span> System.currentTimeMillis() + expireTime * <span class="number">1000</span>;</span><br><span class="line">            <span class="type">Date</span> <span class="variable">expiration</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Date</span>(expireEndTime);</span><br><span class="line">            <span class="type">PolicyConditions</span> <span class="variable">policyConds</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PolicyConditions</span>();</span><br><span class="line">            policyConds.addConditionItem(PolicyConditions.COND_CONTENT_LENGTH_RANGE, <span class="number">0</span>, <span class="number">1048576000</span>);</span><br><span class="line">            policyConds.addConditionItem(MatchMode.StartWith, PolicyConditions.COND_KEY, dir);</span><br><span class="line"></span><br><span class="line">            <span class="type">String</span> <span class="variable">postPolicy</span> <span class="operator">=</span> ossClient.generatePostPolicy(expiration, policyConds);</span><br><span class="line">            <span class="type">byte</span>[] binaryData = postPolicy.getBytes(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">            <span class="type">String</span> <span class="variable">encodedPolicy</span> <span class="operator">=</span> BinaryUtil.toBase64String(binaryData);</span><br><span class="line">            <span class="type">String</span> <span class="variable">postSignature</span> <span class="operator">=</span> ossClient.calculatePostSignature(postPolicy);</span><br><span class="line"></span><br><span class="line">            respMap = <span class="keyword">new</span> <span class="title class_">LinkedHashMap</span>&lt;String, String&gt;();</span><br><span class="line">            respMap.put(<span class="string">&quot;accessid&quot;</span>, accessId);</span><br><span class="line">            respMap.put(<span class="string">&quot;policy&quot;</span>, encodedPolicy);</span><br><span class="line">            respMap.put(<span class="string">&quot;signature&quot;</span>, postSignature);</span><br><span class="line">            respMap.put(<span class="string">&quot;dir&quot;</span>, dir);</span><br><span class="line">            respMap.put(<span class="string">&quot;host&quot;</span>, host);</span><br><span class="line">            respMap.put(<span class="string">&quot;expire&quot;</span>, String.valueOf(expireEndTime / <span class="number">1000</span>));</span><br><span class="line">            <span class="comment">// respMap.put(&quot;expire&quot;, formatISO8601Date(expiration));</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="comment">// Assert.fail(e.getMessage());</span></span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> R.ok().put(<span class="string">&quot;data&quot;</span>, respMap);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><strong>nacos添加配置</strong></li>
+</ul>
+<figure class="highlight yaml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">alicloud:</span></span><br><span class="line">      <span class="attr">access-key:</span> <span class="string">My</span> <span class="string">access-key</span></span><br><span class="line">      <span class="attr">secret-key:</span> <span class="string">My</span> <span class="string">secret-key</span></span><br><span class="line">      <span class="attr">oss:</span></span><br><span class="line">        <span class="attr">endpoint:</span> <span class="string">oss-cn-hangzhou.aliyuncs.com</span></span><br><span class="line">        <span class="attr">bucket:</span> <span class="string">guli-smz</span></span><br></pre></td></tr></table></div></figure>
+
+<hr>
+<blockquote>
+<p>至此图片服务编写完成</p>
+</blockquote>
+<hr>
+
+        <h1 id="三、后端数据校验"   >
+          <a href="#三、后端数据校验" class="heading-link"><i class="fas fa-link"></i></a><a href="#三、后端数据校验" class="headerlink" title="三、后端数据校验"></a>三、后端数据校验</h1>
+      <ul>
+<li><strong>首先加入校验的相关依赖</strong></li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;</span><br><span class="line">           &lt;version&gt;<span class="number">3.1</span><span class="number">.1</span>&lt;/version&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="1、普通校验"   >
+          <a href="#1、普通校验" class="heading-link"><i class="fas fa-link"></i></a><a href="#1、普通校验" class="headerlink" title="1、普通校验"></a>1、普通校验</h2>
+      <ul>
+<li><strong>给Bean添加注解：javax.validation.constraints，定义自己的message提示</strong></li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NotNull(message =&quot;修改必须指定品牌id&quot;)</span></span><br><span class="line">	<span class="meta">@Null(message = &quot;新增不能指定id&quot;)</span></span><br><span class="line">	<span class="meta">@TableId</span></span><br><span class="line">	<span class="keyword">private</span> Long brandId;</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><strong>开启校验，在controller层添加注解@Valid</strong></li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/save&quot;)</span></span><br><span class="line">    <span class="comment">//@RequiresPermissions(&quot;product:brand:save&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> R <span class="title function_">save</span><span class="params">(<span class="meta">@Valid</span> <span class="meta">@RequestBody</span> BrandEntity brand<span class="comment">/*, BindingResult result*/</span>)</span>&#123;</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>由于错误存在于所有服务，所以在common编写一个错误状态码和错误信息定义枚举类</li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 错误状态码和错误信息定义类</span></span><br><span class="line"><span class="comment"> * 1、错误码定义规则为5位数字</span></span><br><span class="line"><span class="comment"> * 2、前两位表示业务场景，最后三位表示错误码。例如：100001。10：通用 001：系统未知异常</span></span><br><span class="line"><span class="comment"> * 3、维护错误码后需要维护错误描述，将他们定义为枚举形式</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 错误码列表：</span></span><br><span class="line"><span class="comment"> * 10：通用</span></span><br><span class="line"><span class="comment"> *     001：参数格式校验</span></span><br><span class="line"><span class="comment"> * 11：商品</span></span><br><span class="line"><span class="comment"> * 12：订单</span></span><br><span class="line"><span class="comment"> * 13：购物车</span></span><br><span class="line"><span class="comment"> * 14：物流</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">BizCodeEnume</span> &#123;</span><br><span class="line">    UNKNOW_EXCEPTION(<span class="number">10000</span>,<span class="string">&quot;系统未知异常&quot;</span>),</span><br><span class="line">    VAILD_EXCEPTION(<span class="number">10001</span>, <span class="string">&quot;参数格式校验失败&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">int</span> code;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String msg;</span><br><span class="line">    BizCodeEnume(<span class="type">int</span> code, String msg)&#123;</span><br><span class="line">        <span class="built_in">this</span>.code = code;</span><br><span class="line">        <span class="built_in">this</span>.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getCode</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getMsg</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><strong>编写集中异常处理类</strong></li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@RestControllerAdvice(basePackages = &quot;com.smz.guli.product.controller&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GuliExceptionControllerAdvice</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> e 捕获的精确异常</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 返回异常信息集合</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler(value = Exception.class)</span></span><br><span class="line">    <span class="keyword">public</span> R <span class="title function_">handleVaildException</span><span class="params">(MethodArgumentNotValidException e)</span>&#123;</span><br><span class="line">        <span class="type">BindingResult</span> <span class="variable">bindingResult</span> <span class="operator">=</span> e.getBindingResult();</span><br><span class="line">        Map&lt;String,String&gt; errorMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        bindingResult.getFieldErrors().forEach((fieldError -&gt; &#123;</span><br><span class="line">            errorMap.put(fieldError.getField(),fieldError.getDefaultMessage());</span><br><span class="line">        &#125;));</span><br><span class="line">        <span class="keyword">return</span> R.error(BizCodeEnume.VAILD_EXCEPTION.getCode(), BizCodeEnume.VAILD_EXCEPTION.getMsg()).put(<span class="string">&quot;data&quot;</span>,errorMap);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> throwable 其它异常捕获</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 返回错误</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler(value = Throwable.class)</span></span><br><span class="line">    <span class="keyword">public</span> R <span class="title function_">handleException</span><span class="params">(Throwable throwable)</span>&#123;</span><br><span class="line">        log.error(<span class="string">&quot;错误&quot;</span>, throwable);</span><br><span class="line">        <span class="keyword">return</span> R.error(BizCodeEnume.UNKNOW_EXCEPTION.getCode(), BizCodeEnume.UNKNOW_EXCEPTION.getMsg());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<hr>
+<blockquote>
+<p>在规则中<strong>regexp</strong>为正则校验，<strong>message</strong>为自定义信息，<strong>groups</strong>为规则组</p>
+</blockquote>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Pattern(regexp = &quot;^[a-zA-Z]$&quot;,message = &quot;检索首字母必须为字母&quot;,groups = &#123;AddGroup.class, UpdateGroup.class&#125;)</span></span><br></pre></td></tr></table></div></figure>
+<p><strong>常用注解如下：</strong></p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>注解</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@Null</td>
+<td>被注释的元素必须为null</td>
+</tr>
+<tr>
+<td>@NotNull</td>
+<td>被注释的元素不能为null，可以为空字符串</td>
+</tr>
+<tr>
+<td>@AssertTrue</td>
+<td>被注释的元素必须为true</td>
+</tr>
+<tr>
+<td>@AssertFalsel</td>
+<td>被注释的元素必须为false</td>
+</tr>
+<tr>
+<td>@Min(value)</td>
+<td>被注释的元素必须是一个数字，其值必须大于等于指定的最小值</td>
+</tr>
+<tr>
+<td>@Max(value)</td>
+<td>被注释的元素必须是一个数字，其值必须小于等于指定的最大值</td>
+</tr>
+<tr>
+<td>@DecimalMin(value)</td>
+<td>被注释的元素必须是一个数字，其值必须大于等于指定的最小值</td>
+</tr>
+<tr>
+<td>@DecimalMax(value)</td>
+<td>被注释的元素必须是一个数字，其值必须小于等于指定的最大值</td>
+</tr>
+<tr>
+<td>@Size(max,min)</td>
+<td>被注释的元素的大小必须在指定的范围内</td>
+</tr>
+<tr>
+<td>@Digits(integer,fraction)</td>
+<td>被注释的元素必须是一个数字，其值必须在可接受的范围内</td>
+</tr>
+<tr>
+<td>@Past</td>
+<td>被注释的元素必须是一个过去的日期</td>
+</tr>
+<tr>
+<td>@Future</td>
+<td>被注释的元素必须是一个将来的日期</td>
+</tr>
+<tr>
+<td>@Pattern(value)</td>
+<td>被注释的元素必须符合指定的正则表达式</td>
+</tr>
+<tr>
+<td>@Email</td>
+<td>被注释的元素必须是电子邮件地址</td>
+</tr>
+<tr>
+<td>@Length</td>
+<td>被注释的字符串的大小必须在指定的范围内</td>
+</tr>
+<tr>
+<td>@Range</td>
+<td>被注释的元素必须在合适的范围内</td>
+</tr>
+<tr>
+<td>@NotEmpty</td>
+<td>用在集合类上，不能为null，并且长度必须大于0</td>
+</tr>
+<tr>
+<td>@NotBlank</td>
+<td>只能作用在String上，不能为null，而且调用trim()后，长度必须大于0</td>
+</tr>
+</tbody></table></div>
+
+        <h2 id="2、分组校验"   >
+          <a href="#2、分组校验" class="heading-link"><i class="fas fa-link"></i></a><a href="#2、分组校验" class="headerlink" title="2、分组校验"></a>2、分组校验</h2>
+      <blockquote>
+<p>分组校验的场景用于同一接口的不同操作来进行校验，不同操作也适用于其它接口。</p>
+</blockquote>
+<ul>
+<li><strong>在common编写接口用于区分不同的分组</strong></li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 添加分组</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AddGroup</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 修改分组</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UpdateGroup</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><strong>在实体类添加注解用于区分不同操作对应的分组</strong></li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 品牌id</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@NotNull(message =&quot;修改必须指定品牌id&quot;, groups = &#123;UpdateGroup.class&#125;)</span></span><br><span class="line">	<span class="meta">@Null(message = &quot;新增不能指定id&quot;, groups = &#123;AddGroup.class&#125;)</span></span><br><span class="line">	<span class="meta">@TableId</span></span><br><span class="line">	<span class="keyword">private</span> Long brandId;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 品牌名</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@NotBlank(message = &quot;品牌名不能为空&quot;, groups = &#123;AddGroup.class&#125;)</span></span><br><span class="line">	<span class="keyword">private</span> String name;</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><strong>更换controller层注释为@Validated并添加校验分组</strong></li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@RequestMapping(&quot;/update&quot;)</span></span><br><span class="line">    <span class="comment">//@RequiresPermissions(&quot;product:brand:update&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> R <span class="title function_">update</span><span class="params">(<span class="meta">@Validated(UpdateGroup.class)</span> <span class="meta">@RequestBody</span> BrandEntity brand)</span>&#123;</span><br><span class="line">		brandService.updateById(brand);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> R.ok();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/save&quot;)</span></span><br><span class="line">    <span class="comment">//@RequiresPermissions(&quot;product:brand:save&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> R <span class="title function_">save</span><span class="params">(<span class="meta">@Validated(AddGroup.class)</span> <span class="meta">@RequestBody</span> BrandEntity brand<span class="comment">/*, BindingResult result*/</span>)</span>&#123;</span><br><span class="line">		brandService.save(brand);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> R.ok();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+
+
+        <h2 id="3、自定义校验"   >
+          <a href="#3、自定义校验" class="heading-link"><i class="fas fa-link"></i></a><a href="#3、自定义校验" class="headerlink" title="3、自定义校验"></a>3、自定义校验</h2>
+      <blockquote>
+<p>自定义校验用于复杂的校验逻辑，用于处理内置校验规则处理不了的数据校验。</p>
+</blockquote>
+<ul>
+<li>创建一个配置文件用于存放自定义消息<br><code>文件名必须为 ValidationMessages.properties 会自动从该文件找配置项</code></li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.smz.common.valid.ListValue.message=必须填写该项</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><strong>创建一个自定义注解类</strong></li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Constraint(</span></span><br><span class="line"><span class="meta">        validatedBy = &#123;ListValueConstraintValidator.class&#125;</span></span><br><span class="line"><span class="meta">)</span></span><br><span class="line"><span class="meta">@Target(&#123;ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.TYPE_USE&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ListValue &#123;</span><br><span class="line">    <span class="comment">// 自定义消息指向</span></span><br><span class="line">    String <span class="title function_">message</span><span class="params">()</span> <span class="keyword">default</span> <span class="string">&quot;&#123;com.smz.common.valid.ListValue.message&#125;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//实现规则的选取</span></span><br><span class="line">    Class&lt;?&gt;[] groups() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//接收的消息体</span></span><br><span class="line">    Class&lt;? <span class="keyword">extends</span> <span class="title class_">Payload</span>&gt;[] payload() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//自定义接收参数</span></span><br><span class="line">    <span class="type">int</span>[] vals() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<ul>
+<li><strong>创建一个校验器</strong></li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.validation.ConstraintValidator;</span><br><span class="line"><span class="keyword">import</span> javax.validation.ConstraintValidatorContext;</span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ListValue</span> 校验器</span></span><br><span class="line"><span class="comment"> * ListValue 校验注解</span></span><br><span class="line"><span class="comment"> * Integer 校验类型</span></span><br><span class="line"><span class="comment"> * initialize 初始化方法 （获取详细信息）</span></span><br><span class="line"><span class="comment"> * isValid 判断是否校验成功</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ListValueConstraintValidator</span> <span class="keyword">implements</span> <span class="title class_">ConstraintValidator</span>&lt;ListValue,Integer&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Set&lt;Integer&gt;set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> constraintAnnotation 初始化方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">initialize</span><span class="params">(ListValue constraintAnnotation)</span> &#123;</span><br><span class="line">       <span class="type">int</span>[] vals = constraintAnnotation.vals();</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> val : vals)&#123;</span><br><span class="line">           set.add(val);</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value 需要校验的值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> context 定义是否包含</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 返回是否包含</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isValid</span><span class="params">(Integer value, ConstraintValidatorContext context)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> set.contains(value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><strong>使用自定义校验</strong></li>
+</ul>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 显示状态[0-不显示；1-显示]</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@ListValue(vals=&#123;0,1&#125;,groups = &#123;AddGroup.class&#125;)</span></span><br><span class="line">	<span class="keyword">private</span> Integer showStatus;</span><br></pre></td></tr></table></div></figure>
+
+<hr>
+
+        <h1 id="总结"   >
+          <a href="#总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
+      <p>本文主要讲了阿里OSS对象储存的对接以及后端JSR303数据校验的三种使用。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E5%90%8E%E7%AB%AF/">后端</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/SpringCloud/">SpringCloud</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E5%93%81%E7%89%8C%E6%9C%8D%E5%8A%A1/">品牌服务</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/">参数校验</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/oss%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/">oss对象存储</a></span></div><div class="post-reward reward"><div class="reward-button">请我喝杯咖啡~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/images/collection/ZF.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/images/collection/WX.jpg"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2023/08/11/SpringCloud%EF%BC%88%E5%AD%A6%E4%B9%A0%20%E5%95%86%E5%93%81%E6%9C%8D%E5%8A%A1-%E4%B8%89%E7%BA%A7%E5%88%86%E7%B1%BB%E7%9A%84%E5%BC%80%E5%8F%91%EF%BC%89%E5%9B%9B/"><span class="paginator-prev__text">SpringCloud（学习 商品服务-三级分类的开发）四</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="utterances-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">
+          前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%93%81%E7%89%8C%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.</span> <span class="toc-text">
+          一、品牌服务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9B%BE%E7%89%87%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.</span> <span class="toc-text">
+          二、图片服务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%BC%80%E9%80%9Aoss%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.1.</span> <span class="toc-text">
+          1.开通oss对象存储服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%9B%BE%E7%89%87%E5%82%A8%E5%AD%98%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.2.</span> <span class="toc-text">
+          2.图片储存服务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C"><span class="toc-number">4.</span> <span class="toc-text">
+          三、后端数据校验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%99%AE%E9%80%9A%E6%A0%A1%E9%AA%8C"><span class="toc-number">4.1.</span> <span class="toc-text">
+          1、普通校验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%88%86%E7%BB%84%E6%A0%A1%E9%AA%8C"><span class="toc-number">4.2.</span> <span class="toc-text">
+          2、分组校验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%A1%E9%AA%8C"><span class="toc-number">4.3.</span> <span class="toc-text">
+          3、自定义校验</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">
+          总结</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/apple-touch-icon.png" alt="avatar"></div><p class="sidebar-ov-author__text">积少成多</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/minzhongshi" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:2240941938@qq.com" target="_blank" rel="noopener" data-popover="发送邮件" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a><a class="sidebar-ov-social-item" href="tencent://message?uin=2240941938" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://blog.csdn.net/smznbhh" target="_blank" rel="noopener" data-popover="CSDN" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">C</span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">38</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">37</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">64</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022~2023</span><span class="footer__icon"><i class="fas fa-yin-yang"></i></span><span>MinZhongShi All Rights Reserved</span><span class="footer__devider">|</span><span>备案 XXXXXXXX 号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>托管于 <a href="https://github.com/minzhongshi/" rel="noopener" target="_blank">Github Pages</a>）</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
+  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
+  // 加载进度条的计时器
+  var loadingTimer = null;
+
+  // 重置页面 Y 方向上的滚动偏移量
+  document.addEventListener('pjax:send', function () {
+    $('.header-nav-menu').removeClass('show');
+    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
+      $('html').velocity('scroll', {
+        duration: 500,
+        offset: $('#header').height(),
+        easing: 'easeInOutCubic'
+      });
+    }
+
+    var loadingBarWidth = 20;
+    var MAX_LOADING_WIDTH = 95;
+
+    $('.loading-bar').addClass('loading');
+    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    clearInterval(loadingTimer);
+    loadingTimer = setInterval(function () {
+      loadingBarWidth += 3;
+      if (loadingBarWidth > MAX_LOADING_WIDTH) {
+        loadingBarWidth = MAX_LOADING_WIDTH;
+      }
+      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    }, 500);
+  }, false);
+
+  window.addEventListener('pjax:complete', function () {
+    clearInterval(loadingTimer);
+    $('.loading-bar__progress').css('width', '100%');
+    $('.loading-bar').removeClass('loading');
+    setTimeout(function () {
+      $('.loading-bar__progress').css('width', '0');
+    }, 400);
+    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
+      $(this).remove();
+    });
+    $('script[data-pjax], #pjax-reload script').each(function () {
+      $(this).parent().append($(this).remove());
+    });
+
+    if (Stun.utils.pjaxReloadBoot) {
+      Stun.utils.pjaxReloadBoot();
+    }
+    if (Stun.utils.pjaxReloadScroll) {
+      Stun.utils.pjaxReloadScroll();
+    }
+    if (Stun.utils.pjaxReloadSidebar) {
+      Stun.utils.pjaxReloadSidebar();
+    }
+    if (false) {
+      if (Stun.utils.pjaxReloadHeader) {
+        Stun.utils.pjaxReloadHeader();
+      }
+      if (Stun.utils.pjaxReloadScrollIcon) {
+        Stun.utils.pjaxReloadScrollIcon();
+      }
+      if (Stun.utils.pjaxReloadLocalSearch) {
+        Stun.utils.pjaxReloadLocalSearch();
+      }
+    }
+  }, false);
+}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/quicklink@1.0.1/dist/quicklink.umd.js"></script><script>function initQuicklink() {
+  quicklink({
+    timeout: '10000',
+    priority: true,
+    ignores: [uri => uri.includes('#'), uri => uri === 'http://120.48.161.105:4000/2023/08/11/SpringCloud%EF%BC%88%E5%AD%A6%E4%B9%A0%20%E5%95%86%E5%93%81%E6%9C%8D%E5%8A%A1-%E5%93%81%E7%89%8C%E7%AE%A1%E7%90%86%E7%9A%84%E5%BC%80%E5%8F%91%EF%BC%89%E4%BA%94/', /\/api\/?/,uri => uri.includes('.xml'),uri => uri.includes('.zip'),(uri, el) => el.hasAttribute('nofollow'),(uri, el) => el.hasAttribute('noprefetch')]
+  });
+}
+
+if (true || false) {
+  initQuicklink();
+} else {
+  window.addEventListener('DOMContentLoaded', initQuicklink, false);
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script data-pjax="">function loadUtterances() {
+  var d = document, s = d.createElement('script');
+  var container = d.getElementById('utterances-container');
+
+  if (!container) {
+    return;
+  }
+  s.src = 'https://utteranc.es/client.js';
+  s.setAttribute('repo', 'minzhongshi/minzhongshi.github.io');
+  s.setAttribute('issue-term', 'title');
+  s.setAttribute('label', 'utterances');
+  s.setAttribute('theme', 'github-light');
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('async', '');
+  if (true) {
+    s.setAttribute('data-pjax-rm', '');
+  }
+  container.append(s);
+}
+
+if (true) {
+  loadUtterances();
+} else {
+  window.addEventListener('DOMContentLoaded', loadUtterances, false);
+}</script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script type="application/json" src="/search.json"></script></body></html>
