@@ -1,0 +1,628 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="msvalidate.01" content="AFDB45CC21FD88E9C707C7C9162E5E5A"><meta name="baidu-site-verification" content="code-h3hQw6wxUc"><meta name="360-site-verification" content="1e4c79dee06e20b0af55fd4499a2d4a8"><meta name="sogou_site_verification" content="zG14f2yB7U"><meta name="description" content="如今项目体积越来越大，导致维护成本增加，后端以微服务形式将项目拆成不同的服务，前端也需要对项目进行拆解，以达到长久发展的可能性。 在我理解中，微前端就是将前端以某种规则进行隔离，在隔离中也能进行远程访问其他小应用，不受技术栈的影响，带来更多的可能性与可维护性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微前端-monorepo-无界">
+<meta property="og:url" content="http://120.48.161.105:4000/2023/08/31/%E5%BE%AE%E5%89%8D%E7%AB%AF-monorepo-%E6%97%A0%E7%95%8C/index.html">
+<meta property="og:site_name" content="Min&#39;s Blog">
+<meta property="og:description" content="如今项目体积越来越大，导致维护成本增加，后端以微服务形式将项目拆成不同的服务，前端也需要对项目进行拆解，以达到长久发展的可能性。 在我理解中，微前端就是将前端以某种规则进行隔离，在隔离中也能进行远程访问其他小应用，不受技术栈的影响，带来更多的可能性与可维护性。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5c822b9907974450bb94b488dba08d1d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b1996883c43b44b7902eeb91c51a6b71.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e078b292092d4607a983afdf420623ae.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/fff7d0882db74e999ddb11ed84121396.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4b55f07612a74022970ed4a3675cc075.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/82aecbc1b0174c478b7550c4d19eed59.png">
+<meta property="article:published_time" content="2023-08-30T18:50:59.213Z">
+<meta property="article:modified_time" content="2023-08-30T18:54:15.084Z">
+<meta property="article:author" content="史明忠">
+<meta property="article:tag" content="微前端">
+<meta property="article:tag" content="无界">
+<meta property="article:tag" content="monorepo">
+<meta property="article:tag" content="pnpm">
+<meta property="article:tag" content="幽灵依赖">
+<meta property="article:tag" content="依赖安装耗时长">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/5c822b9907974450bb94b488dba08d1d.png"><title>微前端-monorepo-无界 | Min's Blog</title><link ref="canonical" href="http://120.48.161.105:4000/2023/08/31/%E5%BE%AE%E5%89%8D%E7%AB%AF-monorepo-%E6%97%A0%E7%95%8C/"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?e5397e2608cbb991400432801c7a10f1';
+  hm.async = true;
+
+  if (true) {
+    hm.setAttribute('data-pjax', '');
+  }
+  var s = document.getElementsByTagName('script')[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: true,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: true,
+  pjax: {"avoidBanner":true},
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-tie"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-rocket"></i></span><span class="header-nav-menu-item__text">乐趣</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/technology-lottie/"><span class="header-nav-submenu-item__icon"><i class="fas fa-umbrella-beach"></i></span><span class="header-nav-submenu-item__text">动画</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-cog"></i></span><span class="header-nav-menu-item__text">组件</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/module-vue/"><span class="header-nav-submenu-item__icon"><i class="fas fa-users-cog"></i></span><span class="header-nav-submenu-item__text">Vue</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Min's Blog</div><div class="header-banner-info__subtitle">well begun is half done</div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">微前端-monorepo-无界</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-08-31</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-08-31</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.8k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">11分</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h1 id="前言"   >
+          <a href="#前言" class="heading-link"><i class="fas fa-link"></i></a><a href="#前言" class="headerlink" title="前言"></a>前言</h1>
+      <p>本文主要记录微前端框架 <strong><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://wujie-micro.github.io/demo-main-vue/**home" >无界</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></strong> 的使用与理解以及monorepo代码管理方式。</p>
+<hr>
+
+        <h1 id="一、微前端"   >
+          <a href="#一、微前端" class="heading-link"><i class="fas fa-link"></i></a><a href="#一、微前端" class="headerlink" title="一、微前端"></a>一、微前端</h1>
+      <p>如今项目体积越来越大，导致维护成本增加，后端以微服务形式将项目拆成不同的服务，前端也需要对项目进行拆解，以达到长久发展的可能性。<br>在我理解中，微前端就是将前端以某种规则进行隔离，在隔离中也能进行远程访问其他小应用，不受技术栈的影响，带来更多的可能性与可维护性。</p>
+<hr>
+
+        <h1 id="二-、monorepo"   >
+          <a href="#二-、monorepo" class="heading-link"><i class="fas fa-link"></i></a><a href="#二-、monorepo" class="headerlink" title="二 、monorepo"></a>二 、monorepo</h1>
+      <ul>
+<li>monorepo是一个单仓库多应用的代码管理方式，多个项目集成到一个仓库下，共享工程配置，同时又快捷地共享模块代码。</li>
+<li>中大型项目，多模块项目monorepo更适合管理代码，对调试、开发都有很大的帮助。</li>
+</ul>
+<p><code>注：在使用monorepo方式管理项目时，会产生诸多问题，如幽灵依赖、依赖安装耗时的问题，需要使用pnpm进行解决这类问题。</code></p>
+<hr>
+
+        <h1 id="三-、pnpm"   >
+          <a href="#三-、pnpm" class="heading-link"><i class="fas fa-link"></i></a><a href="#三-、pnpm" class="headerlink" title="三 、pnpm"></a>三 、pnpm</h1>
+      <ul>
+<li>项目依赖在基于npm时，每个项目都有自己的项目依赖，都需要保存在本地，而pnpm则时将相同依赖项目的依赖包放在同一个位置，让不同项目共享同一个个依赖包，节约硬盘空间，提升了安装速度。</li>
+<li>针对不同版本的依赖，则只会保存不同的文件，不会将所有文件都保存</li>
+</ul>
+
+        <h2 id="硬链接"   >
+          <a href="#硬链接" class="heading-link"><i class="fas fa-link"></i></a><a href="#硬链接" class="headerlink" title="硬链接"></a>硬链接</h2>
+      <p>共享了同一个硬盘地址<br>pnpm通过硬链接直接指向 pnpm仓库 依赖包在硬盘的地址</p>
+
+        <h2 id="软链接（符号链接）"   >
+          <a href="#软链接（符号链接）" class="heading-link"><i class="fas fa-link"></i></a><a href="#软链接（符号链接）" class="headerlink" title="软链接（符号链接）"></a>软链接（符号链接）</h2>
+      <p>只会记录路径，不占用资源<br>如果依赖包之间有相互依赖，则会通过软连接指向该依赖路径，不会指向硬盘地址。</p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/5c822b9907974450bb94b488dba08d1d.png"  alt="pnpm">
+      </p>
+
+        <h2 id="幽灵依赖"   >
+          <a href="#幽灵依赖" class="heading-link"><i class="fas fa-link"></i></a><a href="#幽灵依赖" class="headerlink" title="幽灵依赖"></a>幽灵依赖</h2>
+      <p>npm&#x2F;yarn 安装依赖时，存在依赖提升，某个项目使用的依赖，并没有在其 package.json 中声明，也可以直接使用，这种现象称之为 “幽灵依赖”；随着项目迭代，这个依赖不再被其他项目使用，不再被安装，使用幽灵依赖的项目，会因为无法找到依赖而报错。</p>
+<blockquote>
+<p>使用pnpm可以解决此类问题</p>
+</blockquote>
+
+        <h2 id="依赖安装耗时长"   >
+          <a href="#依赖安装耗时长" class="heading-link"><i class="fas fa-link"></i></a><a href="#依赖安装耗时长" class="headerlink" title="依赖安装耗时长"></a>依赖安装耗时长</h2>
+      <p>MonoRepo 中每个项目都有自己的 package.json 依赖列表，随着 MonoRepo 中依赖总数的增长，每次 install 时，耗时会较长。</p>
+<blockquote>
+<p>MonoRepo 中每个项目都有自己的 package.json 依赖列表，随着 MonoRepo 中依赖总数的增长，每次 install 时，耗时会较长。</p>
+</blockquote>
+
+        <h2 id="monorepo项目搭建"   >
+          <a href="#monorepo项目搭建" class="heading-link"><i class="fas fa-link"></i></a><a href="#monorepo项目搭建" class="headerlink" title="monorepo项目搭建"></a>monorepo项目搭建</h2>
+      <p>项目构建需要一个注应用来搭载各个子应用，在安装依赖时需要在最外层创建 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://www.pnpm.cn/pnpm-workspace_yaml" >pnpm-workspace.yaml</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 配置文件，通过配置就可以轻松的下载所有项目的依赖。这样会将子项目中公共的依赖提取到外层modules中<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/b1996883c43b44b7902eeb91c51a6b71.png"  alt="项目结构">
+      </p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">packages</span>:</span><br><span class="line">  # all packages <span class="keyword">in</span> direct subdirs <span class="keyword">of</span> packages/</span><br><span class="line">  - <span class="string">&#x27;main&#x27;</span></span><br><span class="line">  # all packages <span class="keyword">in</span> subdirs <span class="keyword">of</span> components/</span><br><span class="line">  - <span class="string">&#x27;web/**&#x27;</span></span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>在外层目录下可以通过 pnpm -F &lt;子项目文件名&gt; &lt;命令&gt; 的形式执行子项目中的命令</li>
+</ul>
+
+        <h2 id="子模块复用"   >
+          <a href="#子模块复用" class="heading-link"><i class="fas fa-link"></i></a><a href="#子模块复用" class="headerlink" title="子模块复用"></a>子模块复用</h2>
+      <ul>
+<li>在外层创建common文件，将应用公共的模块提取到该文件夹下，比如axios等。</li>
+<li>在主项目main目录下，执行 <strong>pnpm -F &lt;项目名称&gt; add common</strong></li>
+</ul>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/e078b292092d4607a983afdf420623ae.png"  alt="commob依赖">
+      </p>
+<p>这样就可以直接在项目中使用common中的东西</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;a&#125; <span class="keyword">from</span> <span class="string">&#x27;common&#x27;</span></span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="四、无界"   >
+          <a href="#四、无界" class="heading-link"><i class="fas fa-link"></i></a><a href="#四、无界" class="headerlink" title="四、无界"></a>四、无界</h1>
+      <p>对于一些常见的微前端框架（qiankun、micro-app、EMP），对vite都不太友好，所以这里采用<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://wujie-micro.github.io/doc/" >无界</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>来搭建微前端框架</p>
+<p><strong>特点</strong></p>
+<ul>
+<li>接入简单只需要四五行代码</li>
+<li>不需要针对vite额外处理</li>
+<li>预加载</li>
+<li>应用保活机制</li>
+</ul>
+<p><strong>不足</strong></p>
+<ul>
+<li>隔离js使用一个空的iframe进行隔离</li>
+<li>子应用axios需要自行适配</li>
+<li>iframe沙箱的src设置了主应用的host，初始化iframe的时候需要等待iframe的location.orign从’about:blank’初始化为主应用的host，这个采- - 用的计时器去等待的不是很优雅。</li>
+<li>底层原理 使用shadowDom 隔离css，js使用空的iframe隔离，通讯使用的是proxy</li>
+</ul>
+
+        <h2 id="接入无界"   >
+          <a href="#接入无界" class="heading-link"><i class="fas fa-link"></i></a><a href="#接入无界" class="headerlink" title="接入无界"></a>接入无界</h2>
+      <ul>
+<li>在主项目main目录下安装wujie</li>
+</ul>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm i wujie</span><br></pre></td></tr></table></div></figure>
+<ul>
+<li>在主项目main目录下安装对应类型项目的<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://wujie-micro.github.io/doc/pack/" >封装插件</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>,该插件是对wujie的封装，从而使wujie的使用更快捷</li>
+</ul>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm i wujie-vue3</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>在主应用main.ts中引入对应的wujie框架，并注册</li>
+</ul>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Wujie</span> <span class="keyword">from</span> <span class="string">&#x27;wujie-vue3&#x27;</span></span><br><span class="line">app.<span class="title function_">use</span>(router).<span class="title function_">use</span>(<span class="title class_">Wujie</span>)</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>子应用的使用，在主应用中使用WujieVue标签进行使用，在url中传入应用启动地址</li>
+</ul>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">WujieVue</span> url=<span class="string">&quot;http://localhost:5174/&quot;</span> name=<span class="string">&quot;vue3&quot;</span>&gt;&lt;/<span class="title class_">WujieVue</span>&gt; </span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">WujieVue</span> <span class="attr">url</span>=<span class="string">&quot;http://localhost:5175/&quot;</span> <span class="attr">name</span>=<span class="string">&quot;react&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">WujieVue</span>&gt;</span></span> </span><br></pre></td></tr></table></div></figure>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/fff7d0882db74e999ddb11ed84121396.png"  alt="界面效果">
+      </p>
+<p><code>注：官网只对vue和react进行了封装其他框架需要自行封装</code></p>
+
+        <h2 id="无界预加载"   >
+          <a href="#无界预加载" class="heading-link"><i class="fas fa-link"></i></a><a href="#无界预加载" class="headerlink" title="无界预加载"></a>无界预加载</h2>
+      <p>预加载能力可以极大的提升子应用打开的首屏时间</p>
+<p>只需要在preloadApp中将 exec 设置为true即可</p>
+<p>在主项目下main.ts文件中配置exec</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">preloadApp</span>(&#123;<span class="attr">url</span>:<span class="string">&quot;http://localhost:5174/&quot;</span>, <span class="attr">name</span>:<span class="string">&quot;vue3&quot;</span>,<span class="attr">exec</span>: <span class="literal">true</span>&#125;)</span><br><span class="line"><span class="title function_">preloadApp</span>(&#123;<span class="attr">url</span>:<span class="string">&quot;http://localhost:5175/&quot;</span>, <span class="attr">name</span>:<span class="string">&quot;react&quot;</span>,<span class="attr">exec</span>: <span class="literal">true</span>&#125;)</span><br></pre></td></tr></table></div></figure>
+<p>由于子应用提前渲染可能会导致阻塞主应用的线程，所以无界提供了类似 react-fiber 方式来防止阻塞线程<br>react-fiber模拟了requestIdleCallback API ，预加载都被requestIdleCallback包裹，在浏览器空闲的时候提前预加载一些内容<br><strong>requestIdleCallback API</strong>会有两种情况：</p>
+<ul>
+<li>浏览器在每一帧执行一系列任务，如果有剩余时间就执行 requestIdleCallback<ul>
+<li>处理用户事件</li>
+<li>执行定时器任务</li>
+<li>执行requestAnimationFrame动画</li>
+<li>执行dom的回流与重绘</li>
+<li>计算更新图层的绘制指令</li>
+<li>绘制指令合并主线程</li>
+</ul>
+</li>
+<li>浏览器没有任务执行，会有50ms空余时间去执行 requestIdleCallback</li>
+</ul>
+
+        <h2 id="无界传参"   >
+          <a href="#无界传参" class="heading-link"><i class="fas fa-link"></i></a><a href="#无界传参" class="headerlink" title="无界传参"></a>无界传参</h2>
+      <p>无界的通讯系统又三种方式进行通讯分别是：</p>
+<ul>
+<li><strong>props通讯</strong></li>
+</ul>
+<p>主应用可以通过props注入数据和方法：</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">WujieVue</span> name=<span class="string">&quot;xxx&quot;</span> url=<span class="string">&quot;xxx&quot;</span> :props=<span class="string">&quot;&#123; data: xxx, methods: xxx &#125;&quot;</span>&gt;&lt;/<span class="title class_">WujieVue</span>&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p>子应用可以通过$wujie来获取：</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> props = <span class="variable language_">window</span>.<span class="property">$wujie</span>?.<span class="property">props</span>; <span class="comment">// &#123;data: xxx, methods: xxx&#125;</span></span><br></pre></td></tr></table></div></figure>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/4b55f07612a74022970ed4a3675cc075.png"  alt="props通讯">
+      </p>
+<ul>
+<li><strong>window通讯</strong><br>主应用调用子应用的全局数据<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;iframe[name=子应用id]&quot;</span>).<span class="property">contentWindow</span>.<span class="property">xxx</span>;</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+<p>子应用调用主应用的全局数据</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">parent</span>.<span class="property">xxx</span>;</span><br></pre></td></tr></table></div></figure>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/82aecbc1b0174c478b7550c4d19eed59.png"  alt="window通讯">
+      </p>
+<ul>
+<li><strong>eventBus通讯</strong><br>发布订阅模式的通讯<br>主应用使用方式:</li>
+</ul>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果使用wujie</span></span><br><span class="line"><span class="keyword">import</span> &#123; bus &#125; <span class="keyword">from</span> <span class="string">&quot;wujie&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果使用wujie-vue</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">WujieVue</span> <span class="keyword">from</span> <span class="string">&quot;wujie-vue&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; bus &#125; = <span class="title class_">WujieVue</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果使用wujie-react</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">WujieReact</span> <span class="keyword">from</span> <span class="string">&quot;wujie-react&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; bus &#125; = <span class="title class_">WujieReact</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 主应用监听事件</span></span><br><span class="line">bus.$on(<span class="string">&quot;事件名字&quot;</span>, <span class="keyword">function</span> (<span class="params">arg1, arg2, ...</span>) &#123;&#125;);</span><br><span class="line"><span class="comment">// 主应用发送事件</span></span><br><span class="line">bus.$emit(<span class="string">&quot;事件名字&quot;</span>, arg1, arg2, ...);</span><br><span class="line"><span class="comment">// 主应用取消事件监听</span></span><br><span class="line">bus.$off(<span class="string">&quot;事件名字&quot;</span>, <span class="keyword">function</span> (<span class="params">arg1, arg2, ...</span>) &#123;&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+<p>子应用使用方式:</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子应用监听事件</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">$wujie</span>?.<span class="property">bus</span>.$on(<span class="string">&quot;事件名字&quot;</span>, <span class="keyword">function</span> (<span class="params">arg1, arg2, ...</span>) &#123;&#125;);</span><br><span class="line"><span class="comment">// 子应用发送事件</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">$wujie</span>?.<span class="property">bus</span>.$emit(<span class="string">&quot;事件名字&quot;</span>, arg1, arg2, ...);</span><br><span class="line"><span class="comment">// 子应用取消事件监听</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">$wujie</span>?.<span class="property">bus</span>.$off(<span class="string">&quot;事件名字&quot;</span>, <span class="keyword">function</span> (<span class="params">arg1, arg2, ...</span>) &#123;&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+<hr>
+
+        <h1 id="总结"   >
+          <a href="#总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
+      <p>本文主要记录了微前端无界的使用与理解。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/">微前端</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E6%97%A0%E7%95%8C/">无界</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/monorepo/">monorepo</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/pnpm/">pnpm</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E5%B9%BD%E7%81%B5%E4%BE%9D%E8%B5%96/">幽灵依赖</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E8%80%97%E6%97%B6%E9%95%BF/">依赖安装耗时长</a></span></div><div class="post-reward reward"><div class="reward-button">请我喝杯咖啡~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/images/collection/ZF.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/images/collection/WX.jpg"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2023/08/30/Vue3%20%E5%AD%A6%E4%B9%A0%20%E7%BB%84%E5%90%88%E5%BC%8FAPI%20setup%E8%AF%AD%E6%B3%95%E7%B3%96%20%E5%93%8D%E5%BA%94%E5%BC%8F%20%E6%8C%87%E4%BB%A4%20DIFF%EF%BC%88%E4%B8%80%EF%BC%89/"><span class="paginator-prev__text">Vue3 学习 组合式API setup语法糖 响应式 指令 DIFF（一）</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="utterances-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">
+          前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%BE%AE%E5%89%8D%E7%AB%AF"><span class="toc-number">2.</span> <span class="toc-text">
+          一、微前端</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-%E3%80%81monorepo"><span class="toc-number">3.</span> <span class="toc-text">
+          二 、monorepo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-%E3%80%81pnpm"><span class="toc-number">4.</span> <span class="toc-text">
+          三 、pnpm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E9%93%BE%E6%8E%A5"><span class="toc-number">4.1.</span> <span class="toc-text">
+          硬链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E9%93%BE%E6%8E%A5%EF%BC%88%E7%AC%A6%E5%8F%B7%E9%93%BE%E6%8E%A5%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">
+          软链接（符号链接）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BD%E7%81%B5%E4%BE%9D%E8%B5%96"><span class="toc-number">4.3.</span> <span class="toc-text">
+          幽灵依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E8%80%97%E6%97%B6%E9%95%BF"><span class="toc-number">4.4.</span> <span class="toc-text">
+          依赖安装耗时长</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#monorepo%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA"><span class="toc-number">4.5.</span> <span class="toc-text">
+          monorepo项目搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E6%A8%A1%E5%9D%97%E5%A4%8D%E7%94%A8"><span class="toc-number">4.6.</span> <span class="toc-text">
+          子模块复用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%97%A0%E7%95%8C"><span class="toc-number">5.</span> <span class="toc-text">
+          四、无界</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5%E6%97%A0%E7%95%8C"><span class="toc-number">5.1.</span> <span class="toc-text">
+          接入无界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E7%95%8C%E9%A2%84%E5%8A%A0%E8%BD%BD"><span class="toc-number">5.2.</span> <span class="toc-text">
+          无界预加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E7%95%8C%E4%BC%A0%E5%8F%82"><span class="toc-number">5.3.</span> <span class="toc-text">
+          无界传参</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">
+          总结</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/apple-touch-icon.png" alt="avatar"></div><p class="sidebar-ov-author__text">积少成多</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/minzhongshi" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:2240941938@qq.com" target="_blank" rel="noopener" data-popover="发送邮件" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a><a class="sidebar-ov-social-item" href="tencent://message?uin=2240941938" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://blog.csdn.net/smznbhh" target="_blank" rel="noopener" data-popover="CSDN" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">C</span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">41</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">44</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">76</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022~2023</span><span class="footer__icon"><i class="fas fa-yin-yang"></i></span><span>MinZhongShi All Rights Reserved</span><span class="footer__devider">|</span><span>备案 XXXXXXXX 号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>托管于 <a href="https://github.com/minzhongshi/" rel="noopener" target="_blank">Github Pages</a>）</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
+  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
+  // 加载进度条的计时器
+  var loadingTimer = null;
+
+  // 重置页面 Y 方向上的滚动偏移量
+  document.addEventListener('pjax:send', function () {
+    $('.header-nav-menu').removeClass('show');
+    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
+      $('html').velocity('scroll', {
+        duration: 500,
+        offset: $('#header').height(),
+        easing: 'easeInOutCubic'
+      });
+    }
+
+    var loadingBarWidth = 20;
+    var MAX_LOADING_WIDTH = 95;
+
+    $('.loading-bar').addClass('loading');
+    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    clearInterval(loadingTimer);
+    loadingTimer = setInterval(function () {
+      loadingBarWidth += 3;
+      if (loadingBarWidth > MAX_LOADING_WIDTH) {
+        loadingBarWidth = MAX_LOADING_WIDTH;
+      }
+      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    }, 500);
+  }, false);
+
+  window.addEventListener('pjax:complete', function () {
+    clearInterval(loadingTimer);
+    $('.loading-bar__progress').css('width', '100%');
+    $('.loading-bar').removeClass('loading');
+    setTimeout(function () {
+      $('.loading-bar__progress').css('width', '0');
+    }, 400);
+    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
+      $(this).remove();
+    });
+    $('script[data-pjax], #pjax-reload script').each(function () {
+      $(this).parent().append($(this).remove());
+    });
+
+    if (Stun.utils.pjaxReloadBoot) {
+      Stun.utils.pjaxReloadBoot();
+    }
+    if (Stun.utils.pjaxReloadScroll) {
+      Stun.utils.pjaxReloadScroll();
+    }
+    if (Stun.utils.pjaxReloadSidebar) {
+      Stun.utils.pjaxReloadSidebar();
+    }
+    if (false) {
+      if (Stun.utils.pjaxReloadHeader) {
+        Stun.utils.pjaxReloadHeader();
+      }
+      if (Stun.utils.pjaxReloadScrollIcon) {
+        Stun.utils.pjaxReloadScrollIcon();
+      }
+      if (Stun.utils.pjaxReloadLocalSearch) {
+        Stun.utils.pjaxReloadLocalSearch();
+      }
+    }
+  }, false);
+}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/quicklink@1.0.1/dist/quicklink.umd.js"></script><script>function initQuicklink() {
+  quicklink({
+    timeout: '10000',
+    priority: true,
+    ignores: [uri => uri.includes('#'), uri => uri === 'http://120.48.161.105:4000/2023/08/31/%E5%BE%AE%E5%89%8D%E7%AB%AF-monorepo-%E6%97%A0%E7%95%8C/', /\/api\/?/,uri => uri.includes('.xml'),uri => uri.includes('.zip'),(uri, el) => el.hasAttribute('nofollow'),(uri, el) => el.hasAttribute('noprefetch')]
+  });
+}
+
+if (true || false) {
+  initQuicklink();
+} else {
+  window.addEventListener('DOMContentLoaded', initQuicklink, false);
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script data-pjax="">function loadUtterances() {
+  var d = document, s = d.createElement('script');
+  var container = d.getElementById('utterances-container');
+
+  if (!container) {
+    return;
+  }
+  s.src = 'https://utteranc.es/client.js';
+  s.setAttribute('repo', 'minzhongshi/minzhongshi.github.io');
+  s.setAttribute('issue-term', 'title');
+  s.setAttribute('label', 'utterances');
+  s.setAttribute('theme', 'github-light');
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('async', '');
+  if (true) {
+    s.setAttribute('data-pjax-rm', '');
+  }
+  container.append(s);
+}
+
+if (true) {
+  loadUtterances();
+} else {
+  window.addEventListener('DOMContentLoaded', loadUtterances, false);
+}</script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script type="application/json" src="/search.json"></script></body></html>

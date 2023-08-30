@@ -6,7 +6,7 @@
   <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
-  <updated>2023-08-30T00:40:31.117Z</updated>
+  <updated>2023-08-30T18:54:15.084Z</updated>
   <id>http://120.48.161.105:4000/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微前端-monorepo-无界</title>
+    <link href="http://120.48.161.105:4000/2023/08/31/%E5%BE%AE%E5%89%8D%E7%AB%AF-monorepo-%E6%97%A0%E7%95%8C/"/>
+    <id>http://120.48.161.105:4000/2023/08/31/%E5%BE%AE%E5%89%8D%E7%AB%AF-monorepo-%E6%97%A0%E7%95%8C/</id>
+    <published>2023-08-30T18:50:59.213Z</published>
+    <updated>2023-08-30T18:54:15.084Z</updated>
+    
+    
+    <summary type="html">如今项目体积越来越大，导致维护成本增加，后端以微服务形式将项目拆成不同的服务，前端也需要对项目进行拆解，以达到长久发展的可能性。 在我理解中，微前端就是将前端以某种规则进行隔离，在隔离中也能进行远程访问其他小应用，不受技术栈的影响，带来更多的可能性与可维护性。</summary>
+    
+    
+    
+    <category term="微前端" scheme="http://120.48.161.105:4000/categories/%E5%BE%AE%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="无界" scheme="http://120.48.161.105:4000/categories/%E5%BE%AE%E5%89%8D%E7%AB%AF/%E6%97%A0%E7%95%8C/"/>
+    
+    
+    <category term="微前端" scheme="http://120.48.161.105:4000/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="无界" scheme="http://120.48.161.105:4000/tags/%E6%97%A0%E7%95%8C/"/>
+    
+    <category term="monorepo" scheme="http://120.48.161.105:4000/tags/monorepo/"/>
+    
+    <category term="pnpm" scheme="http://120.48.161.105:4000/tags/pnpm/"/>
+    
+    <category term="幽灵依赖" scheme="http://120.48.161.105:4000/tags/%E5%B9%BD%E7%81%B5%E4%BE%9D%E8%B5%96/"/>
+    
+    <category term="依赖安装耗时长" scheme="http://120.48.161.105:4000/tags/%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E8%80%97%E6%97%B6%E9%95%BF/"/>
+    
+  </entry>
   
   <entry>
     <title>Vue3 学习 组合式API setup语法糖 响应式 指令 DIFF（一）</title>
@@ -642,35 +673,6 @@
     <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
     
     <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>包含min函数的栈</title>
-    <link href="http://120.48.161.105:4000/2023/06/30/%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88/"/>
-    <id>http://120.48.161.105:4000/2023/06/30/%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88/</id>
-    <published>2023-06-29T16:37:32.303Z</published>
-    <updated>2023-06-29T16:37:32.307Z</updated>
-    
-    
-    <summary type="html">定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的 min 函数在该栈中，调用 min、push 及 pop 的时间复杂度都是 O(1)。</summary>
-    
-    
-    
-    <category term="力扣" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/"/>
-    
-    <category term="栈" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/%E6%A0%88/"/>
-    
-    
-    <category term="算法" scheme="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="简单" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95/"/>
-    
-    <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
-    
-    <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
-    
-    <category term="栈" scheme="http://120.48.161.105:4000/tags/%E6%A0%88/"/>
     
   </entry>
   
