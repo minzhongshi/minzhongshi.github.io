@@ -6,7 +6,7 @@
   <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
-  <updated>2023-08-30T18:54:15.084Z</updated>
+  <updated>2023-09-04T10:49:55.657Z</updated>
   <id>http://120.48.161.105:4000/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端面试题</title>
+    <link href="http://120.48.161.105:4000/2023/09/04/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <id>http://120.48.161.105:4000/2023/09/04/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/</id>
+    <published>2023-09-04T10:47:54.633Z</published>
+    <updated>2023-09-04T10:49:55.657Z</updated>
+    
+    
+    <summary type="html">本文主要记录在面试过程中，所遇到的题目。</summary>
+    
+    
+    
+    <category term="前端" scheme="http://120.48.161.105:4000/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="面试" scheme="http://120.48.161.105:4000/categories/%E5%89%8D%E7%AB%AF/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+    <category term="前端" scheme="http://120.48.161.105:4000/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="面试" scheme="http://120.48.161.105:4000/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+    <category term="Node" scheme="http://120.48.161.105:4000/tags/Node/"/>
+    
+    <category term="渲染" scheme="http://120.48.161.105:4000/tags/%E6%B8%B2%E6%9F%93/"/>
+    
+    <category term="事件" scheme="http://120.48.161.105:4000/tags/%E4%BA%8B%E4%BB%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>微前端-monorepo-无界</title>
@@ -642,37 +671,6 @@
     <category term="堆结构" scheme="http://120.48.161.105:4000/tags/%E5%A0%86%E7%BB%93%E6%9E%84/"/>
     
     <category term="堆排序" scheme="http://120.48.161.105:4000/tags/%E5%A0%86%E6%8E%92%E5%BA%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在排序数组中查找数字 I</title>
-    <link href="http://120.48.161.105:4000/2023/06/30/%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E6%95%B0%E5%AD%97%20I/"/>
-    <id>http://120.48.161.105:4000/2023/06/30/%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E6%95%B0%E5%AD%97%20I/</id>
-    <published>2023-06-29T16:37:32.341Z</published>
-    <updated>2023-06-29T16:37:32.344Z</updated>
-    
-    
-    <summary type="html">在排序数组中查找数字</summary>
-    
-    
-    
-    <category term="力扣" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/"/>
-    
-    <category term="数组" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/%E6%95%B0%E7%BB%84/"/>
-    
-    
-    <category term="算法" scheme="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="数组" scheme="http://120.48.161.105:4000/tags/%E6%95%B0%E7%BB%84/"/>
-    
-    <category term="二分" scheme="http://120.48.161.105:4000/tags/%E4%BA%8C%E5%88%86/"/>
-    
-    <category term="简单" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95/"/>
-    
-    <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
-    
-    <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
     
   </entry>
   
