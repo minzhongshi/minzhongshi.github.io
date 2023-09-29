@@ -1,0 +1,651 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="msvalidate.01" content="AFDB45CC21FD88E9C707C7C9162E5E5A"><meta name="baidu-site-verification" content="code-h3hQw6wxUc"><meta name="360-site-verification" content="1e4c79dee06e20b0af55fd4499a2d4a8"><meta name="sogou_site_verification" content="zG14f2yB7U"><meta name="description" content="本文记录OSI七层参考模型，和TCP&#x2F;IP基本介绍以及浏览器输入URL过程和CDN。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络-OSI、TCP、浏览器URL、CDN">
+<meta property="og:url" content="http://120.48.161.105:4000/2023/09/29/%E7%BD%91%E7%BB%9C-OSI%E3%80%81TCP%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8URL%E3%80%81CDN/index.html">
+<meta property="og:site_name" content="Min&#39;s Blog">
+<meta property="og:description" content="本文记录OSI七层参考模型，和TCP&#x2F;IP基本介绍以及浏览器输入URL过程和CDN。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/07552b8c729348138f6c7422cf58d271.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ff10894c817c4074953017d6b8212bed.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/855f196b644b4448a06d1d70f8e5aeee.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4f8c67d99de44f99bcf7a3f664794344.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/9623aeb7cf1b4ab590d9c16a339dc0ce.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/6bb4f2069cef431780f5ed2e7023eab6.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1555859b356143b2aa19dcc6266dd531.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/6998c9830e6347beb9e27f90ae9cdf5c.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5787a8a6df144b289bf38f05eacebc3a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d500a0033a4c4731a7e4a8fcdff0d611.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8250f7a638d940e59e52505afcdebfbc.png">
+<meta property="article:published_time" content="2023-09-29T06:25:29.311Z">
+<meta property="article:modified_time" content="2023-09-29T06:28:04.761Z">
+<meta property="article:author" content="史明忠">
+<meta property="article:tag" content="网络">
+<meta property="article:tag" content="OSI">
+<meta property="article:tag" content="TCP">
+<meta property="article:tag" content="URL">
+<meta property="article:tag" content="CDN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/07552b8c729348138f6c7422cf58d271.png"><title>网络-OSI、TCP、浏览器URL、CDN | Min's Blog</title><link ref="canonical" href="http://120.48.161.105:4000/2023/09/29/%E7%BD%91%E7%BB%9C-OSI%E3%80%81TCP%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8URL%E3%80%81CDN/"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?e5397e2608cbb991400432801c7a10f1';
+  hm.async = true;
+
+  if (true) {
+    hm.setAttribute('data-pjax', '');
+  }
+  var s = document.getElementsByTagName('script')[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: true,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: true,
+  pjax: {"avoidBanner":true},
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-tie"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-rocket"></i></span><span class="header-nav-menu-item__text">乐趣</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/technology-lottie/"><span class="header-nav-submenu-item__icon"><i class="fas fa-umbrella-beach"></i></span><span class="header-nav-submenu-item__text">动画</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-cog"></i></span><span class="header-nav-menu-item__text">组件</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/module-vue/"><span class="header-nav-submenu-item__icon"><i class="fas fa-users-cog"></i></span><span class="header-nav-submenu-item__text">Vue</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Min's Blog</div><div class="header-banner-info__subtitle">well begun is half done</div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">网络-OSI、TCP、浏览器URL、CDN</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-09-29</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-09-29</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.5k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">8分</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><meta name="referrer" content="no-referrer" />
+
+
+        <h1 id="前言"   >
+          <a href="#前言" class="heading-link"><i class="fas fa-link"></i></a><a href="#前言" class="headerlink" title="前言"></a>前言</h1>
+      <p>本文记录OSI七层参考模型，和TCP&#x2F;IP基本介绍以及浏览器输入URL过程和CDN。</p>
+<hr>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/07552b8c729348138f6c7422cf58d271.png"  alt="OSI、TCP">
+      </p>
+<hr>
+
+        <h1 id="一、OSI七层模型"   >
+          <a href="#一、OSI七层模型" class="heading-link"><i class="fas fa-link"></i></a><a href="#一、OSI七层模型" class="headerlink" title="一、OSI七层模型"></a>一、OSI七层模型</h1>
+      <p>七层参考模型分别是：应用层、表示层、会话层、传输层、网络层、数据链路层、物理层。</p>
+<ul>
+<li>应用层（报文）<br>最接近用户的一层，如使用ajax调用接口发送http请求、webSocket长连接、SSH协议等</li>
+<li>表示层（报文）<br>对数据进行解码和编码，将数据解析成计算机识别的语言</li>
+<li>会话层（报文）<br>是在发送方和接收方之间进行通讯时创建、维持、之后终止或断开连接的地方。</li>
+<li>传输层（数据段）<br>定义端口号，以及控流和校验。<ul>
+<li>TCP<br>  TCP是面向连接的协议且是可靠的，因为建立TCP连接需要通过三次握手四次挥手，这样虽然可靠，但是连接速度有所减慢</li>
+<li>UDP<br>  UDP具有实时性，传输效率比TCP高，但是不稳定，常用于直播、游戏</li>
+</ul>
+</li>
+<li>网络层<br>控制数据链路层与传输层之间的消息转发，建立、维护、终止网络连接。也就是说将数据链路层的数据转换为数据包进行传输，这一层定义了IP协议，通常我们使用的是IPV4。<ul>
+<li>寻址<br>  利用IP地址进行通讯，与MAC地址类似，但是MAC属于物理地址，IP属于网络地址</li>
+<li>路由<br>  在同一个网络不需要网络层，就可以完成通讯。而对于不同网络之间的通讯就必须借助网络层的设备（路由器），路由器以端对端的方式查找对应IP地址。</li>
+</ul>
+</li>
+<li>数据链路层<br>数据链路层把物理层传输的比特流，通过MAC地址（网卡唯一标识：物理地址）拼接比特组成的数据帧，以广播的形式进行传输，局域网内的所有计算机都能收到消息。</li>
+<li>物理层<br>物理层是直接和实物介质打交道的，这一层通过电、光、无线电波，获取对应的信号转换成二进制数据，单位为<strong>bit</strong>，称为传输<strong>比特流</strong></li>
+</ul>
+<hr>
+
+        <h1 id="二、TCP-x2F-IP和UDP"   >
+          <a href="#二、TCP-x2F-IP和UDP" class="heading-link"><i class="fas fa-link"></i></a><a href="#二、TCP-x2F-IP和UDP" class="headerlink" title="二、TCP&#x2F;IP和UDP"></a>二、TCP&#x2F;IP和UDP</h1>
+      
+        <h3 id="TCP"   >
+          <a href="#TCP" class="heading-link"><i class="fas fa-link"></i></a><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3>
+      
+        <h4 id="三次握手"   >
+          <a href="#三次握手" class="heading-link"><i class="fas fa-link"></i></a><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h4>
+      <p>TCP连接需要通过三次握手才能建立连接。</p>
+<p>名词解释：</p>
+<ul>
+<li>seq  序列号 随机生成</li>
+<li>ack 确认号 ack&#x3D;seq+1</li>
+<li>ACK 确定序列号有效</li>
+<li>SYN 发起新连接</li>
+</ul>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/ff10894c817c4074953017d6b8212bed.png"  alt="TCP三次握手">
+      </p>
+
+        <h4 id="四次挥手"   >
+          <a href="#四次挥手" class="heading-link"><i class="fas fa-link"></i></a><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h4>
+      <p>在关闭连接时，无论是客户端断开还是服务端断开需要通过四次挥手才能关闭TCP连接。在第三次挥手之前第二次挥手之后，会将未完成的请求完成，才会进行第三次挥手。<br>在进行第三次挥手的时候客户端会进入超时等待状态，进入超时等待是因为怕ACK丢失，导致连接无法关闭，等待状态会让服务端重新发送FIN。<br>名词解释：</p>
+<ul>
+<li>seq  序列号 随机生成</li>
+<li>ack 确认号 ack&#x3D;seq+1</li>
+<li>ACK 确定序列号有效</li>
+<li>SYN 发起新连接</li>
+<li>FIN 完成</li>
+</ul>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/855f196b644b4448a06d1d70f8e5aeee.png"  alt="四次挥手">
+      </p>
+<hr>
+
+        <h1 id="三、-浏览器输入URL"   >
+          <a href="#三、-浏览器输入URL" class="heading-link"><i class="fas fa-link"></i></a><a href="#三、-浏览器输入URL" class="headerlink" title="三、 浏览器输入URL"></a>三、 浏览器输入URL</h1>
+      
+        <h2 id="URL"   >
+          <a href="#URL" class="heading-link"><i class="fas fa-link"></i></a><a href="#URL" class="headerlink" title="URL"></a>URL</h2>
+      <p>URL由三部分组成：协议、域名、和请求资源路径<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/4f8c67d99de44f99bcf7a3f664794344.png"  alt="URL">
+      </p>
+
+        <h2 id="DNS查询"   >
+          <a href="#DNS查询" class="heading-link"><i class="fas fa-link"></i></a><a href="#DNS查询" class="headerlink" title="DNS查询"></a>DNS查询</h2>
+      <p>DNS是将ip与域名做映射关系，这一步就是通过域名查找ip地址<br>DNS查询会以以下几个步骤进行，其中一步找到则跳到建立连接部分。</p>
+<ul>
+<li><p>浏览器自身DNS<br> 
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/9623aeb7cf1b4ab590d9c16a339dc0ce.png"  alt="浏览器DNS">
+      </p>
+</li>
+<li><p>操作系统DNS</p>
+</li>
+<li><p>本地hosts文件</p>
+</li>
+<li><p>向域名服务器发送请求<br>向域名服务器发送请求分为三步，首先在根域名服务器找如果没有对应ip就到顶级域名服务器再没有就到权威域名服务器找：<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/6bb4f2069cef431780f5ed2e7023eab6.png"  alt="域名服务器">
+      </p>
+<ul>
+<li><p>根域名<br>  
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/1555859b356143b2aa19dcc6266dd531.png"  alt="根域名">
+      </p>
+</li>
+<li><p>顶级域名<br>  
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/6998c9830e6347beb9e27f90ae9cdf5c.png"  alt="顶级域名">
+      </p>
+</li>
+<li><p>权威域名<br>  
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/5787a8a6df144b289bf38f05eacebc3a.png"  alt="权威域名">
+      </p>
+</li>
+</ul>
+</li>
+</ul>
+
+        <h2 id="TCP-x2F-IP连接"   >
+          <a href="#TCP-x2F-IP连接" class="heading-link"><i class="fas fa-link"></i></a><a href="#TCP-x2F-IP连接" class="headerlink" title="TCP&#x2F;IP连接"></a>TCP&#x2F;IP连接</h2>
+      
+        <h2 id="浏览器缓存"   >
+          <a href="#浏览器缓存" class="heading-link"><i class="fas fa-link"></i></a><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h2>
+      
+        <h3 id="强缓存"   >
+          <a href="#强缓存" class="heading-link"><i class="fas fa-link"></i></a><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h3>
+      <p>让浏览器强制缓存服务端提供的资源,一般是js、css等静态资源，在第一次请求后，这个请求就直接会在浏览器缓存中找，分为磁盘缓存和内存缓存，在返回状态码后有标记，在通过磁盘读取缓存后有几率读取浏览器内存中都缓存。</p>
+<p>需要后端配置其中一个响应头字段：</p>
+<ul>
+<li>Cache-Control: max-age&#x3D;432000</li>
+<li>Expires: Wed,21 Oct 2015 07:28:00 GMT</li>
+</ul>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/d500a0033a4c4731a7e4a8fcdff0d611.png"  alt="强缓存">
+      </p>
+
+        <h3 id="协商缓存"   >
+          <a href="#协商缓存" class="heading-link"><i class="fas fa-link"></i></a><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h3>
+      <p>后端通过两个字段确定缓存的时间：</p>
+<ul>
+<li>Last-Modified: Set, 21 Oct 2015 07:30:00 GMT  (最后被修改的时间)</li>
+<li>if-Modified-Sice: Set, 21 Oct 2015 07:30:00 GMT<br>或者：</li>
+<li>ETAG: “0.0.1”</li>
+<li>if-None-Match: “0.0.1”<br>通过比较两个字段的值，确定资源是否改动，没改动就返回304，否则将返回200并带上最新资源，ETAG可带版本号或者文件hash。</li>
+</ul>
+
+        <h3 id="断开连接"   >
+          <a href="#断开连接" class="heading-link"><i class="fas fa-link"></i></a><a href="#断开连接" class="headerlink" title="断开连接"></a>断开连接</h3>
+      
+        <h2 id="浏览器渲染"   >
+          <a href="#浏览器渲染" class="heading-link"><i class="fas fa-link"></i></a><a href="#浏览器渲染" class="headerlink" title="浏览器渲染"></a>浏览器渲染</h2>
+      <ul>
+<li><p>解析HTML进行AST解析成DOM树</p>
+</li>
+<li><p>将css样式转换成浏览器认识的样式，计算出DOM节点样式</p>
+</li>
+</ul>
+<p><strong>回流</strong><br>当元素尺寸、结构、或属性发生变化时，浏览器将重新渲染部分或者全部文档</p>
+<p>导致回流操作：</p>
+<ul>
+<li>首次渲染</li>
+<li>浏览器窗口发生改变</li>
+<li>元素尺寸、位置发生改变</li>
+<li>元素内容变化</li>
+<li>元素字体大小</li>
+<li>添加或者删除可见的DOM元素</li>
+<li>激活CSS伪类（:hover）</li>
+<li>查询某些属性或者调用某些方法<ul>
+<li>clientWidth、clientHeight、clienTop、clienLeft</li>
+<li>offsetWidth</li>
+<li>scrollwidth</li>
+<li>getComputedStyle()</li>
+<li>getBoundingClientRect()</li>
+<li>scrollTo()</li>
+</ul>
+</li>
+</ul>
+<p><strong>重绘</strong><br>当页面元素样式的改变并不影响他在文档流中的位置时，浏览器会将新样式赋予给元素并重绘它</p>
+<ul>
+<li>JS解析<br>JS的解析通过V8引擎，通过解析器解析成AST语法树，再转换成字节码（兼容跨平台），通过解释器（JIT）编译代码后变成机器码，运行到CPU。</li>
+</ul>
+<hr>
+
+        <h1 id="四、-CDN"   >
+          <a href="#四、-CDN" class="heading-link"><i class="fas fa-link"></i></a><a href="#四、-CDN" class="headerlink" title="四、 CDN"></a>四、 CDN</h1>
+      <p>内容分发网络，CDN是用来优化网络资源请求时间的，在DNS解析的时候会去距离比较近的服务器查找。</p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/8250f7a638d940e59e52505afcdebfbc.png"  alt="CDN">
+      </p>
+<hr>
+
+        <h1 id="总结"   >
+          <a href="#总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
+      </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E7%BD%91%E7%BB%9C/">网络</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/OSI/">OSI</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/TCP/">TCP</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/URL/">URL</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/CDN/">CDN</a></span></div><div class="post-reward reward"><div class="reward-button">请我喝杯咖啡~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/images/collection/ZF.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/images/collection/WX.jpg"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2023/09/27/Vue-Router/"><span class="paginator-prev__text">Vue-Router</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="utterances-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">
+          前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81OSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">
+          一、OSI七层模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81TCP-x2F-IP%E5%92%8CUDP"><span class="toc-number">3.</span> <span class="toc-text">
+          二、TCP&#x2F;IP和UDP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP"><span class="toc-number">3.0.1.</span> <span class="toc-text">
+          TCP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-number">3.0.1.1.</span> <span class="toc-text">
+          三次握手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-number">3.0.1.2.</span> <span class="toc-text">
+          四次挥手</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5URL"><span class="toc-number">4.</span> <span class="toc-text">
+          三、 浏览器输入URL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#URL"><span class="toc-number">4.1.</span> <span class="toc-text">
+          URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DNS%E6%9F%A5%E8%AF%A2"><span class="toc-number">4.2.</span> <span class="toc-text">
+          DNS查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP-x2F-IP%E8%BF%9E%E6%8E%A5"><span class="toc-number">4.3.</span> <span class="toc-text">
+          TCP&#x2F;IP连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98"><span class="toc-number">4.4.</span> <span class="toc-text">
+          浏览器缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E7%BC%93%E5%AD%98"><span class="toc-number">4.4.1.</span> <span class="toc-text">
+          强缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98"><span class="toc-number">4.4.2.</span> <span class="toc-text">
+          协商缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E5%BC%80%E8%BF%9E%E6%8E%A5"><span class="toc-number">4.4.3.</span> <span class="toc-text">
+          断开连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93"><span class="toc-number">4.5.</span> <span class="toc-text">
+          浏览器渲染</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-CDN"><span class="toc-number">5.</span> <span class="toc-text">
+          四、 CDN</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">
+          总结</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/apple-touch-icon.png" alt="avatar"></div><p class="sidebar-ov-author__text">积少成多</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/minzhongshi" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:2240941938@qq.com" target="_blank" rel="noopener" data-popover="发送邮件" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a><a class="sidebar-ov-social-item" href="tencent://message?uin=2240941938" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://blog.csdn.net/smznbhh" target="_blank" rel="noopener" data-popover="CSDN" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">C</span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">51</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">61</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">113</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022~2023</span><span class="footer__icon"><i class="fas fa-yin-yang"></i></span><span>MinZhongShi All Rights Reserved</span><span class="footer__devider">|</span><span>备案 XXXXXXXX 号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>托管于 <a href="https://github.com/minzhongshi/" rel="noopener" target="_blank">Github Pages</a>）</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
+  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
+  // 加载进度条的计时器
+  var loadingTimer = null;
+
+  // 重置页面 Y 方向上的滚动偏移量
+  document.addEventListener('pjax:send', function () {
+    $('.header-nav-menu').removeClass('show');
+    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
+      $('html').velocity('scroll', {
+        duration: 500,
+        offset: $('#header').height(),
+        easing: 'easeInOutCubic'
+      });
+    }
+
+    var loadingBarWidth = 20;
+    var MAX_LOADING_WIDTH = 95;
+
+    $('.loading-bar').addClass('loading');
+    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    clearInterval(loadingTimer);
+    loadingTimer = setInterval(function () {
+      loadingBarWidth += 3;
+      if (loadingBarWidth > MAX_LOADING_WIDTH) {
+        loadingBarWidth = MAX_LOADING_WIDTH;
+      }
+      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    }, 500);
+  }, false);
+
+  window.addEventListener('pjax:complete', function () {
+    clearInterval(loadingTimer);
+    $('.loading-bar__progress').css('width', '100%');
+    $('.loading-bar').removeClass('loading');
+    setTimeout(function () {
+      $('.loading-bar__progress').css('width', '0');
+    }, 400);
+    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
+      $(this).remove();
+    });
+    $('script[data-pjax], #pjax-reload script').each(function () {
+      $(this).parent().append($(this).remove());
+    });
+
+    if (Stun.utils.pjaxReloadBoot) {
+      Stun.utils.pjaxReloadBoot();
+    }
+    if (Stun.utils.pjaxReloadScroll) {
+      Stun.utils.pjaxReloadScroll();
+    }
+    if (Stun.utils.pjaxReloadSidebar) {
+      Stun.utils.pjaxReloadSidebar();
+    }
+    if (false) {
+      if (Stun.utils.pjaxReloadHeader) {
+        Stun.utils.pjaxReloadHeader();
+      }
+      if (Stun.utils.pjaxReloadScrollIcon) {
+        Stun.utils.pjaxReloadScrollIcon();
+      }
+      if (Stun.utils.pjaxReloadLocalSearch) {
+        Stun.utils.pjaxReloadLocalSearch();
+      }
+    }
+  }, false);
+}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/quicklink@1.0.1/dist/quicklink.umd.js"></script><script>function initQuicklink() {
+  quicklink({
+    timeout: '10000',
+    priority: true,
+    ignores: [uri => uri.includes('#'), uri => uri === 'http://120.48.161.105:4000/2023/09/29/%E7%BD%91%E7%BB%9C-OSI%E3%80%81TCP%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8URL%E3%80%81CDN/', /\/api\/?/,uri => uri.includes('.xml'),uri => uri.includes('.zip'),(uri, el) => el.hasAttribute('nofollow'),(uri, el) => el.hasAttribute('noprefetch')]
+  });
+}
+
+if (true || false) {
+  initQuicklink();
+} else {
+  window.addEventListener('DOMContentLoaded', initQuicklink, false);
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script data-pjax="">function loadUtterances() {
+  var d = document, s = d.createElement('script');
+  var container = d.getElementById('utterances-container');
+
+  if (!container) {
+    return;
+  }
+  s.src = 'https://utteranc.es/client.js';
+  s.setAttribute('repo', 'minzhongshi/minzhongshi.github.io');
+  s.setAttribute('issue-term', 'title');
+  s.setAttribute('label', 'utterances');
+  s.setAttribute('theme', 'github-light');
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('async', '');
+  if (true) {
+    s.setAttribute('data-pjax-rm', '');
+  }
+  container.append(s);
+}
+
+if (true) {
+  loadUtterances();
+} else {
+  window.addEventListener('DOMContentLoaded', loadUtterances, false);
+}</script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script type="application/json" src="/search.json"></script></body></html>
