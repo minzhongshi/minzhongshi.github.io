@@ -1,0 +1,597 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="msvalidate.01" content="AFDB45CC21FD88E9C707C7C9162E5E5A"><meta name="baidu-site-verification" content="code-h3hQw6wxUc"><meta name="360-site-verification" content="1e4c79dee06e20b0af55fd4499a2d4a8"><meta name="sogou_site_verification" content="zG14f2yB7U"><meta name="description" content="本文记录了，跨域问题在前后端的解决方法，以及不同环境下的解决方案。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络-跨域解决">
+<meta property="og:url" content="http://120.48.161.105:4000/2023/09/30/%E7%BD%91%E7%BB%9C-%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3/index.html">
+<meta property="og:site_name" content="Min&#39;s Blog">
+<meta property="og:description" content="本文记录了，跨域问题在前后端的解决方法，以及不同环境下的解决方案。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/525c0791e8d04882b0c00b76ce174079.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c0ff6a10745c46929f4df6d63024c22a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c47b56366fc042afb5cb6b0bfcff4cac.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c24c308cf5b44140a32f633071d6cab2.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ac3ecaf69da34ab7b540e652650a4734.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4169d65de09d4dce887708b89228ec20.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/826521dc8b0d4d0aba602df0e48788fe.png">
+<meta property="article:published_time" content="2023-09-29T22:59:23.012Z">
+<meta property="article:modified_time" content="2023-09-29T23:01:34.655Z">
+<meta property="article:author" content="史明忠">
+<meta property="article:tag" content="跨域">
+<meta property="article:tag" content="请求转发">
+<meta property="article:tag" content="网络">
+<meta property="article:tag" content="JSONP">
+<meta property="article:tag" content="Nginx">
+<meta property="article:tag" content="同源策略">
+<meta property="article:tag" content="简单请求">
+<meta property="article:tag" content="预检请求">
+<meta property="article:tag" content="代理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/525c0791e8d04882b0c00b76ce174079.png"><title>网络-跨域解决 | Min's Blog</title><link ref="canonical" href="http://120.48.161.105:4000/2023/09/30/%E7%BD%91%E7%BB%9C-%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3/"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?e5397e2608cbb991400432801c7a10f1';
+  hm.async = true;
+
+  if (true) {
+    hm.setAttribute('data-pjax', '');
+  }
+  var s = document.getElementsByTagName('script')[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: true,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: true,
+  pjax: {"avoidBanner":true},
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-tie"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-rocket"></i></span><span class="header-nav-menu-item__text">乐趣</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/technology-lottie/"><span class="header-nav-submenu-item__icon"><i class="fas fa-umbrella-beach"></i></span><span class="header-nav-submenu-item__text">动画</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-cog"></i></span><span class="header-nav-menu-item__text">组件</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/module-vue/"><span class="header-nav-submenu-item__icon"><i class="fas fa-users-cog"></i></span><span class="header-nav-submenu-item__text">Vue</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Min's Blog</div><div class="header-banner-info__subtitle">well begun is half done</div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">网络-跨域解决</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-09-30</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-09-30</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.4k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">9分</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><meta name="referrer" content="no-referrer" />
+
+
+
+        <h1 id="前言"   >
+          <a href="#前言" class="heading-link"><i class="fas fa-link"></i></a><a href="#前言" class="headerlink" title="前言"></a>前言</h1>
+      <p>本文主要介绍跨域问题介绍并提供了四种解决办法。</p>
+<hr>
+
+        <h1 id="一、跨域是什么？"   >
+          <a href="#一、跨域是什么？" class="heading-link"><i class="fas fa-link"></i></a><a href="#一、跨域是什么？" class="headerlink" title="一、跨域是什么？"></a>一、跨域是什么？</h1>
+      <p>准确的来说是浏览器存在跨域问题，浏览器为了安全考虑，也就是同源策略的限制，会拒绝跨域请求。<br>在这里同源策略是指：请求时拥有相同的协议、域名、端口，其中只要有一项不满足就被视为跨域。</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th align="center">主机（<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://www.smz.com)/" >http://www.smz.com）</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></th>
+<th align="center">是否跨域</th>
+<th align="center">原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://www.smz.com/" >https://www.smz.com</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></td>
+<td align="center">是</td>
+<td align="center">协议不同</td>
+</tr>
+<tr>
+<td align="center"><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://www.smz.com:8001/" >http://www.smz.com:8001</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></td>
+<td align="center">是</td>
+<td align="center">端口不同</td>
+</tr>
+<tr>
+<td align="center"><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://www.baidu.com/" >http://www.baidu.com</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></td>
+<td align="center">是</td>
+<td align="center">域名不同</td>
+</tr>
+<tr>
+<td align="center"><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://www.smz.com/index.html" >http://www.smz.com/index.html</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></td>
+<td align="center">否</td>
+<td align="center">符合三个条件</td>
+</tr>
+</tbody></table></div>
+<p>跨域产生：</p>
+<blockquote>
+<p>前端，这里直接请求，就会产生跨域问题</p>
+</blockquote>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;http://localhost:3000/api/json&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">json</span>()).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">       <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">   &#125;)</span><br></pre></td></tr></table></div></figure>
+
+<blockquote>
+<p>后端，这里不做处理直接返回数据</p>
+</blockquote>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/api/json&#x27;</span>,<span class="function">(<span class="params">req,res</span>)=&gt;</span>&#123;</span><br><span class="line">    res.<span class="title function_">send</span>(&#123;<span class="attr">name</span>:<span class="string">&#x27;smz&#x27;</span>&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></div></figure>
+
+<blockquote>
+<p>这里浏览器报错，是因为端口不一致导致跨域</p>
+</blockquote>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/525c0791e8d04882b0c00b76ce174079.png"  alt="跨域">
+      </p>
+<p>这里值得注意的是，在发送跨域请求时，浏览器会先发送一个<code>OPTIONS</code>请求（预检请求），用来获取服务器对跨域的支持情况。以下几种跨域请求都会触发预检请求，如果服务端在请求头中返回了适当的跨域头，则允许发送实际请求，否则拒绝。而其他简单请求则会正常发送。</p>
+<ul>
+<li>使用了非简单请求<br>简单请求包括：<code>GET</code>、<code>HEAD</code>、<code>POST</code>。<br>请求头部只包含以下字段：<code>Accept</code>、<code>Accept-Language</code>、<code>Content-Language</code>、<code>Content-Type</code>（仅限于<code>application/x-www-form-urlencoded</code>、<code>multipart/form-data</code>、<code>text/plain</code>）。</li>
+<li>自定义请求头部：跨域请求中的请求头部包含了自定义的字段</li>
+</ul>
+<hr>
+
+        <h1 id="二、跨域的解决"   >
+          <a href="#二、跨域的解决" class="heading-link"><i class="fas fa-link"></i></a><a href="#二、跨域的解决" class="headerlink" title="二、跨域的解决"></a>二、跨域的解决</h1>
+      
+        <h2 id="1-JSONP"   >
+          <a href="#1-JSONP" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-JSONP" class="headerlink" title="1.JSONP"></a>1.JSONP</h2>
+      <p>这种方式需要前后端一起协商解决，原理就是动态创建script标签，因为script标签src属性不受跨域限制。但是script标签只能发送get请求，是不安全的。</p>
+<p>后端返回的是一个函数 这个函数前端需先定义好 他会把返回的值注入到这个函数的参数中，其中具有代表性的就是百度搜索跨域请求就是jsonp实现的。</p>
+<blockquote>
+<p>前端：</p>
+</blockquote>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">let</span> text = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#text&#x27;</span>)</span><br><span class="line">    <span class="comment">// 动态创建script标签，添加scr请求地址拼接函数名称</span></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">jsonp</span> = (<span class="params">name</span>) =&gt;&#123;</span><br><span class="line">        <span class="keyword">let</span> script = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>)</span><br><span class="line">        script.<span class="property">src</span> = <span class="string">&#x27;http://localhost:3000/api/jsonp?callback=&#x27;</span> + name</span><br><span class="line">        <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(script)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="variable language_">window</span>[name] = <span class="function">(<span class="params">data</span>) =&gt;</span>&#123;</span><br><span class="line">                <span class="title function_">resolve</span>(data)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 利用函数接收返回的参数</span></span><br><span class="line">    <span class="title function_">jsonp</span>(<span class="string">`callback<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>().getTime()&#125;</span>`</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">        text.<span class="property">textContent</span> = res</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></div></figure>
+
+<blockquote>
+<p>后端：这里用Node</p>
+</blockquote>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>()</span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/api/jsonp&#x27;</span>,<span class="function">(<span class="params">req,res</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;callback&#125; = req.<span class="property">query</span> <span class="comment">// 函数名</span></span><br><span class="line">    res.<span class="title function_">send</span>(<span class="string">`<span class="subst">$&#123;callback&#125;</span>(&#x27;hello jsonp&#x27;)`</span>) <span class="comment">//返回并将数据充当函数参数返回</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">3000</span>,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;server is running&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/c0ff6a10745c46929f4df6d63024c22a.png"  alt="jsonp">
+      </p>
+<p>跨域问题可以通过以下几种方式解决：</p>
+<ol>
+<li><p>JSONP（JSON with Padding）：通过动态创建<script>标签，将请求的数据作为参数传递给服务器，服务器返回一个包裹在函数调用中的数据，浏览器解析并执行该函数，从而实现跨域请求。</p>
+</li>
+<li><p>CORS（Cross-Origin Resource Sharing）：在服务器端设置响应头，允许指定的域名访问资源。通过在响应头中添加"Access-Control-Allow-Origin"字段，指定允许访问的域名，可以实现跨域请求。</p>
+</li>
+<li><p>代理服务器：在同一域名下设置一个代理服务器，将跨域请求转发到目标服务器，并将响应返回给浏览器。这种方式需要在服务器端进行配置。</p>
+</li>
+<li><p>WebSocket：使用WebSocket协议进行跨域通信，WebSocket协议不受同源策略的限制。</p>
+</li>
+</ol>
+<p>需要注意的是，跨域问题只存在于浏览器中，对于服务器端来说并不存在跨域问题。因此，以上解决方案都是在浏览器端实现的。</p>
+<hr>
+
+        <h2 id="2-前端代理dev环境"   >
+          <a href="#2-前端代理dev环境" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-前端代理dev环境" class="headerlink" title="2.前端代理dev环境"></a>2.前端代理dev环境</h2>
+      <p>利用vite或者webpack通过代理，将请求转发到对应的服务器上。</p>
+<blockquote>
+<p>vite或者webpack配置文件，这里用vite</p>
+</blockquote>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;defineConfig&#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">    <span class="attr">server</span>:&#123;</span><br><span class="line">        <span class="attr">proxy</span>:&#123;</span><br><span class="line">            <span class="string">&#x27;/api&#x27;</span>:&#123;</span><br><span class="line">                <span class="attr">target</span>:<span class="string">&#x27;http://localhost:3000&#x27;</span>,</span><br><span class="line">                <span class="attr">changeOrigin</span>:<span class="literal">true</span>,<span class="comment">// 开启跨域</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></div></figure>
+
+<blockquote>
+<p>请求：</p>
+</blockquote>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;/api/json&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">json</span>()).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">       <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">   &#125;)</span><br></pre></td></tr></table></div></figure>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/c47b56366fc042afb5cb6b0bfcff4cac.png"  alt="vite">
+      </p>
+<hr>
+<p>这里浏览器显示的是前端端口发送的请求，实际上已经通过请求转发给3000端口了，是vite开启了一个Node服务，在Node服务这里做了请求转发的操作。<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/c24c308cf5b44140a32f633071d6cab2.png"  alt="在这里插入图片描述">
+      </p>
+<p><code>只在开发环境生效，项目上线得用nginx</code></p>
+
+        <h2 id="3-后端设置请求头CORS"   >
+          <a href="#3-后端设置请求头CORS" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-后端设置请求头CORS" class="headerlink" title="3.后端设置请求头CORS"></a>3.后端设置请求头CORS</h2>
+      <p>后端设置跨域很简单，只要在返回请求头中带入允许跨域的接口地址就行<code>Access-Control-Allow-Origin</code></p>
+<p>将其值设置为*可以放行全部，但是不建议这样放行全部，可以指定ip。</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>,<span class="string">&#x27;*&#x27;</span>)</span><br></pre></td></tr></table></div></figure>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/ac3ecaf69da34ab7b540e652650a4734.png"  alt="CORS">
+      </p>
+<p>其实在产生跨域问题时，浏览器就提示我们这样的做法了</p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/4169d65de09d4dce887708b89228ec20.png"  alt="跨域">
+      </p>
+
+        <h2 id="4-运维nginx代理"   >
+          <a href="#4-运维nginx代理" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-运维nginx代理" class="headerlink" title="4.运维nginx代理"></a>4.运维nginx代理</h2>
+      <p>在项目上线时，通过nginx代理进行请求转发。</p>
+<blockquote>
+<p>在nginx配置文件nginx.conf中加入代理配置</p>
+</blockquote>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location /api &#123;</span><br><span class="line">          proxy_pass <span class="attr">http</span>:<span class="comment">//127.0.0.1:5000;</span></span><br><span class="line">      &#125;</span><br></pre></td></tr></table></div></figure>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/826521dc8b0d4d0aba602df0e48788fe.png"  alt="nginx">
+      </p>
+<hr>
+
+        <h1 id="总结"   >
+          <a href="#总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
+      <p>本文记录了，跨域问题在前后端的解决方法，以及不同环境下的解决方案。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E8%B7%A8%E5%9F%9F/">跨域</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91/">请求转发</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E7%BD%91%E7%BB%9C/">网络</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/JSONP/">JSONP</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/Nginx/">Nginx</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/">同源策略</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95%E8%AF%B7%E6%B1%82/">简单请求</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E9%A2%84%E6%A3%80%E8%AF%B7%E6%B1%82/">预检请求</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E4%BB%A3%E7%90%86/">代理</a></span></div><div class="post-reward reward"><div class="reward-button">请我喝杯咖啡~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/images/collection/ZF.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/images/collection/WX.jpg"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2023/09/29/%E7%BD%91%E7%BB%9C-OSI%E3%80%81TCP%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8URL%E3%80%81CDN/"><span class="paginator-prev__text">网络-OSI、TCP、浏览器URL、CDN</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="utterances-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">
+          前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%B7%A8%E5%9F%9F%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">
+          一、跨域是什么？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%B7%A8%E5%9F%9F%E7%9A%84%E8%A7%A3%E5%86%B3"><span class="toc-number">3.</span> <span class="toc-text">
+          二、跨域的解决</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-JSONP"><span class="toc-number">3.1.</span> <span class="toc-text">
+          1.JSONP</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/apple-touch-icon.png" alt="avatar"></div><p class="sidebar-ov-author__text">积少成多</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/minzhongshi" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:2240941938@qq.com" target="_blank" rel="noopener" data-popover="发送邮件" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a><a class="sidebar-ov-social-item" href="tencent://message?uin=2240941938" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://blog.csdn.net/smznbhh" target="_blank" rel="noopener" data-popover="CSDN" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">C</span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">52</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">62</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">119</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022~2023</span><span class="footer__icon"><i class="fas fa-yin-yang"></i></span><span>MinZhongShi All Rights Reserved</span><span class="footer__devider">|</span><span>备案 XXXXXXXX 号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>托管于 <a href="https://github.com/minzhongshi/" rel="noopener" target="_blank">Github Pages</a>）</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
+  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
+  // 加载进度条的计时器
+  var loadingTimer = null;
+
+  // 重置页面 Y 方向上的滚动偏移量
+  document.addEventListener('pjax:send', function () {
+    $('.header-nav-menu').removeClass('show');
+    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
+      $('html').velocity('scroll', {
+        duration: 500,
+        offset: $('#header').height(),
+        easing: 'easeInOutCubic'
+      });
+    }
+
+    var loadingBarWidth = 20;
+    var MAX_LOADING_WIDTH = 95;
+
+    $('.loading-bar').addClass('loading');
+    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    clearInterval(loadingTimer);
+    loadingTimer = setInterval(function () {
+      loadingBarWidth += 3;
+      if (loadingBarWidth > MAX_LOADING_WIDTH) {
+        loadingBarWidth = MAX_LOADING_WIDTH;
+      }
+      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    }, 500);
+  }, false);
+
+  window.addEventListener('pjax:complete', function () {
+    clearInterval(loadingTimer);
+    $('.loading-bar__progress').css('width', '100%');
+    $('.loading-bar').removeClass('loading');
+    setTimeout(function () {
+      $('.loading-bar__progress').css('width', '0');
+    }, 400);
+    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
+      $(this).remove();
+    });
+    $('script[data-pjax], #pjax-reload script').each(function () {
+      $(this).parent().append($(this).remove());
+    });
+
+    if (Stun.utils.pjaxReloadBoot) {
+      Stun.utils.pjaxReloadBoot();
+    }
+    if (Stun.utils.pjaxReloadScroll) {
+      Stun.utils.pjaxReloadScroll();
+    }
+    if (Stun.utils.pjaxReloadSidebar) {
+      Stun.utils.pjaxReloadSidebar();
+    }
+    if (false) {
+      if (Stun.utils.pjaxReloadHeader) {
+        Stun.utils.pjaxReloadHeader();
+      }
+      if (Stun.utils.pjaxReloadScrollIcon) {
+        Stun.utils.pjaxReloadScrollIcon();
+      }
+      if (Stun.utils.pjaxReloadLocalSearch) {
+        Stun.utils.pjaxReloadLocalSearch();
+      }
+    }
+  }, false);
+}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/quicklink@1.0.1/dist/quicklink.umd.js"></script><script>function initQuicklink() {
+  quicklink({
+    timeout: '10000',
+    priority: true,
+    ignores: [uri => uri.includes('#'), uri => uri === 'http://120.48.161.105:4000/2023/09/30/%E7%BD%91%E7%BB%9C-%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3/', /\/api\/?/,uri => uri.includes('.xml'),uri => uri.includes('.zip'),(uri, el) => el.hasAttribute('nofollow'),(uri, el) => el.hasAttribute('noprefetch')]
+  });
+}
+
+if (true || false) {
+  initQuicklink();
+} else {
+  window.addEventListener('DOMContentLoaded', initQuicklink, false);
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script data-pjax="">function loadUtterances() {
+  var d = document, s = d.createElement('script');
+  var container = d.getElementById('utterances-container');
+
+  if (!container) {
+    return;
+  }
+  s.src = 'https://utteranc.es/client.js';
+  s.setAttribute('repo', 'minzhongshi/minzhongshi.github.io');
+  s.setAttribute('issue-term', 'title');
+  s.setAttribute('label', 'utterances');
+  s.setAttribute('theme', 'github-light');
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('async', '');
+  if (true) {
+    s.setAttribute('data-pjax-rm', '');
+  }
+  container.append(s);
+}
+
+if (true) {
+  loadUtterances();
+} else {
+  window.addEventListener('DOMContentLoaded', loadUtterances, false);
+}</script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script type="application/json" src="/search.json"></script></body></html>

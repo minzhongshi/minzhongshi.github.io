@@ -6,7 +6,7 @@
   <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
-  <updated>2023-09-29T06:28:04.761Z</updated>
+  <updated>2023-09-29T23:01:34.655Z</updated>
   <id>http://120.48.161.105:4000/</id>
   
   <author>
@@ -15,6 +15,43 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络-跨域解决</title>
+    <link href="http://120.48.161.105:4000/2023/09/30/%E7%BD%91%E7%BB%9C-%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3/"/>
+    <id>http://120.48.161.105:4000/2023/09/30/%E7%BD%91%E7%BB%9C-%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3/</id>
+    <published>2023-09-29T22:59:23.012Z</published>
+    <updated>2023-09-29T23:01:34.655Z</updated>
+    
+    
+    <summary type="html">本文记录了，跨域问题在前后端的解决方法，以及不同环境下的解决方案。</summary>
+    
+    
+    
+    <category term="网络" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="跨域" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E7%BB%9C/%E8%B7%A8%E5%9F%9F/"/>
+    
+    
+    <category term="跨域" scheme="http://120.48.161.105:4000/tags/%E8%B7%A8%E5%9F%9F/"/>
+    
+    <category term="请求转发" scheme="http://120.48.161.105:4000/tags/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91/"/>
+    
+    <category term="网络" scheme="http://120.48.161.105:4000/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="JSONP" scheme="http://120.48.161.105:4000/tags/JSONP/"/>
+    
+    <category term="Nginx" scheme="http://120.48.161.105:4000/tags/Nginx/"/>
+    
+    <category term="同源策略" scheme="http://120.48.161.105:4000/tags/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/"/>
+    
+    <category term="简单请求" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95%E8%AF%B7%E6%B1%82/"/>
+    
+    <category term="预检请求" scheme="http://120.48.161.105:4000/tags/%E9%A2%84%E6%A3%80%E8%AF%B7%E6%B1%82/"/>
+    
+    <category term="代理" scheme="http://120.48.161.105:4000/tags/%E4%BB%A3%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>网络-OSI、TCP、浏览器URL、CDN</title>
@@ -684,37 +721,6 @@
     <category term="SpringCloud" scheme="http://120.48.161.105:4000/tags/SpringCloud/"/>
     
     <category term="Docker" scheme="http://120.48.161.105:4000/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>用两个栈实现队列</title>
-    <link href="http://120.48.161.105:4000/2023/06/30/%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/"/>
-    <id>http://120.48.161.105:4000/2023/06/30/%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/</id>
-    <published>2023-06-29T16:37:32.747Z</published>
-    <updated>2023-09-26T22:01:56.662Z</updated>
-    
-    
-    <summary type="html">用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，deleteHead操作返回 -1 )</summary>
-    
-    
-    
-    <category term="力扣" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/"/>
-    
-    <category term="栈" scheme="http://120.48.161.105:4000/categories/%E5%8A%9B%E6%89%A3/%E6%A0%88/"/>
-    
-    
-    <category term="算法" scheme="http://120.48.161.105:4000/tags/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="简单" scheme="http://120.48.161.105:4000/tags/%E7%AE%80%E5%8D%95/"/>
-    
-    <category term="offer" scheme="http://120.48.161.105:4000/tags/offer/"/>
-    
-    <category term="力扣" scheme="http://120.48.161.105:4000/tags/%E5%8A%9B%E6%89%A3/"/>
-    
-    <category term="栈" scheme="http://120.48.161.105:4000/tags/%E6%A0%88/"/>
-    
-    <category term="队列" scheme="http://120.48.161.105:4000/tags/%E9%98%9F%E5%88%97/"/>
     
   </entry>
   
