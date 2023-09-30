@@ -6,7 +6,7 @@
   <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
-  <updated>2023-09-29T23:01:34.655Z</updated>
+  <updated>2023-09-30T19:14:18.729Z</updated>
   <id>http://120.48.161.105:4000/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络-Ajax</title>
+    <link href="http://120.48.161.105:4000/2023/10/01/%E7%BD%91%E7%BB%9C-Ajax/"/>
+    <id>http://120.48.161.105:4000/2023/10/01/%E7%BD%91%E7%BB%9C-Ajax/</id>
+    <published>2023-09-30T19:11:10.652Z</published>
+    <updated>2023-09-30T19:14:18.729Z</updated>
+    
+    
+    <summary type="html">本文主要记录Ajax技术的简介，以及用法。</summary>
+    
+    
+    
+    <category term="网络" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="Ajax" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E7%BB%9C/Ajax/"/>
+    
+    
+    <category term="网络" scheme="http://120.48.161.105:4000/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="Ajax" scheme="http://120.48.161.105:4000/tags/Ajax/"/>
+    
+    <category term="node" scheme="http://120.48.161.105:4000/tags/node/"/>
+    
+    <category term="axios" scheme="http://120.48.161.105:4000/tags/axios/"/>
+    
+  </entry>
   
   <entry>
     <title>网络-跨域解决</title>
@@ -686,41 +713,6 @@
     <category term="Gateway" scheme="http://120.48.161.105:4000/tags/Gateway/"/>
     
     <category term="网关" scheme="http://120.48.161.105:4000/tags/%E7%BD%91%E5%85%B3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringCloud 学习-微服务简介</title>
-    <link href="http://120.48.161.105:4000/2023/06/30/SpringCloud(%E5%AD%A6%E4%B9%A0%20%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%AE%80%E4%BB%8B)%20%E4%B8%80/"/>
-    <id>http://120.48.161.105:4000/2023/06/30/SpringCloud(%E5%AD%A6%E4%B9%A0%20%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%AE%80%E4%BB%8B)%20%E4%B8%80/</id>
-    <published>2023-06-30T09:19:01.909Z</published>
-    <updated>2023-09-26T22:01:56.582Z</updated>
-    
-    
-    <summary type="html">本文记录学习SpringCloud微服务学习的过程，通过B站视频《谷粒商城》项目进行学习。</summary>
-    
-    
-    
-    <category term="SpingCloud" scheme="http://120.48.161.105:4000/categories/SpingCloud/"/>
-    
-    <category term="简介" scheme="http://120.48.161.105:4000/categories/SpingCloud/%E7%AE%80%E4%BB%8B/"/>
-    
-    <category term="微服务" scheme="http://120.48.161.105:4000/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
-    <category term="后端" scheme="http://120.48.161.105:4000/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="Docker" scheme="http://120.48.161.105:4000/categories/Docker/"/>
-    
-    <category term="项目" scheme="http://120.48.161.105:4000/categories/%E9%A1%B9%E7%9B%AE/"/>
-    
-    <category term="谷粒商城" scheme="http://120.48.161.105:4000/categories/%E9%A1%B9%E7%9B%AE/%E8%B0%B7%E7%B2%92%E5%95%86%E5%9F%8E/"/>
-    
-    
-    <category term="后端" scheme="http://120.48.161.105:4000/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="SpringCloud" scheme="http://120.48.161.105:4000/tags/SpringCloud/"/>
-    
-    <category term="Docker" scheme="http://120.48.161.105:4000/tags/Docker/"/>
     
   </entry>
   
