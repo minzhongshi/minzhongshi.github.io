@@ -6,7 +6,7 @@
   <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
-  <updated>2023-09-30T19:14:18.729Z</updated>
+  <updated>2023-10-01T23:28:31.882Z</updated>
   <id>http://120.48.161.105:4000/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络-fetch</title>
+    <link href="http://120.48.161.105:4000/2023/10/02/%E7%BD%91%E7%BB%9C-fetch/"/>
+    <id>http://120.48.161.105:4000/2023/10/02/%E7%BD%91%E7%BB%9C-fetch/</id>
+    <published>2023-10-01T23:25:42.430Z</published>
+    <updated>2023-10-01T23:28:31.882Z</updated>
+    
+    
+    <summary type="html">本文主要记录浏览器与服务端网络通讯 fetch 的介绍与使用，将完成get、post、进度、取消请求、和超时请求的功能实现。</summary>
+    
+    
+    
+    <category term="网络" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="fetch" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E7%BB%9C/fetch/"/>
+    
+    
+    <category term="网络" scheme="http://120.48.161.105:4000/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="fetch" scheme="http://120.48.161.105:4000/tags/fetch/"/>
+    
+    <category term="AbortController" scheme="http://120.48.161.105:4000/tags/AbortController/"/>
+    
+    <category term="AbortSignal" scheme="http://120.48.161.105:4000/tags/AbortSignal/"/>
+    
+    <category term="Promise" scheme="http://120.48.161.105:4000/tags/Promise/"/>
+    
+  </entry>
   
   <entry>
     <title>网络-Ajax</title>
@@ -672,47 +701,6 @@
     <category term="注册中心" scheme="http://120.48.161.105:4000/tags/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/"/>
     
     <category term="配置中心" scheme="http://120.48.161.105:4000/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringCloud 学习-Gateway</title>
-    <link href="http://120.48.161.105:4000/2023/06/30/SpringCloud%EF%BC%88%E5%AD%A6%E4%B9%A0%20Gateway%EF%BC%89%E4%B8%89/"/>
-    <id>http://120.48.161.105:4000/2023/06/30/SpringCloud%EF%BC%88%E5%AD%A6%E4%B9%A0%20Gateway%EF%BC%89%E4%B8%89/</id>
-    <published>2023-06-30T09:19:01.919Z</published>
-    <updated>2023-09-26T22:01:56.619Z</updated>
-    
-    
-    <summary type="html">网关的存在就是让请求动态路由到正确的服务，也可以在网关层做鉴权、限流、日志输出等功能的实现。</summary>
-    
-    
-    
-    <category term="SpingCloud" scheme="http://120.48.161.105:4000/categories/SpingCloud/"/>
-    
-    <category term="Gateway" scheme="http://120.48.161.105:4000/categories/SpingCloud/Gateway/"/>
-    
-    <category term="微服务" scheme="http://120.48.161.105:4000/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
-    <category term="后端" scheme="http://120.48.161.105:4000/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="组件" scheme="http://120.48.161.105:4000/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E7%BB%84%E4%BB%B6/"/>
-    
-    <category term="项目" scheme="http://120.48.161.105:4000/categories/%E9%A1%B9%E7%9B%AE/"/>
-    
-    <category term="谷粒商城" scheme="http://120.48.161.105:4000/categories/%E9%A1%B9%E7%9B%AE/%E8%B0%B7%E7%B2%92%E5%95%86%E5%9F%8E/"/>
-    
-    <category term="网关" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E5%85%B3/"/>
-    
-    <category term="Gateway" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E5%85%B3/Gateway/"/>
-    
-    
-    <category term="后端" scheme="http://120.48.161.105:4000/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="SpringCloud" scheme="http://120.48.161.105:4000/tags/SpringCloud/"/>
-    
-    <category term="Gateway" scheme="http://120.48.161.105:4000/tags/Gateway/"/>
-    
-    <category term="网关" scheme="http://120.48.161.105:4000/tags/%E7%BD%91%E5%85%B3/"/>
     
   </entry>
   
