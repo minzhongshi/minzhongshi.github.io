@@ -1,0 +1,568 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="msvalidate.01" content="AFDB45CC21FD88E9C707C7C9162E5E5A"><meta name="baidu-site-verification" content="code-h3hQw6wxUc"><meta name="360-site-verification" content="1e4c79dee06e20b0af55fd4499a2d4a8"><meta name="sogou_site_verification" content="zG14f2yB7U"><meta name="description" content="SSE（Server-Sent Events，服务器推送事件）是一种用于在浏览器和服务器之间实现实时、单向通信的Web技术。它允许服务器向客户端推送数据，而无需客户端发起请求。与传统的HTTP请求-响应模式不同，SSE建立了一种持久的连接，通过这个连接，服务器可以随时向客户端发送更新的数据。这种实时通信的方式非常适用于需要实时更新数据的应用，如聊天应用、股票行情、实时监控等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络-SSE">
+<meta property="og:url" content="http://120.48.161.105:4000/2023/10/03/%E7%BD%91%E7%BB%9C-SSE/index.html">
+<meta property="og:site_name" content="Min&#39;s Blog">
+<meta property="og:description" content="SSE（Server-Sent Events，服务器推送事件）是一种用于在浏览器和服务器之间实现实时、单向通信的Web技术。它允许服务器向客户端推送数据，而无需客户端发起请求。与传统的HTTP请求-响应模式不同，SSE建立了一种持久的连接，通过这个连接，服务器可以随时向客户端发送更新的数据。这种实时通信的方式非常适用于需要实时更新数据的应用，如聊天应用、股票行情、实时监控等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4c3b371275cc41ffacf4419314890b9c.gif">
+<meta property="article:published_time" content="2023-10-02T19:58:45.846Z">
+<meta property="article:modified_time" content="2023-10-02T20:00:51.685Z">
+<meta property="article:author" content="史明忠">
+<meta property="article:tag" content="网络">
+<meta property="article:tag" content="SSE">
+<meta property="article:tag" content="EventSource">
+<meta property="article:tag" content="ChatGPT">
+<meta property="article:tag" content="实时数据大屏">
+<meta property="article:tag" content="单工通讯">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/4c3b371275cc41ffacf4419314890b9c.gif"><title>网络-SSE | Min's Blog</title><link ref="canonical" href="http://120.48.161.105:4000/2023/10/03/%E7%BD%91%E7%BB%9C-SSE/"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?e5397e2608cbb991400432801c7a10f1';
+  hm.async = true;
+
+  if (true) {
+    hm.setAttribute('data-pjax', '');
+  }
+  var s = document.getElementsByTagName('script')[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: true,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: true,
+  pjax: {"avoidBanner":true},
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-tie"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-rocket"></i></span><span class="header-nav-menu-item__text">乐趣</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/technology-lottie/"><span class="header-nav-submenu-item__icon"><i class="fas fa-umbrella-beach"></i></span><span class="header-nav-submenu-item__text">动画</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-cog"></i></span><span class="header-nav-menu-item__text">组件</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/module-vue/"><span class="header-nav-submenu-item__icon"><i class="fas fa-users-cog"></i></span><span class="header-nav-submenu-item__text">Vue</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Min's Blog</div><div class="header-banner-info__subtitle">well begun is half done</div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">网络-SSE</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-10-03</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-10-03</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">2.1k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">14分</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><meta name="referrer" content="no-referrer" />
+
+
+        <h1 id="前言"   >
+          <a href="#前言" class="heading-link"><i class="fas fa-link"></i></a><a href="#前言" class="headerlink" title="前言"></a>前言</h1>
+      <p>本文主要记录SSE通讯的简介、使用、以及原理和一个ChatGPT返回数据的demo。</p>
+<hr>
+
+        <h1 id="一、SSE简介"   >
+          <a href="#一、SSE简介" class="heading-link"><i class="fas fa-link"></i></a><a href="#一、SSE简介" class="headerlink" title="一、SSE简介"></a>一、SSE简介</h1>
+      <p>SSE（Server-Sent Events，服务器推送事件）是一种用于在浏览器和服务器之间实现实时、单向通信的Web技术。它允许服务器向客户端推送数据，而无需客户端发起请求。与传统的HTTP请求-响应模式不同，SSE建立了一种持久的连接，通过这个连接，服务器可以随时向客户端发送更新的数据。这种实时通信的方式非常适用于需要实时更新数据的应用，如聊天应用、股票行情、实时监控等。</p>
+
+        <h2 id="1、SSE特点"   >
+          <a href="#1、SSE特点" class="heading-link"><i class="fas fa-link"></i></a><a href="#1、SSE特点" class="headerlink" title="1、SSE特点"></a>1、SSE特点</h2>
+      <ul>
+<li>简单易用：SSE使用简单的API，只需要创建<code>EventSource</code>对象并监听事件即可实现实时通信。</li>
+<li>单向通信：SSE是一种单向通信方式，只允许服务器向客户端推送数据，而不支持客户端向服务器发送请求。</li>
+<li>实时性：SSE建立了持久连接，服务器可以随时向客户端发送更新的数据，实现实时的数据推送。</li>
+<li>自动重连：如果连接中断，SSE会自动尝试重新建立连接，确保持久连接的稳定性。</li>
+<li>支持事件流：SSE使用事件流（event stream）的格式来传输数据，可以发送不同类型的事件，方便客户端进行处理。</li>
+</ul>
+<p>需要注意的是，SSE在一些旧版本的浏览器中可能不被完全支持。但是，大多数现代浏览器都支持SSE，并且可以通过<code>Polyfill</code>来提供兼容性支持。</p>
+
+        <h3 id="Polyfill"   >
+          <a href="#Polyfill" class="heading-link"><i class="fas fa-link"></i></a><a href="#Polyfill" class="headerlink" title="Polyfill"></a>Polyfill</h3>
+      <blockquote>
+<p>Polyfill是一种用于填充浏览器或环境中缺少的功能或API的代码。它可以在旧版本的浏览器或不支持某些新特性的环境中，提供对这些功能的兼容性支持。当新的Web标准或API被引入时，不同的浏览器或环境可能会以不同的速度进行支持和实现。在这种情况下，开发人员可以使用Polyfill来填充这些缺失的功能。</p>
+</blockquote>
+<blockquote>
+<p>Polyfill通常是一个JavaScript库或脚本，它通过在运行时检测浏览器或环境的功能支持情况，然后根据需要动态地添加缺失的功能或API的实现。例如，如果某个浏览器不支持ES6的新特性，如箭头函数、模板字符串等，开发人员可以使用相应的Polyfill来提供对这些特性的支持。Polyfill会检测浏览器是否支持这些特性，如果不支持，则在运行时添加相应的代码来实现这些特性。</p>
+</blockquote>
+<blockquote>
+<p>需要注意的是，Polyfill并不是一种通用的解决方案，它可能会增加页面的加载时间和代码体积。因此，在使用Polyfill时，需要根据具体的需求和目标浏览器进行选择和优化。</p>
+</blockquote>
+
+        <h2 id="2、SSE原理"   >
+          <a href="#2、SSE原理" class="heading-link"><i class="fas fa-link"></i></a><a href="#2、SSE原理" class="headerlink" title="2、SSE原理"></a>2、SSE原理</h2>
+      <ul>
+<li>客户端通过创建一个<code>EventSource</code>对象来与服务器建立连接。</li>
+<li>服务器通过发送特定格式的事件流（event stream）数据，将数据推送给客户端。</li>
+<li>客户端通过监听EventSource对象的事件，如<code>message</code>事件，来接收服务器发送的数据。</li>
+<li>服务器可以根据需要发送不同类型的事件，如<code>message</code>事件、<code>open</code>事件、<code>error</code>事件等。</li>
+</ul>
+
+        <h2 id="3、SSE技术实现："   >
+          <a href="#3、SSE技术实现：" class="heading-link"><i class="fas fa-link"></i></a><a href="#3、SSE技术实现：" class="headerlink" title="3、SSE技术实现："></a>3、SSE技术实现：</h2>
+      <p>SSE基于HTTP协议，利用其长连接特性，通过浏览器向服务器发送一个HTTP请求，建立一条持久化连接。</p>
+
+        <h2 id="4、SSE应用场景："   >
+          <a href="#4、SSE应用场景：" class="heading-link"><i class="fas fa-link"></i></a><a href="#4、SSE应用场景：" class="headerlink" title="4、SSE应用场景："></a>4、SSE应用场景：</h2>
+      <ul>
+<li>实时数据大屏（这种不需要客户端做操作的，只需要服务端将数据不断给客户端，并且需要长时间连接，并不一定需要<code>WebSocket</code>）</li>
+<li>chatGPT 返回数据</li>
+</ul>
+
+        <h2 id="5、EventSource"   >
+          <a href="#5、EventSource" class="heading-link"><i class="fas fa-link"></i></a><a href="#5、EventSource" class="headerlink" title="5、EventSource"></a>5、EventSource</h2>
+      <p><code>EventSource</code>是HTML5中的一个API，用于在客户端与服务器之间建立基于HTTP的单向通信。</p>
+
+        <h1 id="二、SSE使用"   >
+          <a href="#二、SSE使用" class="heading-link"><i class="fas fa-link"></i></a><a href="#二、SSE使用" class="headerlink" title="二、SSE使用"></a>二、SSE使用</h1>
+      
+        <h2 id="1、前端"   >
+          <a href="#1、前端" class="heading-link"><i class="fas fa-link"></i></a><a href="#1、前端" class="headerlink" title="1、前端"></a>1、前端</h2>
+      <ul>
+<li><p>创建<code>EventSource</code>对象：<br>在客户端的JavaScript代码中，使用<code>new EventSource(url，options)</code>来创建一个<code>EventSource</code>对象.</p>
+<ul>
+<li>其中url是服务器端的URL,必填。</li>
+<li><code>options</code>是配置项可选参数<code>Object</code>类型，常用配置包括：<ul>
+<li><code>withCredentials</code>:<code>Boolean</code>类型，标识是否允许发送<code>Coolie</code>和<code>HTTP</code>认证信息。默认<code>false</code></li>
+<li><code>headers</code>:<code>Object</code>类型，标识发送的请求头信息。</li>
+<li><code>retryInterval</code>:<code>Number</code>类型，标识与服务器失去连接后，重连时间间隔。默认1000毫秒<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sse = <span class="keyword">new</span> <span class="title class_">EventSource</span>(<span class="string">&#x27;http://localhost:3000/api/sse&#x27;</span>,&#123;</span><br><span class="line">               <span class="attr">withCredentials</span>:<span class="literal">false</span>,</span><br><span class="line">               <span class="attr">headers</span>:&#123;&#125;,</span><br><span class="line">               <span class="attr">retryInterval</span>: <span class="number">1000</span></span><br><span class="line">           &#125;)</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>监听事件：<br>通过为EventSource对象添加事件监听器，如onmessage、onopen、onerror等，来处理服务器发送的事件。</p>
+<ul>
+<li><code>onmessage</code>：表示已经收到服务端数据。</li>
+<li><code>onopen</code>：表示已经建立了连接，并开始接收服务端数据。当后端没有定义返回的事件，默认是该事件。</li>
+<li><code>onerror</code>：表示建立连接或接收数据时发生错误。</li>
+</ul>
+</li>
+<li><p>接收事件：<br>当服务器发送事件流数据时，<code>EventSource</code>对象会触发相应的事件，客户端可以通过事件监听器来接收和处理这些事件。</p>
+</li>
+</ul>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sse.<span class="property">onopen</span> = <span class="function">(<span class="params">e</span>) =&gt;</span>&#123;</span><br><span class="line">               <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;连接成功&#x27;</span>, e)</span><br><span class="line">           &#125;</span><br><span class="line">           sse.<span class="property">onmessage</span> = <span class="function">(<span class="params">e</span>) =&gt;</span>&#123;</span><br><span class="line">               <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;接收到数据&#x27;</span>, e)</span><br><span class="line">           &#125;</span><br><span class="line">           sse.<span class="property">onerror</span>= <span class="function">(<span class="params">e</span>) =&gt;</span>&#123;</span><br><span class="line">               <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;发生错误&#x27;</span>,e)</span><br><span class="line">           &#125;</span><br><span class="line">           sse.<span class="title function_">addEventListener</span>(<span class="string">&#x27;message&#x27;</span>,<span class="function">(<span class="params">e</span>)=&gt;</span>&#123;</span><br><span class="line">               <span class="keyword">const</span> span = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;animate&#x27;</span>)</span><br><span class="line">               span.<span class="title function_">remove</span>()</span><br><span class="line">               message.<span class="property">innerHTML</span> += <span class="string">`<span class="subst">$&#123;e.data&#125;</span>&lt;span id=&quot;animate&quot;&gt;|&lt;/span&gt;`</span></span><br><span class="line">           &#125;)</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>关闭连接：<br>如果不再需要与服务器保持连接，可以调用<code>EventSource</code>对象的<code>close()</code>方法来关闭连接。<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">stop.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,<span class="function">(<span class="params">e</span>)=&gt;</span>&#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;断开连接&#x27;</span>,e)</span><br><span class="line">                sse.<span class="title function_">close</span>()</span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+
+        <h2 id="2、后端"   >
+          <a href="#2、后端" class="heading-link"><i class="fas fa-link"></i></a><a href="#2、后端" class="headerlink" title="2、后端"></a>2、后端</h2>
+      <p>后端必须设置响应头  <code>&#39;Content-Type&#39;: &#39;text/event-stream&#39;</code>，然后其他就和普通get请求一样。</p>
+<p>后端是可以设置事件名称的，返回event 表示定义事件名称</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.<span class="title function_">write</span>(<span class="string">`event:dg\n`</span>)</span><br></pre></td></tr></table></div></figure>
+
+
+
+        <h2 id="3、完整代码"   >
+          <a href="#3、完整代码" class="heading-link"><i class="fas fa-link"></i></a><a href="#3、完整代码" class="headerlink" title="3、完整代码"></a>3、完整代码</h2>
+      
+        <h3 id="前端"   >
+          <a href="#前端" class="heading-link"><i class="fas fa-link"></i></a><a href="#前端" class="headerlink" title="前端"></a>前端</h3>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">&lt;!<span class="variable constant_">DOCTYPE</span> html&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">    <span class="selector-class">.box</span>&#123;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        <span class="attribute">height</span>: <span class="number">100vh</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        <span class="attribute">width</span>: <span class="number">100%</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        <span class="attribute">background</span>: <span class="number">#1B1A22</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">    <span class="selector-id">#message</span>&#123;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        <span class="attribute">color</span>: white;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">    <span class="selector-id">#animate</span>&#123;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        <span class="attribute">display</span>: inline-block;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        <span class="attribute">padding</span>:<span class="number">0</span> <span class="number">5px</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        <span class="attribute">font-size</span>:<span class="number">20px</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        <span class="attribute">font-weight</span>: bold;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        <span class="attribute">animation</span>: fade <span class="number">1s</span> infinite forwards;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">    <span class="keyword">@keyframes</span> fade &#123;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        <span class="selector-tag">from</span>&#123;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">            <span class="attribute">opacity</span>: <span class="number">0</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        <span class="selector-tag">to</span> &#123;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">            <span class="attribute">opacity</span>: <span class="number">1</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;message&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;animate&quot;</span>&gt;</span>|<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;margin-top: 30px&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;stop&quot;</span>&gt;</span>断开连接<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">const</span> message = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;message&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">const</span> stop = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;stop&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;keydown&#x27;</span>,<span class="function">(<span class="params">e</span>)=&gt;</span>&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">if</span> (e.<span class="property">keyCode</span> == <span class="number">13</span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="keyword">const</span> sse = <span class="keyword">new</span> <span class="title class_">EventSource</span>(<span class="string">&#x27;http://localhost:3000/api/sse&#x27;</span>,&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                <span class="attr">withCredentials</span>:<span class="literal">false</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                <span class="attr">headers</span>:&#123;&#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                <span class="attr">retryInterval</span>: <span class="number">1000</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            sse.<span class="property">onopen</span> = <span class="function">(<span class="params">e</span>) =&gt;</span>&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;连接成功&#x27;</span>, e)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            sse.<span class="property">onmessage</span> = <span class="function">(<span class="params">e</span>) =&gt;</span>&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;接收到数据&#x27;</span>, e)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            sse.<span class="property">onerror</span>= <span class="function">(<span class="params">e</span>) =&gt;</span>&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;发生错误&#x27;</span>,e)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            sse.<span class="title function_">addEventListener</span>(<span class="string">&#x27;message&#x27;</span>,<span class="function">(<span class="params">e</span>)=&gt;</span>&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                <span class="keyword">const</span> span = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;animate&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                span.<span class="title function_">remove</span>()</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                message.<span class="property">innerHTML</span> += <span class="string">`<span class="subst">$&#123;e.data&#125;</span>&lt;span id=&quot;animate&quot;&gt;|&lt;/span&gt;`</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            stop.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,<span class="function">(<span class="params">e</span>)=&gt;</span>&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;断开连接&#x27;</span>,e)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                sse.<span class="title function_">close</span>()</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></div></figure>
+
+        <h3 id="后端"   >
+          <a href="#后端" class="heading-link"><i class="fas fa-link"></i></a><a href="#后端" class="headerlink" title="后端"></a>后端</h3>
+      <p>这里后端用Node</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/api/sse&#x27;</span>,<span class="function">(<span class="params">req,res</span>)=&gt;</span>&#123;</span><br><span class="line">    res.<span class="title function_">writeHead</span>(<span class="number">200</span>,&#123;</span><br><span class="line">        <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;text/event-stream&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="string">&#x27;*&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">// 读取本地文件</span></span><br><span class="line">    <span class="keyword">const</span> txt =  fs.<span class="title function_">readFileSync</span>(<span class="string">&#x27;../SSE/index.txt&#x27;</span>,<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">    <span class="comment">// 分割成字符数组</span></span><br><span class="line">    <span class="keyword">const</span> arr = txt.<span class="title function_">split</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    <span class="keyword">let</span> currnet = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> timer = <span class="built_in">setInterval</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (currnet &lt; arr.<span class="property">length</span>)&#123;</span><br><span class="line">            <span class="comment">// 设置返回事件名称</span></span><br><span class="line">            <span class="comment">// res.write(`event:dg\n`)</span></span><br><span class="line">            res.<span class="title function_">write</span>(<span class="string">`data:<span class="subst">$&#123;arr[currnet]&#125;</span>\n\n`</span>)</span><br><span class="line">            currnet++</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">clearTimeout</span>(timer)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,<span class="number">300</span>)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></div></figure>
+
+<p>   
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/4c3b371275cc41ffacf4419314890b9c.gif"  alt="SSE">
+      </p>
+<p><code>注:</code><br><code>SSE是服务端主动向客户端发送数据，在客户端发送连接数据连接后，客户端就不能再向服务端发送数据了，只能服务端给客户端发送数据，这是因为SSE是单工通讯的。</code></p>
+<p><code>只接受get请求</code></p>
+<p><code>服务端没有设置正确的响应头信息，可能导致无法接收数据</code></p>
+<hr>
+
+        <h1 id="总结"   >
+          <a href="#总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
+      <p>总的来说，SSE是一种简单、实时的通信技术，适用于需要实时推送数据的应用场景，提供了一种有效的方式来实现服务器向客户端的实时通信。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E7%BD%91%E7%BB%9C/">网络</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/SSE/">SSE</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/EventSource/">EventSource</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/ChatGPT/">ChatGPT</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B1%8F/">实时数据大屏</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E5%8D%95%E5%B7%A5%E9%80%9A%E8%AE%AF/">单工通讯</a></span></div><div class="post-reward reward"><div class="reward-button">请我喝杯咖啡~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/images/collection/ZF.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/images/collection/WX.jpg"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2023/10/02/%E7%BD%91%E7%BB%9C-fetch/"><span class="paginator-prev__text">网络-fetch</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="utterances-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">
+          前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81SSE%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">
+          一、SSE简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81SSE%E7%89%B9%E7%82%B9"><span class="toc-number">2.1.</span> <span class="toc-text">
+          1、SSE特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Polyfill"><span class="toc-number">2.1.1.</span> <span class="toc-text">
+          Polyfill</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81SSE%E5%8E%9F%E7%90%86"><span class="toc-number">2.2.</span> <span class="toc-text">
+          2、SSE原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81SSE%E6%8A%80%E6%9C%AF%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="toc-number">2.3.</span> <span class="toc-text">
+          3、SSE技术实现：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81SSE%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9A"><span class="toc-number">2.4.</span> <span class="toc-text">
+          4、SSE应用场景：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81EventSource"><span class="toc-number">2.5.</span> <span class="toc-text">
+          5、EventSource</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81SSE%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">
+          二、SSE使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%89%8D%E7%AB%AF"><span class="toc-number">3.1.</span> <span class="toc-text">
+          1、前端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%90%8E%E7%AB%AF"><span class="toc-number">3.2.</span> <span class="toc-text">
+          2、后端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-number">3.3.</span> <span class="toc-text">
+          3、完整代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF"><span class="toc-number">3.3.1.</span> <span class="toc-text">
+          前端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF"><span class="toc-number">3.3.2.</span> <span class="toc-text">
+          后端</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">
+          总结</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/apple-touch-icon.png" alt="avatar"></div><p class="sidebar-ov-author__text">积少成多</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/minzhongshi" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:2240941938@qq.com" target="_blank" rel="noopener" data-popover="发送邮件" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a><a class="sidebar-ov-social-item" href="tencent://message?uin=2240941938" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://blog.csdn.net/smznbhh" target="_blank" rel="noopener" data-popover="CSDN" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">C</span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">55</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">65</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">131</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022~2023</span><span class="footer__icon"><i class="fas fa-yin-yang"></i></span><span>MinZhongShi All Rights Reserved</span><span class="footer__devider">|</span><span>备案 XXXXXXXX 号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>托管于 <a href="https://github.com/minzhongshi/" rel="noopener" target="_blank">Github Pages</a>）</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
+  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
+  // 加载进度条的计时器
+  var loadingTimer = null;
+
+  // 重置页面 Y 方向上的滚动偏移量
+  document.addEventListener('pjax:send', function () {
+    $('.header-nav-menu').removeClass('show');
+    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
+      $('html').velocity('scroll', {
+        duration: 500,
+        offset: $('#header').height(),
+        easing: 'easeInOutCubic'
+      });
+    }
+
+    var loadingBarWidth = 20;
+    var MAX_LOADING_WIDTH = 95;
+
+    $('.loading-bar').addClass('loading');
+    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    clearInterval(loadingTimer);
+    loadingTimer = setInterval(function () {
+      loadingBarWidth += 3;
+      if (loadingBarWidth > MAX_LOADING_WIDTH) {
+        loadingBarWidth = MAX_LOADING_WIDTH;
+      }
+      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    }, 500);
+  }, false);
+
+  window.addEventListener('pjax:complete', function () {
+    clearInterval(loadingTimer);
+    $('.loading-bar__progress').css('width', '100%');
+    $('.loading-bar').removeClass('loading');
+    setTimeout(function () {
+      $('.loading-bar__progress').css('width', '0');
+    }, 400);
+    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
+      $(this).remove();
+    });
+    $('script[data-pjax], #pjax-reload script').each(function () {
+      $(this).parent().append($(this).remove());
+    });
+
+    if (Stun.utils.pjaxReloadBoot) {
+      Stun.utils.pjaxReloadBoot();
+    }
+    if (Stun.utils.pjaxReloadScroll) {
+      Stun.utils.pjaxReloadScroll();
+    }
+    if (Stun.utils.pjaxReloadSidebar) {
+      Stun.utils.pjaxReloadSidebar();
+    }
+    if (false) {
+      if (Stun.utils.pjaxReloadHeader) {
+        Stun.utils.pjaxReloadHeader();
+      }
+      if (Stun.utils.pjaxReloadScrollIcon) {
+        Stun.utils.pjaxReloadScrollIcon();
+      }
+      if (Stun.utils.pjaxReloadLocalSearch) {
+        Stun.utils.pjaxReloadLocalSearch();
+      }
+    }
+  }, false);
+}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/quicklink@1.0.1/dist/quicklink.umd.js"></script><script>function initQuicklink() {
+  quicklink({
+    timeout: '10000',
+    priority: true,
+    ignores: [uri => uri.includes('#'), uri => uri === 'http://120.48.161.105:4000/2023/10/03/%E7%BD%91%E7%BB%9C-SSE/', /\/api\/?/,uri => uri.includes('.xml'),uri => uri.includes('.zip'),(uri, el) => el.hasAttribute('nofollow'),(uri, el) => el.hasAttribute('noprefetch')]
+  });
+}
+
+if (true || false) {
+  initQuicklink();
+} else {
+  window.addEventListener('DOMContentLoaded', initQuicklink, false);
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script data-pjax="">function loadUtterances() {
+  var d = document, s = d.createElement('script');
+  var container = d.getElementById('utterances-container');
+
+  if (!container) {
+    return;
+  }
+  s.src = 'https://utteranc.es/client.js';
+  s.setAttribute('repo', 'minzhongshi/minzhongshi.github.io');
+  s.setAttribute('issue-term', 'title');
+  s.setAttribute('label', 'utterances');
+  s.setAttribute('theme', 'github-light');
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('async', '');
+  if (true) {
+    s.setAttribute('data-pjax-rm', '');
+  }
+  container.append(s);
+}
+
+if (true) {
+  loadUtterances();
+} else {
+  window.addEventListener('DOMContentLoaded', loadUtterances, false);
+}</script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script type="application/json" src="/search.json"></script></body></html>
