@@ -48,6 +48,35 @@
   </entry>
   
   <entry>
+    <title>网络-WebSocket</title>
+    <link href="http://120.48.161.105:4000/2023/10/10/%E7%BD%91%E7%BB%9C-WebSocket/"/>
+    <id>http://120.48.161.105:4000/2023/10/10/%E7%BD%91%E7%BB%9C-WebSocket/</id>
+    <published>2023-10-09T17:39:23.538Z</published>
+    <updated>2023-10-10T18:07:53.439Z</updated>
+    
+    
+    <summary type="html">WebSocket是一种通信协议，它通过单个`TCP`连接提供全双工的通信通道。它允许客户端和服务器之间进行实时的双向通信。</summary>
+    
+    
+    
+    <category term="网络" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="WebSocket" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E7%BB%9C/WebSocket/"/>
+    
+    
+    <category term="网络" scheme="http://120.48.161.105:4000/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="实时数据大屏" scheme="http://120.48.161.105:4000/tags/%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B1%8F/"/>
+    
+    <category term="WebSocket" scheme="http://120.48.161.105:4000/tags/WebSocket/"/>
+    
+    <category term="全双工" scheme="http://120.48.161.105:4000/tags/%E5%85%A8%E5%8F%8C%E5%B7%A5/"/>
+    
+    <category term="超时重连" scheme="http://120.48.161.105:4000/tags/%E8%B6%85%E6%97%B6%E9%87%8D%E8%BF%9E/"/>
+    
+  </entry>
+  
+  <entry>
     <title>网络-SSE</title>
     <link href="http://120.48.161.105:4000/2023/10/03/%E7%BD%91%E7%BB%9C-SSE/"/>
     <id>http://120.48.161.105:4000/2023/10/03/%E7%BD%91%E7%BB%9C-SSE/</id>
@@ -656,45 +685,6 @@
     <category term="参数校验" scheme="http://120.48.161.105:4000/tags/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/"/>
     
     <category term="oss对象存储" scheme="http://120.48.161.105:4000/tags/oss%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringCloud（学习 商品服务-三级分类的开发）四</title>
-    <link href="http://120.48.161.105:4000/2023/08/11/SpringCloud%EF%BC%88%E5%AD%A6%E4%B9%A0%20%E5%95%86%E5%93%81%E6%9C%8D%E5%8A%A1-%E4%B8%89%E7%BA%A7%E5%88%86%E7%B1%BB%E7%9A%84%E5%BC%80%E5%8F%91%EF%BC%89%E5%9B%9B/"/>
-    <id>http://120.48.161.105:4000/2023/08/11/SpringCloud%EF%BC%88%E5%AD%A6%E4%B9%A0%20%E5%95%86%E5%93%81%E6%9C%8D%E5%8A%A1-%E4%B8%89%E7%BA%A7%E5%88%86%E7%B1%BB%E7%9A%84%E5%BC%80%E5%8F%91%EF%BC%89%E5%9B%9B/</id>
-    <published>2023-08-10T18:35:19.788Z</published>
-    <updated>2023-09-26T22:01:56.625Z</updated>
-    
-    
-    <summary type="html">本文主要记录商品服务的开发，以及过程中遇到的知识点等。</summary>
-    
-    
-    
-    <category term="SpingCloud" scheme="http://120.48.161.105:4000/categories/SpingCloud/"/>
-    
-    <category term="微服务" scheme="http://120.48.161.105:4000/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
-    <category term="后端" scheme="http://120.48.161.105:4000/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="项目" scheme="http://120.48.161.105:4000/categories/%E9%A1%B9%E7%9B%AE/"/>
-    
-    <category term="谷粒商城" scheme="http://120.48.161.105:4000/categories/%E9%A1%B9%E7%9B%AE/%E8%B0%B7%E7%B2%92%E5%95%86%E5%9F%8E/"/>
-    
-    <category term="网关" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E5%85%B3/"/>
-    
-    <category term="跨域" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E5%85%B3/%E8%B7%A8%E5%9F%9F/"/>
-    
-    
-    <category term="后端" scheme="http://120.48.161.105:4000/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="SpringCloud" scheme="http://120.48.161.105:4000/tags/SpringCloud/"/>
-    
-    <category term="商品服务" scheme="http://120.48.161.105:4000/tags/%E5%95%86%E5%93%81%E6%9C%8D%E5%8A%A1/"/>
-    
-    <category term="跨域" scheme="http://120.48.161.105:4000/tags/%E8%B7%A8%E5%9F%9F/"/>
-    
-    <category term="请求转发" scheme="http://120.48.161.105:4000/tags/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91/"/>
     
   </entry>
   
