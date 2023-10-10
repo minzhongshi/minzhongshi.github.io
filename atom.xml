@@ -6,7 +6,7 @@
   <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
-  <updated>2023-10-02T20:00:51.685Z</updated>
+  <updated>2023-10-10T18:05:08.793Z</updated>
   <id>http://120.48.161.105:4000/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络-navigator.sendBeacon</title>
+    <link href="http://120.48.161.105:4000/2023/10/11/%E7%BD%91%E7%BB%9C-navigator.sendBeacon/"/>
+    <id>http://120.48.161.105:4000/2023/10/11/%E7%BD%91%E7%BB%9C-navigator.sendBeacon/</id>
+    <published>2023-10-10T18:03:09.516Z</published>
+    <updated>2023-10-10T18:05:08.793Z</updated>
+    
+    
+    <summary type="html">navigator.sendBeacon 是一个方便的浏览器 API，用于在页面卸载或关闭时发送异步请求，适用于发送统计数据、日志记录、表单提交等场景。</summary>
+    
+    
+    
+    <category term="网络" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="navigator.sendBeacon" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E7%BB%9C/navigator-sendBeacon/"/>
+    
+    <category term="异步请求" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E7%BB%9C/%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/"/>
+    
+    
+    <category term="网络" scheme="http://120.48.161.105:4000/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="navigator.sendBeacon" scheme="http://120.48.161.105:4000/tags/navigator-sendBeacon/"/>
+    
+    <category term="异步请求" scheme="http://120.48.161.105:4000/tags/%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/"/>
+    
+    <category term="埋点" scheme="http://120.48.161.105:4000/tags/%E5%9F%8B%E7%82%B9/"/>
+    
+    <category term="日志" scheme="http://120.48.161.105:4000/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
   
   <entry>
     <title>网络-SSE</title>
@@ -664,35 +695,6 @@
     <category term="跨域" scheme="http://120.48.161.105:4000/tags/%E8%B7%A8%E5%9F%9F/"/>
     
     <category term="请求转发" scheme="http://120.48.161.105:4000/tags/%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>开发tips</title>
-    <link href="http://120.48.161.105:4000/2023/07/04/%E5%BC%80%E5%8F%91%E5%B0%8Ftips/"/>
-    <id>http://120.48.161.105:4000/2023/07/04/%E5%BC%80%E5%8F%91%E5%B0%8Ftips/</id>
-    <published>2023-07-03T19:05:24.987Z</published>
-    <updated>2023-09-26T22:01:56.651Z</updated>
-    
-    
-    <summary type="html">用于记录开发小tips。</summary>
-    
-    
-    
-    <category term="其它" scheme="http://120.48.161.105:4000/categories/%E5%85%B6%E5%AE%83/"/>
-    
-    
-    <category term="其它" scheme="http://120.48.161.105:4000/tags/%E5%85%B6%E5%AE%83/"/>
-    
-    <category term="tips" scheme="http://120.48.161.105:4000/tags/tips/"/>
-    
-    <category term="css" scheme="http://120.48.161.105:4000/tags/css/"/>
-    
-    <category term="注释" scheme="http://120.48.161.105:4000/tags/%E6%B3%A8%E9%87%8A/"/>
-    
-    <category term="位运算" scheme="http://120.48.161.105:4000/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
-    
-    <category term="函数" scheme="http://120.48.161.105:4000/tags/%E5%87%BD%E6%95%B0/"/>
     
   </entry>
   
