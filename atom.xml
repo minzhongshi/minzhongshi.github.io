@@ -6,7 +6,7 @@
   <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
-  <updated>2023-10-10T18:05:08.793Z</updated>
+  <updated>2023-10-11T18:05:35.631Z</updated>
   <id>http://120.48.161.105:4000/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络-网络状态&amp;网络速度</title>
+    <link href="http://120.48.161.105:4000/2023/10/12/%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81&amp;%E7%BD%91%E7%BB%9C%E9%80%9F%E5%BA%A6/"/>
+    <id>http://120.48.161.105:4000/2023/10/12/%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81&amp;%E7%BD%91%E7%BB%9C%E9%80%9F%E5%BA%A6/</id>
+    <published>2023-10-11T18:02:38.772Z</published>
+    <updated>2023-10-11T18:05:35.631Z</updated>
+    
+    
+    <summary type="html">本文主要记录如何监听网络状态和网络速度。</summary>
+    
+    
+    
+    <category term="网络" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="网络状态&amp;网络速度" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81-%E7%BD%91%E7%BB%9C%E9%80%9F%E5%BA%A6/"/>
+    
+    
+    <category term="网络" scheme="http://120.48.161.105:4000/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="网络状态" scheme="http://120.48.161.105:4000/tags/%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81/"/>
+    
+    <category term="网络速度" scheme="http://120.48.161.105:4000/tags/%E7%BD%91%E7%BB%9C%E9%80%9F%E5%BA%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>网络-HTTPS</title>
+    <link href="http://120.48.161.105:4000/2023/10/12/%E7%BD%91%E7%BB%9C-HTTPS/"/>
+    <id>http://120.48.161.105:4000/2023/10/12/%E7%BD%91%E7%BB%9C-HTTPS/</id>
+    <published>2023-10-11T18:02:31.792Z</published>
+    <updated>2023-10-11T18:05:35.628Z</updated>
+    
+    
+    <summary type="html">Http 存在不安全、无状态、性能低、可伪造等问题，为了解决`Http`的这些缺点，发展出了`HTTPS`协议，它在`HTTP`的基础上增加了安全性，通过使用`SSL/TLS`协议对数据进行加密和认证，提供了更安全的数据传输方式。</summary>
+    
+    
+    
+    <category term="网络" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="HTTPS" scheme="http://120.48.161.105:4000/categories/%E7%BD%91%E7%BB%9C/HTTPS/"/>
+    
+    
+    <category term="网络" scheme="http://120.48.161.105:4000/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="HTTPS" scheme="http://120.48.161.105:4000/tags/HTTPS/"/>
+    
+    <category term="SSL" scheme="http://120.48.161.105:4000/tags/SSL/"/>
+    
+    <category term="TLS" scheme="http://120.48.161.105:4000/tags/TLS/"/>
+    
+  </entry>
   
   <entry>
     <title>网络-navigator.sendBeacon</title>
@@ -601,90 +653,6 @@
     <category term="DIFF" scheme="http://120.48.161.105:4000/tags/DIFF/"/>
     
     <category term="组合式API" scheme="http://120.48.161.105:4000/tags/%E7%BB%84%E5%90%88%E5%BC%8FAPI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringCloud（学习 商品服务-属性分组的开发）六</title>
-    <link href="http://120.48.161.105:4000/2023/08/11/SpringCloud%EF%BC%88%E5%AD%A6%E4%B9%A0%20%E5%95%86%E5%93%81%E6%9C%8D%E5%8A%A1-%E5%B1%9E%E6%80%A7%E5%88%86%E7%BB%84%E7%9A%84%E5%BC%80%E5%8F%91%EF%BC%89%E5%85%AD/"/>
-    <id>http://120.48.161.105:4000/2023/08/11/SpringCloud%EF%BC%88%E5%AD%A6%E4%B9%A0%20%E5%95%86%E5%93%81%E6%9C%8D%E5%8A%A1-%E5%B1%9E%E6%80%A7%E5%88%86%E7%BB%84%E7%9A%84%E5%BC%80%E5%8F%91%EF%BC%89%E5%85%AD/</id>
-    <published>2023-08-10T18:35:37.666Z</published>
-    <updated>2023-09-26T22:01:56.653Z</updated>
-    
-    
-    <summary type="html">本文主要讲了属性分组中，查询、新增、修改功能的开发，并记录开发过程中遇到的返回数据去除注解以及Collections工具类的使用。</summary>
-    
-    
-    
-    <category term="SpingCloud" scheme="http://120.48.161.105:4000/categories/SpingCloud/"/>
-    
-    <category term="微服务" scheme="http://120.48.161.105:4000/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
-    <category term="后端" scheme="http://120.48.161.105:4000/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="项目" scheme="http://120.48.161.105:4000/categories/%E9%A1%B9%E7%9B%AE/"/>
-    
-    <category term="谷粒商城" scheme="http://120.48.161.105:4000/categories/%E9%A1%B9%E7%9B%AE/%E8%B0%B7%E7%B2%92%E5%95%86%E5%9F%8E/"/>
-    
-    <category term="注解" scheme="http://120.48.161.105:4000/categories/%E6%B3%A8%E8%A7%A3/"/>
-    
-    <category term="‘@JsonInclude’" scheme="http://120.48.161.105:4000/categories/%E6%B3%A8%E8%A7%A3/%E2%80%98-JsonInclude%E2%80%99/"/>
-    
-    <category term="工具" scheme="http://120.48.161.105:4000/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    <category term="Collections工具" scheme="http://120.48.161.105:4000/categories/%E5%B7%A5%E5%85%B7/Collections%E5%B7%A5%E5%85%B7/"/>
-    
-    
-    <category term="后端" scheme="http://120.48.161.105:4000/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="SpringCloud" scheme="http://120.48.161.105:4000/tags/SpringCloud/"/>
-    
-    <category term="商品服务" scheme="http://120.48.161.105:4000/tags/%E5%95%86%E5%93%81%E6%9C%8D%E5%8A%A1/"/>
-    
-    <category term="‘@JsonInclude注解’" scheme="http://120.48.161.105:4000/tags/%E2%80%98-JsonInclude%E6%B3%A8%E8%A7%A3%E2%80%99/"/>
-    
-    <category term="Collections工具" scheme="http://120.48.161.105:4000/tags/Collections%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringCloud（学习 商品服务-品牌管理的开发）五</title>
-    <link href="http://120.48.161.105:4000/2023/08/11/SpringCloud%EF%BC%88%E5%AD%A6%E4%B9%A0%20%E5%95%86%E5%93%81%E6%9C%8D%E5%8A%A1-%E5%93%81%E7%89%8C%E7%AE%A1%E7%90%86%E7%9A%84%E5%BC%80%E5%8F%91%EF%BC%89%E4%BA%94/"/>
-    <id>http://120.48.161.105:4000/2023/08/11/SpringCloud%EF%BC%88%E5%AD%A6%E4%B9%A0%20%E5%95%86%E5%93%81%E6%9C%8D%E5%8A%A1-%E5%93%81%E7%89%8C%E7%AE%A1%E7%90%86%E7%9A%84%E5%BC%80%E5%8F%91%EF%BC%89%E4%BA%94/</id>
-    <published>2023-08-10T18:35:29.056Z</published>
-    <updated>2023-09-26T22:01:56.643Z</updated>
-    
-    
-    <summary type="html">本章内容主要记录品牌服务的开发，重点在于阿里云平台oss对象存储、后端数据参数校验JSR303的使用。</summary>
-    
-    
-    
-    <category term="SpingCloud" scheme="http://120.48.161.105:4000/categories/SpingCloud/"/>
-    
-    <category term="微服务" scheme="http://120.48.161.105:4000/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
-    <category term="后端" scheme="http://120.48.161.105:4000/categories/%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="项目" scheme="http://120.48.161.105:4000/categories/%E9%A1%B9%E7%9B%AE/"/>
-    
-    <category term="谷粒商城" scheme="http://120.48.161.105:4000/categories/%E9%A1%B9%E7%9B%AE/%E8%B0%B7%E7%B2%92%E5%95%86%E5%9F%8E/"/>
-    
-    <category term="oss对象存储" scheme="http://120.48.161.105:4000/categories/oss%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/"/>
-    
-    <category term="参数校验" scheme="http://120.48.161.105:4000/categories/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/"/>
-    
-    <category term="JSR303" scheme="http://120.48.161.105:4000/categories/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/JSR303/"/>
-    
-    
-    <category term="后端" scheme="http://120.48.161.105:4000/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="SpringCloud" scheme="http://120.48.161.105:4000/tags/SpringCloud/"/>
-    
-    <category term="品牌服务" scheme="http://120.48.161.105:4000/tags/%E5%93%81%E7%89%8C%E6%9C%8D%E5%8A%A1/"/>
-    
-    <category term="参数校验" scheme="http://120.48.161.105:4000/tags/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/"/>
-    
-    <category term="oss对象存储" scheme="http://120.48.161.105:4000/tags/oss%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/"/>
     
   </entry>
   

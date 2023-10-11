@@ -1,0 +1,684 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="msvalidate.01" content="AFDB45CC21FD88E9C707C7C9162E5E5A"><meta name="baidu-site-verification" content="code-h3hQw6wxUc"><meta name="360-site-verification" content="1e4c79dee06e20b0af55fd4499a2d4a8"><meta name="sogou_site_verification" content="zG14f2yB7U"><meta name="description" content="Http 存在不安全、无状态、性能低、可伪造等问题，为了解决&#96;Http&#96;的这些缺点，发展出了&#96;HTTPS&#96;协议，它在&#96;HTTP&#96;的基础上增加了安全性，通过使用&#96;SSL&#x2F;TLS&#96;协议对数据进行加密和认证，提供了更安全的数据传输方式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络-HTTPS">
+<meta property="og:url" content="http://120.48.161.105:4000/2023/10/12/%E7%BD%91%E7%BB%9C-HTTPS/index.html">
+<meta property="og:site_name" content="Min&#39;s Blog">
+<meta property="og:description" content="Http 存在不安全、无状态、性能低、可伪造等问题，为了解决&#96;Http&#96;的这些缺点，发展出了&#96;HTTPS&#96;协议，它在&#96;HTTP&#96;的基础上增加了安全性，通过使用&#96;SSL&#x2F;TLS&#96;协议对数据进行加密和认证，提供了更安全的数据传输方式。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/07552b8c729348138f6c7422cf58d271.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/efacc3018aa94bd2ac711546a873d78c.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a3f3f8118eec40019c8aa3c8419bafc1.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/53ba13a85f1e4306b8ae792da79fe577.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1cfa7eccd64b4713b81f411618243258.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/60263decb4fe4b119c9c83f3eb428072.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8bf4fc3c791f498ea5328ec25c921cc7.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f0af0cd679b949289da3426b61d8a7fd.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/9dfaf4a9e21349ac913f61bdd0244b11.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8eb4609fafcc43f8b3f9f18b8bdd67c8.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/503ea624921a48c39d9441343a25e552.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/bb275167717a48bfa69a2f547cc55101.png">
+<meta property="article:published_time" content="2023-10-11T18:02:31.792Z">
+<meta property="article:modified_time" content="2023-10-11T18:05:35.628Z">
+<meta property="article:author" content="史明忠">
+<meta property="article:tag" content="网络">
+<meta property="article:tag" content="HTTPS">
+<meta property="article:tag" content="SSL">
+<meta property="article:tag" content="TLS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/07552b8c729348138f6c7422cf58d271.png"><title>网络-HTTPS | Min's Blog</title><link ref="canonical" href="http://120.48.161.105:4000/2023/10/12/%E7%BD%91%E7%BB%9C-HTTPS/"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><link rel="dns-prefetch" href="https://hm.baidu.com"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?e5397e2608cbb991400432801c7a10f1';
+  hm.async = true;
+
+  if (true) {
+    hm.setAttribute('data-pjax', '');
+  }
+  var s = document.getElementsByTagName('script')[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();</script><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: true,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: true,
+  pjax: {"avoidBanner":true},
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-tie"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-rocket"></i></span><span class="header-nav-menu-item__text">乐趣</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/technology-lottie/"><span class="header-nav-submenu-item__icon"><i class="fas fa-umbrella-beach"></i></span><span class="header-nav-submenu-item__text">动画</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-cog"></i></span><span class="header-nav-menu-item__text">组件</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/module-vue/"><span class="header-nav-submenu-item__icon"><i class="fas fa-users-cog"></i></span><span class="header-nav-submenu-item__text">Vue</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Min's Blog</div><div class="header-banner-info__subtitle">well begun is half done</div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">网络-HTTPS</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2023-10-12</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2023-10-12</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">2.4k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">14分</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>’</p>
+<meta name="referrer" content="no-referrer" />
+
+
+        <h1 id="前言"   >
+          <a href="#前言" class="heading-link"><i class="fas fa-link"></i></a><a href="#前言" class="headerlink" title="前言"></a>前言</h1>
+      <p>Http 存在不安全、无状态、性能低、可伪造等问题，为了解决<code>Http</code>的这些缺点，发展出了<code>HTTPS</code>协议，它在<code>HTTP</code>的基础上增加了安全性，通过使用<code>SSL/TLS</code>协议对数据进行加密和认证，提供了更安全的数据传输方式。</p>
+<hr>
+
+        <h1 id="一、HTTPS"   >
+          <a href="#一、HTTPS" class="heading-link"><i class="fas fa-link"></i></a><a href="#一、HTTPS" class="headerlink" title="一、HTTPS"></a>一、HTTPS</h1>
+      
+        <h2 id="简介"   >
+          <a href="#简介" class="heading-link"><i class="fas fa-link"></i></a><a href="#简介" class="headerlink" title="简介"></a>简介</h2>
+      <p>HTTPS（Hypertext Transfer Protocol Secure）是一种基于HTTP协议的安全传输协议。它通过使用SSL（Secure Sockets Layer）或TLS（Transport Layer Security）协议对数据进行加密和认证，提供了更安全的数据传输方式。</p>
+<blockquote>
+<p>HTTPS &#x3D; HTTP + SSL&#x2F;TLS</p>
+</blockquote>
+
+        <h2 id="优点"   >
+          <a href="#优点" class="heading-link"><i class="fas fa-link"></i></a><a href="#优点" class="headerlink" title="优点"></a>优点</h2>
+      <ul>
+<li>安全性：<br>HTTPS使用SSL&#x2F;TLS协议对数据进行加密和认证，防止数据被窃听和篡改，提供了更安全的数据传输方式。</li>
+<li>身份验证：<br>HTTPS使用数字证书对服务器进行身份验证，确保客户端与服务器之间的通信是安全可信的。</li>
+<li>数据完整性：<br>HTTPS使用消息摘要算法对数据进行校验，确保数据在传输过程中没有被篡改。</li>
+<li>SEO优化：<br>搜索引擎更倾向于显示使用HTTPS的网站，因此使用HTTPS可以提升网站的搜索排名。</li>
+</ul>
+<p><code>尽管HTTPS提供了更安全的数据传输方式，但它也会增加服务器的负载和网络延迟，因为加密和解密数据需要额外的计算资源。</code></p>
+
+        <h2 id="SSL-x2F-TSL"   >
+          <a href="#SSL-x2F-TSL" class="heading-link"><i class="fas fa-link"></i></a><a href="#SSL-x2F-TSL" class="headerlink" title="SSL&#x2F;TSL"></a>SSL&#x2F;TSL</h2>
+      <p>SSL（Secure Sockets Layer）是一种用于保护网络通信安全的协议。它位于<strong>传输层和应用层之间</strong>，为应用层协议（如HTTP、SMTP、FTP等）提供安全性支持。<br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/07552b8c729348138f6c7422cf58d271.png"  alt="OSI、TCP">
+      </p>
+<p>SSL的主要功能包括以下几个方面：</p>
+<ul>
+<li>加密：SSL使用对称加密和非对称加密相结合的方式，对传输的数据进行加密，防止数据在传输过程中被窃听和篡改。</li>
+<li>身份验证：SSL使用数字证书对通信双方进行身份验证，确保通信的双方是合法的，并防止中间人攻击。</li>
+<li>数据完整性：SSL使用消息摘要算法对数据进行校验，确保数据在传输过程中没有被篡改。</li>
+<li>会话管理：SSL使用会话标识和会话密钥来管理通信会话，提供持久的连接和快速重连的功能。</li>
+</ul>
+
+        <h3 id="工作流程"   >
+          <a href="#工作流程" class="heading-link"><i class="fas fa-link"></i></a><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3>
+      <ol>
+<li>客户端向服务器发起SSL连接请求。</li>
+<li>服务器返回自己的数字证书给客户端。</li>
+<li>客户端验证服务器的证书的合法性和有效性。</li>
+<li>客户端生成一个随机的对称密钥，并使用服务器的公钥进行加密，发送给服务器。</li>
+<li>服务器使用自己的私钥解密客户端发送的对称密钥。</li>
+<li>服务器和客户端之间的通信会使用对称密钥进行加密和解密。</li>
+</ol>
+<p>TLS是SSL的升级版，进行了一些改进和优化，广泛使用的是TLS，如今他的版本已经来到1.3了。</p>
+
+        <h2 id="加密"   >
+          <a href="#加密" class="heading-link"><i class="fas fa-link"></i></a><a href="#加密" class="headerlink" title="加密"></a>加密</h2>
+      
+        <h3 id="1、对称加密"   >
+          <a href="#1、对称加密" class="heading-link"><i class="fas fa-link"></i></a><a href="#1、对称加密" class="headerlink" title="1、对称加密"></a>1、对称加密</h3>
+      <p>发送和接收使用相同的密钥来对数据进行加密和解密，这样被称为对称加密。</p>
+<blockquote>
+<p>具体流程:</p>
+</blockquote>
+<ol>
+<li>发送方使用密钥将明文数据加密成密文。</li>
+<li>发送方将密文发送给接收方。</li>
+<li>接收方使用相同的密钥对密文进行解密，还原成明文数据</li>
+</ol>
+<blockquote>
+<p>常见的对称加密算法有：</p>
+</blockquote>
+<ul>
+<li>DES（Data Encryption Standard）：是一种使用56位密钥的对称加密算法，已经被认为不够安全，现在很少使用。</li>
+<li>3DES（Triple Data Encryption Standard）：是对DES算法的改进，使用3个56位密钥进行加密，提供更高的安全性。</li>
+<li>AES（Advanced Encryption Standard）：是一种使用128位、192位或256位密钥的对称加密算法，目前被广泛使用，被认为是安全可靠的加密算法。</li>
+</ul>
+
+        <h3 id="2、非对称加密"   >
+          <a href="#2、非对称加密" class="heading-link"><i class="fas fa-link"></i></a><a href="#2、非对称加密" class="headerlink" title="2、非对称加密"></a>2、非对称加密</h3>
+      <p>非对称加密使用一对密钥（公钥和私钥）来进行加密和解密。在非对称加密中，公钥用于加密数据，而私钥用于解密数据。</p>
+<blockquote>
+<p>具体流程:</p>
+</blockquote>
+<ol>
+<li>发送方使用接收方的公钥将明文数据加密成密文。</li>
+<li>发送方将密文发送给接收方。</li>
+<li>接收方使用自己的私钥对密文进行解密，还原成明文数据。</li>
+</ol>
+<blockquote>
+<p>非对称加密算法有：</p>
+</blockquote>
+<ul>
+<li>RSA（Rivest-Shamir-Adleman）：是一种基于大数分解的非对称加密算法，广泛应用于数字签名、身份验证和密钥交换等领域。</li>
+<li>ECC（Elliptic Curve Cryptography）：是一种基于椭圆曲线数学问题的非对称加密算法，具有相同安全性的情况下，使用更短的密钥长度，提供更高的性能和效率</li>
+</ul>
+
+        <h1 id="二、使用HTTPS"   >
+          <a href="#二、使用HTTPS" class="heading-link"><i class="fas fa-link"></i></a><a href="#二、使用HTTPS" class="headerlink" title="二、使用HTTPS"></a>二、使用HTTPS</h1>
+      
+        <h2 id="1-openSSL生成私钥"   >
+          <a href="#1-openSSL生成私钥" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-openSSL生成私钥" class="headerlink" title="1.openSSL生成私钥"></a>1.openSSL生成私钥</h2>
+      <ul>
+<li><p>openSSL工具的安装<br>下载地址：<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://slproweb.com/products/Win32OpenSSL.html" >openSSL</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<ul>
+<li>在系统变量Path中添加环境变量</li>
+</ul>
+</li>
+</ul>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/efacc3018aa94bd2ac711546a873d78c.png"  alt="openSSL环境变量">
+      <br>    - 验证是否安装成功，命令窗口输入<code>openssl version</code><br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/a3f3f8118eec40019c8aa3c8419bafc1.png"  alt="验证安装">
+      </p>
+<ul>
+<li><p>证书相关操作<br>这里需要三个文件来完成证书相关操作：</p>
+<ul>
+<li>私钥文件(private-key.pem),用于对加密数据进行解密。</li>
+<li>证书签名请求文件(certificate.csr)，用于向CA申请SSL&#x2F;TLS证书签名，包含了请求者身份信息和公钥信息等，需要发送给CA进行签名，获取有效的SSL&#x2F;TLS证书</li>
+<li>SSL&#x2F;TLS证书文件(certificate.pem)，用于对客户端发送请求进行验证，确保通讯安全。包含了签名后的证书信息，用作身份验证。</li>
+</ul>
+<p>   <code>SSL/TLS证书文件一般使用第三方（阿里云、华为云、腾讯云）提供的SSL/TLS证书，这里用openssl模拟了，这会使当前访问地址不安全，因为这里生成的证书没有被受信</code></p>
+</li>
+</ul>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/53ba13a85f1e4306b8ae792da79fe577.png"  alt="SSL/TLS证书">
+      </p>
+
+        <h3 id="（1）node服务端"   >
+          <a href="#（1）node服务端" class="heading-link"><i class="fas fa-link"></i></a><a href="#（1）node服务端" class="headerlink" title="（1）node服务端"></a>（1）node服务端</h3>
+      <p><strong>生成私钥文件：</strong></p>
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl genpkey <span class="literal">-algorithm</span> RSA <span class="literal">-out</span> private<span class="literal">-key</span>.pem <span class="literal">-aes256</span></span><br></pre></td></tr></table></div></figure>
+<ul>
+<li>openssl: OpenSSL 命令行工具的名称。</li>
+<li>genpkey: 生成私钥的命令。</li>
+<li>-algorithm RSA: 指定生成 RSA 私钥。</li>
+<li>-out private-key.pem: 将生成的私钥保存为 private-key.pem 文件。</li>
+<li>-aes256: 为私钥添加 AES 256 位加密，以保护私钥文件不被未经授权的人访问。</li>
+</ul>
+<blockquote>
+<p>在之后需要一个密码短语并确认，在后续需要操作密钥文件的时候需要。</p>
+</blockquote>
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Enter PEM pass phrase: <span class="number">123456</span> </span><br><span class="line">Verifying - Enter PEM pass phrase: <span class="number">123456</span></span><br></pre></td></tr></table></div></figure>
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/1cfa7eccd64b4713b81f411618243258.png"  alt="生成私钥文件">
+      </p>
+<hr>
+<p><strong>生成证书签名请求文件：</strong></p>
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl req <span class="literal">-new</span> <span class="literal">-key</span> private<span class="literal">-key</span>.pem <span class="literal">-out</span> certificate.csr</span><br></pre></td></tr></table></div></figure>
+<ul>
+<li>“req”: 表示使用 X.509 证书请求管理器 (Certificate Request Management) 功能模块。</li>
+<li>“-new”: 表示生成新的证书签名请求。</li>
+<li>“-key private-key.pem”: 表示使用指定的私钥文件 “private-key.pem” 来加密证书签名请求中的密钥对。</li>
+<li>“-out certificate.csr”: 表示输出生成的证书签名请求到文件 “certificate.csr” 中。该文件中包含了申请者提供的一些证书请求信息，例如公钥、授权主体的身份信息等。</li>
+</ul>
+<blockquote>
+<p>填写信息:</p>
+</blockquote>
+<p>Country Name (2 letter code) []:CN  国家<br>State or Province Name (full name) []:CQ 省份<br>Locality Name (eg, city) []:CQ 城市<br>Organization Name (eg, company)SMZ 组织或者是个人<br>Organizational Unit Name (eg, section) []:Min 机构名称<br>Common Name (eg, fully qualified host name) []:localhost 域名<br>Email Address []: 邮箱地址<br>Please enter the following ‘extra’ attributes<br>to be sent with your certificate request<br>A challenge password []: SMZSMZSMZSMZ 密码加盐<br>An optional company name []:Min 公司名称</p>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/60263decb4fe4b119c9c83f3eb428072.png"  alt="生成证书签名请求文件">
+      </p>
+<hr>
+<p><strong>生成SSL&#x2F;TLS证书文件：</strong></p>
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 <span class="literal">-req</span> <span class="operator">-in</span> certificate.csr <span class="literal">-signkey</span> private<span class="literal">-key</span>.pem <span class="literal">-out</span> certificate.pem</span><br></pre></td></tr></table></div></figure>
+<ul>
+<li>“x509”: 表示使用 X.509 证书管理器功能模块。</li>
+<li>“-req”: 表示从输入文件（这里为 “certificate.csr”）中读取证书签名请求数据。</li>
+<li>“-in certificate.csr”: 指定要读取的证书签名请求文件名。</li>
+<li>“-signkey private-key.pem”: 指定使用指定的私钥文件 “private-key.pem” 来进行签名操作。一般情况下，签名证书的私钥应该是和之前生成 CSR 的私钥对应的。</li>
+<li>“-out certificate.pem”: 表示将签名后的证书输出到文件 “certificate.pem” 中。该文件中包含了签名后的证书信息，包括签名算法、有效期、公钥、授权主体的身份信息等。</li>
+<li>Enter pass phrase for private-key.pem: 密码短语</li>
+</ul>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/8bf4fc3c791f498ea5328ec25c921cc7.png"  alt="生成SSL/TLS证书文件">
+      <br>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/f0af0cd679b949289da3426b61d8a7fd.png"  alt="文件">
+      </p>
+<p>Https端口默认为443，配置好密钥和证书以及密码短语就可以启动服务了</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> https = <span class="built_in">require</span>(<span class="string">&#x27;https&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;node:fs&#x27;</span>)</span><br><span class="line"><span class="comment">// http端口默认80 ， https端口默认443</span></span><br><span class="line">https.<span class="title function_">createServer</span>(&#123;</span><br><span class="line">    <span class="attr">key</span>:fs.<span class="title function_">readFileSync</span>(<span class="string">&#x27;private-key.pem&#x27;</span>),</span><br><span class="line">    <span class="attr">cert</span>:fs.<span class="title function_">readFileSync</span>(<span class="string">&#x27;certificate.pem&#x27;</span>),</span><br><span class="line">    <span class="comment">//密码短语</span></span><br><span class="line">    <span class="attr">passphrase</span>: <span class="string">&#x27;123456&#x27;</span></span><br><span class="line">&#125;,<span class="function">(<span class="params">req,res</span>)=&gt;</span>&#123;</span><br><span class="line">    res.<span class="title function_">writeHead</span>(<span class="number">200</span>)</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;success&#x27;</span>)</span><br><span class="line">&#125;).<span class="title function_">listen</span>(<span class="number">443</span>,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;https server is running at https://localhost:443&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></div></figure>
+
+
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/9dfaf4a9e21349ac913f61bdd0244b11.png"  alt="node服务https">
+      </p>
+
+        <h3 id="（2）nginx配置https服务（前端）"   >
+          <a href="#（2）nginx配置https服务（前端）" class="heading-link"><i class="fas fa-link"></i></a><a href="#（2）nginx配置https服务（前端）" class="headerlink" title="（2）nginx配置https服务（前端）"></a>（2）nginx配置https服务（前端）</h3>
+      <blockquote>
+<p>在nginx文件下的conf中nginx.conf配置文件中修改配置。</p>
+</blockquote>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/8eb4609fafcc43f8b3f9f18b8bdd67c8.png"  alt="nginx">
+      </p>
+<blockquote>
+<p>找到https相关配置部分，niginx已经将配置写好了的，只需要调整。</p>
+</blockquote>
+<ul>
+<li>openssl genrsa -out nginx.key 2048 （生成私钥）</li>
+<li>openssl req -new -key nginx.key -out nginx.csr（生成签名文件）</li>
+<li>openssl x509 -req -in nginx.csr -signkey nginx.key -out nginx.crt（生成证书）</li>
+</ul>
+<blockquote>
+<p>生成过程和上面的步骤差不多，只不过没有了密码短语。</p>
+</blockquote>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># <span class="variable constant_">HTTPS</span> server</span><br><span class="line">#</span><br><span class="line">server &#123;</span><br><span class="line">   listen       <span class="number">443</span> ssl;</span><br><span class="line">   server_name  localhost;</span><br><span class="line"></span><br><span class="line">   ssl_certificate      nginx.<span class="property">crt</span>;</span><br><span class="line">   ssl_certificate_key  nginx.<span class="property">key</span>;</span><br><span class="line"></span><br><span class="line">   ssl_session_cache    <span class="attr">shared</span>:<span class="attr">SSL</span>:1m;</span><br><span class="line">   ssl_session_timeout  5m;</span><br><span class="line"></span><br><span class="line">#    ssl_ciphers  <span class="attr">HIGH</span>:!<span class="attr">aNULL</span>:!<span class="title class_">MD5</span>;</span><br><span class="line">#    ssl_prefer_server_ciphers  on;</span><br><span class="line"></span><br><span class="line">   location / &#123;</span><br><span class="line">       root   html;</span><br><span class="line">       index  index.<span class="property">html</span> index.<span class="property">htm</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<p>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/503ea624921a48c39d9441343a25e552.png"  alt="nginx生成文件">
+      </p>
+<blockquote>
+<p>之后启动nginx服务,就可以访问了。</p>
+</blockquote>
+<h2 id=""><a href="#" class="headerlink" title=""></a>
+        <img   class="lazyload lazyload-gif"
+          src="/images/loading.svg" data-src="https://img-blog.csdnimg.cn/bb275167717a48bfa69a2f547cc55101.png"  alt="nginx服务">
+      </h2>
+        <h1 id="总结"   >
+          <a href="#总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
+      <p>总之，HTTPS是一种重要的安全传输协议，可以提供更安全的数据传输方式。在保护敏感信息和建立可信任的通信时，使用HTTPS是一个值得推荐的选择。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/%E7%BD%91%E7%BB%9C/">网络</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/HTTPS/">HTTPS</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/SSL/">SSL</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://120.48.161.105:4000/tags/TLS/">TLS</a></span></div><div class="post-reward reward"><div class="reward-button">请我喝杯咖啡~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/images/collection/ZF.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/images/collection/WX.jpg"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/10/12/%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81&amp;%E7%BD%91%E7%BB%9C%E9%80%9F%E5%BA%A6/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">网络-网络状态&amp;网络速度</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/10/11/%E7%BD%91%E7%BB%9C-navigator.sendBeacon/"><span class="paginator-prev__text">网络-navigator.sendBeacon</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="utterances-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">
+          前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81HTTPS"><span class="toc-number">2.</span> <span class="toc-text">
+          一、HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">2.1.</span> <span class="toc-text">
+          简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">2.2.</span> <span class="toc-text">
+          优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSL-x2F-TSL"><span class="toc-number">2.3.</span> <span class="toc-text">
+          SSL&#x2F;TSL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">2.3.1.</span> <span class="toc-text">
+          工作流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86"><span class="toc-number">2.4.</span> <span class="toc-text">
+          加密</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="toc-number">2.4.1.</span> <span class="toc-text">
+          1、对称加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="toc-number">2.4.2.</span> <span class="toc-text">
+          2、非对称加密</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8HTTPS"><span class="toc-number">3.</span> <span class="toc-text">
+          二、使用HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-openSSL%E7%94%9F%E6%88%90%E7%A7%81%E9%92%A5"><span class="toc-number">3.1.</span> <span class="toc-text">
+          1.openSSL生成私钥</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89node%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-number">3.1.1.</span> <span class="toc-text">
+          （1）node服务端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89nginx%E9%85%8D%E7%BD%AEhttps%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%89%8D%E7%AB%AF%EF%BC%89"><span class="toc-number">3.1.2.</span> <span class="toc-text">
+          （2）nginx配置https服务（前端）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">3.2.</span> <span class="toc-text">
+        
+      </span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">
+          总结</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/apple-touch-icon.png" alt="avatar"></div><p class="sidebar-ov-author__text">积少成多</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/minzhongshi" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:2240941938@qq.com" target="_blank" rel="noopener" data-popover="发送邮件" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="far fa-envelope"></i></span></a><a class="sidebar-ov-social-item" href="tencent://message?uin=2240941938" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="https://blog.csdn.net/smznbhh" target="_blank" rel="noopener" data-popover="CSDN" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">C</span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">59</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">70</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">143</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022~2023</span><span class="footer__icon"><i class="fas fa-yin-yang"></i></span><span>MinZhongShi All Rights Reserved</span><span class="footer__devider">|</span><span>备案 XXXXXXXX 号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>托管于 <a href="https://github.com/minzhongshi/" rel="noopener" target="_blank">Github Pages</a>）</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
+  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
+  // 加载进度条的计时器
+  var loadingTimer = null;
+
+  // 重置页面 Y 方向上的滚动偏移量
+  document.addEventListener('pjax:send', function () {
+    $('.header-nav-menu').removeClass('show');
+    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
+      $('html').velocity('scroll', {
+        duration: 500,
+        offset: $('#header').height(),
+        easing: 'easeInOutCubic'
+      });
+    }
+
+    var loadingBarWidth = 20;
+    var MAX_LOADING_WIDTH = 95;
+
+    $('.loading-bar').addClass('loading');
+    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    clearInterval(loadingTimer);
+    loadingTimer = setInterval(function () {
+      loadingBarWidth += 3;
+      if (loadingBarWidth > MAX_LOADING_WIDTH) {
+        loadingBarWidth = MAX_LOADING_WIDTH;
+      }
+      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    }, 500);
+  }, false);
+
+  window.addEventListener('pjax:complete', function () {
+    clearInterval(loadingTimer);
+    $('.loading-bar__progress').css('width', '100%');
+    $('.loading-bar').removeClass('loading');
+    setTimeout(function () {
+      $('.loading-bar__progress').css('width', '0');
+    }, 400);
+    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
+      $(this).remove();
+    });
+    $('script[data-pjax], #pjax-reload script').each(function () {
+      $(this).parent().append($(this).remove());
+    });
+
+    if (Stun.utils.pjaxReloadBoot) {
+      Stun.utils.pjaxReloadBoot();
+    }
+    if (Stun.utils.pjaxReloadScroll) {
+      Stun.utils.pjaxReloadScroll();
+    }
+    if (Stun.utils.pjaxReloadSidebar) {
+      Stun.utils.pjaxReloadSidebar();
+    }
+    if (false) {
+      if (Stun.utils.pjaxReloadHeader) {
+        Stun.utils.pjaxReloadHeader();
+      }
+      if (Stun.utils.pjaxReloadScrollIcon) {
+        Stun.utils.pjaxReloadScrollIcon();
+      }
+      if (Stun.utils.pjaxReloadLocalSearch) {
+        Stun.utils.pjaxReloadLocalSearch();
+      }
+    }
+  }, false);
+}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/quicklink@1.0.1/dist/quicklink.umd.js"></script><script>function initQuicklink() {
+  quicklink({
+    timeout: '10000',
+    priority: true,
+    ignores: [uri => uri.includes('#'), uri => uri === 'http://120.48.161.105:4000/2023/10/12/%E7%BD%91%E7%BB%9C-HTTPS/', /\/api\/?/,uri => uri.includes('.xml'),uri => uri.includes('.zip'),(uri, el) => el.hasAttribute('nofollow'),(uri, el) => el.hasAttribute('noprefetch')]
+  });
+}
+
+if (true || false) {
+  initQuicklink();
+} else {
+  window.addEventListener('DOMContentLoaded', initQuicklink, false);
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script data-pjax="">function loadUtterances() {
+  var d = document, s = d.createElement('script');
+  var container = d.getElementById('utterances-container');
+
+  if (!container) {
+    return;
+  }
+  s.src = 'https://utteranc.es/client.js';
+  s.setAttribute('repo', 'minzhongshi/minzhongshi.github.io');
+  s.setAttribute('issue-term', 'title');
+  s.setAttribute('label', 'utterances');
+  s.setAttribute('theme', 'github-light');
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('async', '');
+  if (true) {
+    s.setAttribute('data-pjax-rm', '');
+  }
+  container.append(s);
+}
+
+if (true) {
+  loadUtterances();
+} else {
+  window.addEventListener('DOMContentLoaded', loadUtterances, false);
+}</script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script type="application/json" src="/search.json"></script></body></html>
