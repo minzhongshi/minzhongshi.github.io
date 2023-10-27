@@ -6,7 +6,7 @@
   <link href="http://120.48.161.105:4000/atom.xml" rel="self"/>
   
   <link href="http://120.48.161.105:4000/"/>
-  <updated>2023-10-23T00:42:42.778Z</updated>
+  <updated>2023-10-27T22:58:20.550Z</updated>
   <id>http://120.48.161.105:4000/</id>
   
   <author>
@@ -15,6 +15,43 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>浏览器事件循环 （event loop)</title>
+    <link href="http://120.48.161.105:4000/2023/10/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%20%EF%BC%88event%20loop%EF%BC%89/"/>
+    <id>http://120.48.161.105:4000/2023/10/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%20%EF%BC%88event%20loop%EF%BC%89/</id>
+    <published>2023-10-27T22:55:12.801Z</published>
+    <updated>2023-10-27T22:58:20.550Z</updated>
+    
+    
+    <summary type="html">JS是一门单线程的语言，因为JS执行在渲染主线程中，为了防止渲染主线程的阻塞，采用异步的方式，碰到耗时任务时交给其他线程处理，自生立即结束当前任务，执行后续任务，而耗时任务的回调函数包装成任务，加到任务队列中末尾，等待调度执行</summary>
+    
+    
+    
+    <category term="浏览器" scheme="http://120.48.161.105:4000/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    
+    <category term="事件循环" scheme="http://120.48.161.105:4000/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/"/>
+    
+    <category term="进程" scheme="http://120.48.161.105:4000/categories/%E8%BF%9B%E7%A8%8B/"/>
+    
+    
+    <category term="浏览器" scheme="http://120.48.161.105:4000/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    
+    <category term="事件循环" scheme="http://120.48.161.105:4000/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/"/>
+    
+    <category term="进程" scheme="http://120.48.161.105:4000/tags/%E8%BF%9B%E7%A8%8B/"/>
+    
+    <category term="线程" scheme="http://120.48.161.105:4000/tags/%E7%BA%BF%E7%A8%8B/"/>
+    
+    <category term="event loop" scheme="http://120.48.161.105:4000/tags/event-loop/"/>
+    
+    <category term="异步" scheme="http://120.48.161.105:4000/tags/%E5%BC%82%E6%AD%A5/"/>
+    
+    <category term="同步" scheme="http://120.48.161.105:4000/tags/%E5%90%8C%E6%AD%A5/"/>
+    
+    <category term="阻塞" scheme="http://120.48.161.105:4000/tags/%E9%98%BB%E5%A1%9E/"/>
+    
+  </entry>
   
   <entry>
     <title>Node.JS---npm相关</title>
@@ -618,37 +655,6 @@
     <category term="渲染" scheme="http://120.48.161.105:4000/tags/%E6%B8%B2%E6%9F%93/"/>
     
     <category term="事件" scheme="http://120.48.161.105:4000/tags/%E4%BA%8B%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>微前端-monorepo-无界</title>
-    <link href="http://120.48.161.105:4000/2023/08/31/%E5%BE%AE%E5%89%8D%E7%AB%AF-monorepo-%E6%97%A0%E7%95%8C/"/>
-    <id>http://120.48.161.105:4000/2023/08/31/%E5%BE%AE%E5%89%8D%E7%AB%AF-monorepo-%E6%97%A0%E7%95%8C/</id>
-    <published>2023-08-30T18:50:59.213Z</published>
-    <updated>2023-09-26T22:01:56.678Z</updated>
-    
-    
-    <summary type="html">如今项目体积越来越大，导致维护成本增加，后端以微服务形式将项目拆成不同的服务，前端也需要对项目进行拆解，以达到长久发展的可能性。 在我理解中，微前端就是将前端以某种规则进行隔离，在隔离中也能进行远程访问其他小应用，不受技术栈的影响，带来更多的可能性与可维护性。</summary>
-    
-    
-    
-    <category term="微前端" scheme="http://120.48.161.105:4000/categories/%E5%BE%AE%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="无界" scheme="http://120.48.161.105:4000/categories/%E5%BE%AE%E5%89%8D%E7%AB%AF/%E6%97%A0%E7%95%8C/"/>
-    
-    
-    <category term="微前端" scheme="http://120.48.161.105:4000/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="无界" scheme="http://120.48.161.105:4000/tags/%E6%97%A0%E7%95%8C/"/>
-    
-    <category term="monorepo" scheme="http://120.48.161.105:4000/tags/monorepo/"/>
-    
-    <category term="pnpm" scheme="http://120.48.161.105:4000/tags/pnpm/"/>
-    
-    <category term="幽灵依赖" scheme="http://120.48.161.105:4000/tags/%E5%B9%BD%E7%81%B5%E4%BE%9D%E8%B5%96/"/>
-    
-    <category term="依赖安装耗时长" scheme="http://120.48.161.105:4000/tags/%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E8%80%97%E6%97%B6%E9%95%BF/"/>
     
   </entry>
   
